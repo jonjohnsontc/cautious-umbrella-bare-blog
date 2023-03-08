@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id="___gatsby">
+        <div tabindex="-1" id="gatsby-focus-wrapper" style="outline: none;">
+            <div class="app">
+                <nav class="nav" role="navigation" aria-label="main-navigation">
+                    <ul>
+                        <li id="waving-hand"><a class="nav-link" href="/">👋🏽</a></li>
+                        <li><a class="nav-link" href="/about">about</a></li>
+                        <li><a class="nav-link nav-link--active" href="/blog">blog</a></li>
+                        <li><a class="nav-link" href="/stuff">stuff</a></li>
+                        <li>
+                            <div class="palette-dropdown"><button class="nav-button"><svg fill="none"
+                                        xmlns="http://www.w3.org/2000/svg" class="palette">
+                                        <use xlink:href="./icons.svg#palette"></use>
+                                    </svg></button></div>
+                        </li>
+                    </ul>
+                </nav>
+                <article class="blog-post-container blog-post-content container">
+                    <h1>Rebuilding my SPA with Multipage Architecture in Remix</h1>
+                    <p>A lil story about how curiosity into the traditional server-side model also helped me gain some
+                        performance (and indirectly save some money) on a website of mine.</p>
+                    <p>I've built a site called <a href="https://www.songwritergraph.org">Songwriter Graph</a>, which
+                        tries to map how songwriters write music in relation to one another. You can search for a
+                        songwriter, and it'll name their 5 most similar peers. It's been served via a big ol' bundle of
+                        Javascript from a Heroku Dyno ever since it was first deployed, but it was something that I've
+                        had regrets about. Mostly due to how I'd learned more about the web worked, with websites in the
+                        traditional server driven model, and indexing and discovery on search engines. Having a
+                        single-page application isn't ideal for a website which just indexes information it reads from a
+                        db, as no pages need to be dynamically generated. So, I found some time in-between a million
+                        other side-projects to explore the traditional server side model with my website, on a framework
+                        that I'd been hearing a lot about recently, Remix.</p>
+                    <p>In this piece, I'll talk about how I first built the site, and some of the bigger conceptual
+                        changes that I had to translate into code. Afterwards, I'll talk about some performance
+                        differences I recorded with Lighthouse after deploying a version of the site to fly.io. You can
+                        jump to sections using the helper here, or just follow along.</p>
+                    <h2>Why Remix?</h2>
+                    <p>I see these as first and foremost, performance issues that I've written myself, and could fix
+                        while still operating within the languages and tools that I built the website in. But, my real
+                        objective here is to learn more about the traditional client-server model of the web, so I'm
+                        going to be motivated the most by touching a nice and shiny new framework ✨.</p>
+                    <h2>ASIDE: DESCRIPTION OF APP</h2>
+                    <p>You can search for a songwriter via the search bar, and if they're indexed in the graph, you can
+                        load a profile of theirs. Each profile page contains some high level stats about the songwriter
+                        (key / tempo), along with a list of the top 5 most similar songwriters.</p>
+                    <p>The data underlying the graph is ancient and fairly biased towards a couple genres. It only tops
+                        out at 10k songwriters, and 100,000 songs. So, it's very much a proof-of-concept. It
+                        demonstrates what I hope is possible with a bunch of music related data and songwriter credits -
+                        a system to help people discover songwriters they might not normally encounter based on what
+                        they listen to.</p>
+                    <h2>How SWG was Deployed</h2>
+                    <p>The app was previously served as a big ol' bundle of Javascript from a Heroku Dyno. The bundle
+                        being built from clojurescript - specifically with reagent, self-described as a minimalistic
+                        React for clojurescript, along with re-frame a view library to help ensure a stateful UX.
+                        Underneath the hood, the API that served the songwriter info was built in Flask, leveraging
+                        SQLAlchemy as an ORM to chat with the data sitting in a SQLite db.</p>
+                    <p>I made the choice to build the site as a <a
+                            href="https://developer.mozilla.org/en-US/docs/Glossary/SPA">single-page application</a>
+                        (SPA) in cljs, because it mirrored the architecture of an application that I was working on at
+                        my job. The app I worked on at the time wasn't functionally similar to the graph at all, but I
+                        didn't have any other frontend experience at the time[FN], and felt like the easiest way to get
+                        up and moving.</p>
+                    <p>In the time since I initially deployed the site, I've learned a whole lot more about the
+                        traditional client-server model on the web, and figured the songwriter graph would be a much
+                        better fit for that setup.</p>
+                    <h2>ASIDE: "Traditional Client-Server" Model</h2>
+                    <p>When I refer to traditional client-server model, I'm referring to the idea of website consisting
+                        of numerous pages, for which a user will interact with by navigating to different URLs
+                        (generally linked on the page). When each page is visited, the user will use their browser
+                        (client) to request the specified page from the server.</p>
+                    <h2>Redesign of the Application</h2>
+                    <p>Changing the graph from an SPA to server driven experience felt approachable, and easy. After
+                        taking a second to re-orient myself with the site's codebase, I realized that I really only
+                        needed to re-create the views and api queries + db calls. The rest of the code base, which was
+                        made up of logic surrounding how the site functioned was unnecessary. This is because that logic
+                        was there to help navigate users between writers, which was automatically baked into the
+                        back/forward buttons of the standard web<a
+                            href="If-I-hadn't-made-it-clear-before,-the-graph-made-no-sense-as-an-SPA">FN</a>.</p>
+                    <p>In terms of recreating the views &amp; queries + api calls, it required a slight reshuffling of
+                        concepts in my head, which we'll get into below.</p>
+                    <h3>Views + Routes</h3>
+                    <p>Keeping the 'single' in single page application, all views within the app (writer/search/about)
+                        were encompassed in a single <code>views.cljs</code> file. Conversely, each is manifested as a
+                        separate <a href="https://remix.run/docs/en/v1/guides/routing#defining-routes">route</a> page
+                        within Remix.</p>
+                    <p>Each of these routes performs the same task as the views, rendering components for the given page
+                        of the graph, dynamically based on the search term or id passed in the url params. However, the
+                        routes in Remix also load the data required for the page (like writer details) via a
+                        <code>LoaderFunction</code>.
+                    </p>
+                    <p>This replaces the REST API that I left for anyone to peruse/abuse<a
+                            href="the-graph-is-roughly-20MB-so-it-wouldnt-take-long-to-pull-the-whole-thing.-Though-honestly-more-power-to-ya">FN</a>,
+                        which I think could potentially save me money in the long run.</p>
+                    <h3>The Database &amp; App 'State'</h3>
+                    <p>This brings me to the other 'big' conceptual change, managing calls to the db to retrieve the
+                        correct details to fill out a page. In the SPA, I constructed some SQL queries (using SQLAlchemy
+                        as an ORM layer) to pull writer details depending upon the context. Afterwards, I created some
+                        REST API endpoints to serve this data to the user when they request a page.</p>
+                    <p>With Remix, the LoaderFunction I mentioned before acts as both the REST endpoint and the db call.
+                        Which doesn't shave a ton of code, but I think makes the intent easier to read when coming back
+                        to the codebase after some time.</p>
+                    <h2>Performance Differences</h2>
+                    <p>I expected a fair decrease in initial page load from the application, because the graph was
+                        previously just one bundle of javascript, and everything was set to load at once. The scores
+                        from Lighthouse showed even greater gains than I had expected:</p>
+                    <h2 class="comp-title">Desktop</h2>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th scope="col" class="comp-header">Category</th>
+                                <th scope="col" class="comp-header">SPA</th>
+                                <th scope="col" class="comp-header">Remix</th>
+                            </tr>
+                            <tr>
+                                <th scope="row">First Contentful Paint</th>
+                                <td>3.4&nbsp;s</td>
+                                <td>0.5&nbsp;s</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Time to Interactive</th>
+                                <td>3.5&nbsp;s</td>
+                                <td>0.8&nbsp;s</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Speed Index</th>
+                                <td>3.4&nbsp;s</td>
+                                <td>0.5&nbsp;s</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Total Blocking Time</th>
+                                <td>30&nbsp;ms</td>
+                                <td>0&nbsp;ms</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Largest Contentful Paint</th>
+                                <td>3.4&nbsp;s</td>
+                                <td>0.8&nbsp;s</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Cumulative Layout Shift</th>
+                                <td>0.004</td>
+                                <td>0.002</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2 class="comp-title">Mobile</h2>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th scope="col" class="comp-header">Category</th>
+                                <th scope="col" class="comp-header">SPA</th>
+                                <th scope="col" class="comp-header">Remix</th>
+                            </tr>
+                            <tr>
+                                <th scope="row">First Contentful Paint</th>
+                                <td>18.0&nbsp;s</td>
+                                <td>1.8&nbsp;s</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Time to Interactive</th>
+                                <td>18.6&nbsp;s</td>
+                                <td>2.7&nbsp;s</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Speed Index</th>
+                                <td>18.0&nbsp;s</td>
+                                <td>1.8&nbsp;s</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Total Blocking Time</th>
+                                <td>390&nbsp;ms</td>
+                                <td>0&nbsp;ms</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Largest Contentful Paint</th>
+                                <td>18.1&nbsp;s</td>
+                                <td>2.7&nbsp;s</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Cumulative Layout Shift</th>
+                                <td>0.002</td>
+                                <td>0.002</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <footer class="footer is-flex is-justify-content-center"><span class="has-text-centered">~ Thanks
+                            for reading! If you enjoyed it, consider sharing it with someone u like 💜 ~</span></footer>
+                </article>
+            </div>
+        </div>
+        <div id="gatsby-announcer" aria-live="assertive" aria-atomic="true"
+            style="position: absolute; top: 0px; width: 1px; height: 1px; padding: 0px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border: 0px;">
+        </div>
+    </div>
+    <script src="/polyfill.js" nomodule=""></script>
+    <script src="/framework.js"></script>
+    <script src="/commons.js"></script>
+    <div id="query-on-demand-indicator-element"></div><gatsby-qod></gatsby-qod>
+</body>
+
+</html>
