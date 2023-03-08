@@ -266,3 +266,106 @@ h6 {
   width: 2.25rem;
   height: 2.25rem;
 }
+/* 
+
+    PANEL
+
+*/
+/* 
+
+Panel Styles Wishlist:
+
+- I want the panel to utilize the global styles in the base styles file
+- I want to pull colors from the colors css file
+
+*/
+@import "../../styles/base.css";
+@import "../../styles/colors.css";
+
+:root {
+  --arrow-offset: 35%;
+}
+
+@media (min-width: 300px) {
+  :root {
+    --arrow-offset: 68%;
+  }
+}
+
+@media (min-width: 800px) {
+  :root {
+    --arrow-offset: 12%;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --arrow-offset: 10%;
+  }
+}
+
+.nav {
+  display: inline-flex;
+  min-width: 100vw;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav > ul > li {
+  display: inline-flex;
+  padding: 1em 0.7em;
+}
+
+.nav-link {
+  font-size: 2.25rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.nav-link:hover {
+  color: var(--hover);
+  text-decoration: none;
+}
+
+.nav-link--active {
+  text-underline-offset: 0.3em;
+  text-decoration: underline solid 0.05em;
+}
+
+.nav-button {
+  cursor: pointer;
+  background-color: var(--white-ter);
+  border: none;
+}
+
+.palette-dropdown {
+  position: relative;
+  top: 5px;
+}
+
+@media (max-width: 400px) {
+  .palette {
+    margin-bottom: 1em;
+  }
+}
+/* 
+
+  Panel Colors
+
+*/
+.disc-gruvbox {
+  margin-left: 1em;
+  margin-bottom: 0.5em;
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  background-color: #d79921;
+}
+.disc-booberry {
+  margin-left: 1em;
+  margin-bottom: 0.5em;
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  background-color: #7139bf;
+}
