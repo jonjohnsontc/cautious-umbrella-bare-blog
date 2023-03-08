@@ -5,3 +5,10 @@ I'd like to see if I can remake the basic jons.gay site in html/css/js. Ideally 
 ## How to Remake
 
 With that said, I don't want to use any js or css frameworks, at least initially
+
+## Checklist
+
+- [] no bulma
+- [] three pages (blog, home, about)
+- [] gruvbox light color
+- [] themeing still enabled via css
