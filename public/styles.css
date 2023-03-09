@@ -424,3 +424,7 @@ INDEX PAGE
   border-radius: 50%;
   background-color: var(--white);
 }
+
+#palette {
+  width: 2.25rem;
+}
