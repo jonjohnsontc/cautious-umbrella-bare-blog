@@ -128,6 +128,21 @@ body.booberry {
   --primary: var(--purple);
   --hover: var(--red);
 }
+
+body.gruvbox-dark {
+  --white-ter: #7139bf;
+  --white: hsl(0, 0%, 29%);
+  --turquoise: #458588;
+  --green: #98971a;
+  --grey-darker: #f2f2f2;
+  --cyan: #076678;
+  --yellow: #d79921;
+  --purple: #b16286;
+  --red: #cc241d;
+  --grey-dark: #f9f5d7;
+  --primary: var(--purple);
+  --hover: var(--turquoise);
+}
 /* 
 
     TYPEOGRAPHY
@@ -271,17 +286,6 @@ h6 {
     PANEL
 
 */
-/* 
-
-Panel Styles Wishlist:
-
-- I want the panel to utilize the global styles in the base styles file
-- I want to pull colors from the colors css file
-
-*/
-@import "../../styles/base.css";
-@import "../../styles/colors.css";
-
 :root {
   --arrow-offset: 35%;
 }
@@ -398,6 +402,10 @@ INDEX PAGE
     margin-inline: 1em;
   }
 
+  .main-content > p {
+    font-size: 2em;
+  }
+
   .hero {
     flex-direction: column;
   }
@@ -408,5 +416,11 @@ INDEX PAGE
 }
 
 .main-content > p {
-  font-size: 1.5em;
+  text-align: center;
+}
+
+#jj {
+  border: none;
+  border-radius: 50%;
+  background-color: var(--white);
 }
