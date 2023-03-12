@@ -1,136 +1,144 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="note" content="environment=development">
+    <title>About ~ Jon Johnson</title>
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
 <body>
-    <div id="___gatsby">
-        <div tabindex="-1" id="gatsby-focus-wrapper" style="outline: none;">
-            <div class="app">
-                <nav class="nav" role="navigation" aria-label="main-navigation">
-                    <ul>
-                        <li id="waving-hand"><a class="nav-link" href="/">👋🏽</a></li>
-                        <li><a class="nav-link nav-link--active" href="/about" aria-current="page">about</a></li>
-                        <li><a class="nav-link" href="/blog">blog</a></li>
-                        <li><a class="nav-link" href="/stuff">stuff</a></li>
-                        <li>
-                            <div class="palette-dropdown"><button class="nav-button"><svg fill="none"
-                                        xmlns="http://www.w3.org/2000/svg" class="palette">
-                                        <use xlink:href="./icons.svg#palette"></use>
-                                    </svg></button></div>
-                        </li>
-                    </ul>
-                </nav>
-                <div class="container-main">
-                    <article class="container-article">
-                        <div class="info-content">
-                            <div data-gatsby-image-wrapper=""
-                                class="gatsby-image-wrapper gatsby-image-wrapper-constrained info-image">
-                                <div style="max-width:900px;display:block"><img alt="" role="presentation"
-                                        aria-hidden="true"
-                                        src="data:image/svg+xml;charset=utf-8,%3Csvg height='900' width='900' xmlns='http://www.w3.org/2000/svg' version='1.1'%3E%3C/svg%3E"
-                                        style="max-width:100%;display:block;position:static"></div><img
-                                    aria-hidden="true" data-placeholder-image=""
-                                    style="opacity: 0; transition: opacity 500ms linear 0s; object-fit: cover;"
-                                    decoding="async"
-                                    src="data:image/png;base64,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"
-                                    alt="">
-                                <picture>
-                                    <source type="image/webp" srcset="/static/2385a54b617ad0379db77bc3e5fccf33/252a0/jj_profile.webp 225w,
+    <div class="app">
+        <nav class="nav" role="navigation" aria-label="main-navigation">
+            <ul>
+                <li id="waving-hand"><a class="nav-link" href="/">👋🏽</a></li>
+                <li><a class="nav-link nav-link--active" href="/about" aria-current="page">about</a></li>
+                <li><a class="nav-link" href="/blog">blog</a></li>
+                <li>
+                    <div class="palette-dropdown">
+                        <button class="nav-button">
+                            <svg id="palette" width="auto" viewBox="0 0 201 199" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M201 99.5C201 138.678 177.558 131.651 156.19 125.246C143.464 121.427 131.467 117.82 125.625 124.375C118.05 132.87 119.658 146.999 121.216 160.693C123.439 180.282 125.575 199 100.5 199C80.623 199 61.1924 193.164 44.6652 182.231C28.1381 171.298 15.2568 155.758 7.65015 137.577C0.0435447 119.396 -1.94669 99.3897 1.93112 80.0885C5.80894 60.7874 15.3806 43.0582 29.4358 29.1429C43.491 15.2276 61.3984 5.75114 80.8935 1.91191C100.389 -1.92732 120.596 0.0431115 138.96 7.57403C157.324 15.1049 173.02 27.8581 184.063 44.2208C195.106 60.5835 201 79.8208 201 99.5V99.5ZM100.5 186.563C108.176 186.563 108.716 184.436 108.728 184.374C109.708 182.558 110.286 178.603 109.608 170.456C109.432 168.366 109.143 165.854 108.842 163.105C108.188 157.334 107.435 150.606 107.359 144.922C107.234 136.128 108.402 124.897 116.203 116.141C120.839 110.955 126.818 108.953 132.183 108.455C137.258 107.982 142.383 108.778 146.755 109.749C151.064 110.706 155.574 112.062 159.632 113.281L159.983 113.38C164.33 114.686 168.25 115.855 171.956 116.689C180.159 118.529 183.312 117.721 184.405 116.987C184.882 116.664 188.438 113.94 188.438 99.5C188.438 82.2807 183.28 65.4481 173.617 51.1307C163.955 36.8133 150.221 25.6543 134.152 19.0648C118.084 12.4752 100.402 10.7511 83.3443 14.1104C66.2861 17.4697 50.6171 25.7616 38.3188 37.9376C26.0206 50.1135 17.6453 65.6265 14.2522 82.515C10.8591 99.4034 12.6006 116.909 19.2564 132.817C25.9122 148.726 37.1833 162.323 51.6446 171.89C66.1058 181.456 83.1076 186.563 100.5 186.563V186.563Z"
+                                    style="fill: var(--primary)" />
+                                <ellipse lass="ellipse-cyan" cx="50" cy="86.1342" rx="19" ry="18.8109"
+                                    style="fill: var(--cyan)" />
+                                <ellipse class="ellipse-purple" cx="100" cy="43.5624" rx="19" ry="18.8109"
+                                    style="fill: var(--purple)" />
+                                <ellipse class="ellipse-red" cx="151" cy="81.184" rx="19" ry="18.8109"
+                                    style="fill: var(--red)" />
+                                <ellipse class="ellipse-yellow" cx="75" cy="142.567" rx="19" ry="18.8109"
+                                    style="fill: var(--yellow)" />
+                            </svg>
+
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <div class="container-main">
+            <article class="container-article">
+                <div class="info-content">
+                    <div data-gatsby-image-wrapper=""
+                        class="gatsby-image-wrapper gatsby-image-wrapper-constrained info-image">
+                        <div style="max-width:900px;display:block"><img alt="" role="presentation" aria-hidden="true"
+                                src="data:image/svg+xml;charset=utf-8,%3Csvg height='900' width='900' xmlns='http://www.w3.org/2000/svg' version='1.1'%3E%3C/svg%3E"
+                                style="max-width:100%;display:block;position:static"></div><img aria-hidden="true"
+                            data-placeholder-image=""
+                            style="opacity: 0; transition: opacity 500ms linear 0s; object-fit: cover;" decoding="async"
+                            src="data:image/png;base64,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"
+                            alt="">
+                        <picture>
+                            <source type="image/webp" srcset="/static/2385a54b617ad0379db77bc3e5fccf33/252a0/jj_profile.webp 225w,
 /static/2385a54b617ad0379db77bc3e5fccf33/2890f/jj_profile.webp 450w,
 /static/2385a54b617ad0379db77bc3e5fccf33/3987a/jj_profile.webp 900w" sizes="(min-width: 900px) 900px, 100vw"><img
-                                        width="900" height="900" data-main-image=""
-                                        style="object-fit: cover; opacity: 1;" sizes="(min-width: 900px) 900px, 100vw"
-                                        decoding="async" loading="lazy"
-                                        src="/static/2385a54b617ad0379db77bc3e5fccf33/db189/jj_profile.png" srcset="/static/2385a54b617ad0379db77bc3e5fccf33/d8461/jj_profile.png 225w,
+                                width="900" height="900" data-main-image="" style="object-fit: cover; opacity: 1;"
+                                sizes="(min-width: 900px) 900px, 100vw" decoding="async" loading="lazy"
+                                src="/static/2385a54b617ad0379db77bc3e5fccf33/db189/jj_profile.png" srcset="/static/2385a54b617ad0379db77bc3e5fccf33/d8461/jj_profile.png 225w,
 /static/2385a54b617ad0379db77bc3e5fccf33/d76bd/jj_profile.png 450w,
 /static/2385a54b617ad0379db77bc3e5fccf33/db189/jj_profile.png 900w" alt="my big ass face">
-                                </picture><noscript>
-                                    <picture>
-                                        <source type="image/webp" srcSet="/static/2385a54b617ad0379db77bc3e5fccf33/252a0/jj_profile.webp 225w,
+                        </picture><noscript>
+                            <picture>
+                                <source type="image/webp" srcSet="/static/2385a54b617ad0379db77bc3e5fccf33/252a0/jj_profile.webp 225w,
 /static/2385a54b617ad0379db77bc3e5fccf33/2890f/jj_profile.webp 450w,
 /static/2385a54b617ad0379db77bc3e5fccf33/3987a/jj_profile.webp 900w" sizes="(min-width: 900px) 900px, 100vw" /><img
-                                            width="900" height="900" data-main-image=""
-                                            style="object-fit:cover;opacity:0" sizes="(min-width: 900px) 900px, 100vw"
-                                            decoding="async" loading="lazy"
-                                            src="/static/2385a54b617ad0379db77bc3e5fccf33/db189/jj_profile.png" srcSet="/static/2385a54b617ad0379db77bc3e5fccf33/d8461/jj_profile.png 225w,
+                                    width="900" height="900" data-main-image="" style="object-fit:cover;opacity:0"
+                                    sizes="(min-width: 900px) 900px, 100vw" decoding="async" loading="lazy"
+                                    src="/static/2385a54b617ad0379db77bc3e5fccf33/db189/jj_profile.png" srcSet="/static/2385a54b617ad0379db77bc3e5fccf33/d8461/jj_profile.png 225w,
 /static/2385a54b617ad0379db77bc3e5fccf33/d76bd/jj_profile.png 450w,
 /static/2385a54b617ad0379db77bc3e5fccf33/db189/jj_profile.png 900w" alt="my big ass face" />
-                                    </picture>
-                                </noscript>
-                            </div>
-                        </div>
-                        <h1 class="text-header">About Me</h1>
-                        <p>My name is Jon Johnson. I'm a cat father, developer, and complete and utter nutcase. I spent
-                            roughly 10 years working in music, mostly in and around music publishing, before moving into
-                            software development back in 2018. Now I work as a software engineer in the media space. In
-                            my freetime, I love working on different ways to express myself creatively through software
-                            or other technology.</p>
-                        <h1 class="text-header">Resume/CV</h1>
-                        <div class="about-resume-container">
-                            <div class="about-resume-header">
-                                <h2 class="about-resume-title">JON JOHNSON</h2>
-                                <p>GitHub: www.github.com/jonjohnsontc | LinkedIn: www.linkedin.com/in/jonjohnsontc</p>
-                            </div>
-                            <h3 class="about-resume-title">CORE COMPETENCIES</h3>
-                            <p>AWS, Python, Clojure(script), PostgreSQL, Javascript, Docker, Spark, Git, Agile, Jira</p>
-                            <h3 class="about-resume-title">PROFESSIONAL EXPERIENCE</h3>
-                            <div class="about-resume-title-container">
-                                <p>Nielsen, Hollywood, CA</p>
-                                <p>2019 - Present</p>
-                            </div>
-                            <p>Software Engineer</p>
-                            <ul class="about-resume-job-facts">
-                                <li>Full stack contributor on single page web application designed to serve predictions
-                                    to clients in real-time </li>
-                                <li>Build microservice to gather features based on user input and serve predictions to
-                                    users of the web application </li>
-                                <li>Build out web UI using Reagent (a clojurescript wrapper of React), based on renders
-                                    provided by UX team</li>
-                                <li>Migrate Continuous Integration (CI) infrastructure from Jenkins to GitLab </li>
-                                <li>Help build REST API to allow microservices to communicate with another, and users to
-                                    communicate with the backend</li>
-                                <li>Manage deployments through Kubernetes’ kubectl</li>
-                            </ul>
-                            <div class="about-resume-title-container">
-                                <p>Nielsen, Hollywood, CA</p>
-                                <p>2018 - 2019</p>
-                            </div>
-                            <p>Senior Product Analyst</p>
-                            <ul class="about-resume-job-facts">
-                                <li>Built and maintained a dashboard designed to serve detailed viewership data to
-                                    clients</li>
-                                <li>Helped build out robust ETL pipelines, primarily utilizing Spark.</li>
-                                <li>Conducted market share analysis of record label recordings in Spark, utilizing
-                                    cosine similarity to match tracks between provider data.</li>
-                                <li>Constructed a web scraper using AWS Lambda to concurrently scrape thousands of
-                                    webpages at any given time.</li>
-                                <li>Presented coding work &amp; new technologies to co-workers through “coding club”
-                                    discussions &amp; AWS working group.</li>
-                            </ul>
-                            <div class="about-resume-title-container">
-                                <p>General Assembly, Los Angeles, CA</p>
-                                <p>2018</p>
-                            </div>
-                            <p>Remote Instruction Assistant - Python Course</p>
-                            <ul class="about-resume-job-facts">
-                                <li>Helped teach relative coding newcomers the basics of Python in a 40hr PT course. The
-                                    curriculum included basic object-oriented concepts (classes, state, objects, etc),
-                                    as well as data analysis using the Scipy stack (primarily NumPy and Pandas). </li>
-                                <li>Assisted students by answering questions during class on Slack and providing
-                                    guidance on the course’s final project.</li>
-                            </ul>
-                        </div>
-                    </article>
+                            </picture>
+                        </noscript>
+                    </div>
                 </div>
-            </div>
+                <h1 class="text-header">About Me</h1>
+                <p>My name is Jon Johnson. I'm a cat father, developer, and complete and utter nutcase. I spent
+                    roughly 10 years working in music, mostly in and around music publishing, before moving into
+                    software development back in 2018. Now I work as a software engineer in the media space. In
+                    my freetime, I love working on different ways to express myself creatively through software
+                    or other technology.</p>
+                <h1 class="text-header">Resume/CV</h1>
+                <div class="about-resume-container">
+                    <div class="about-resume-header">
+                        <h2 class="about-resume-title">JON JOHNSON</h2>
+                        <p>GitHub: www.github.com/jonjohnsontc | LinkedIn: www.linkedin.com/in/jonjohnsontc</p>
+                    </div>
+                    <h3 class="about-resume-title">CORE COMPETENCIES</h3>
+                    <p>AWS, Python, Clojure(script), PostgreSQL, Javascript, Docker, Spark, Git, Agile, Jira</p>
+                    <h3 class="about-resume-title">PROFESSIONAL EXPERIENCE</h3>
+                    <div class="about-resume-title-container">
+                        <p>Nielsen, Hollywood, CA</p>
+                        <p>2019 - Present</p>
+                    </div>
+                    <p>Software Engineer</p>
+                    <ul class="about-resume-job-facts">
+                        <li>Full stack contributor on single page web application designed to serve predictions
+                            to clients in real-time </li>
+                        <li>Build microservice to gather features based on user input and serve predictions to
+                            users of the web application </li>
+                        <li>Build out web UI using Reagent (a clojurescript wrapper of React), based on renders
+                            provided by UX team</li>
+                        <li>Migrate Continuous Integration (CI) infrastructure from Jenkins to GitLab </li>
+                        <li>Help build REST API to allow microservices to communicate with another, and users to
+                            communicate with the backend</li>
+                        <li>Manage deployments through Kubernetes’ kubectl</li>
+                    </ul>
+                    <div class="about-resume-title-container">
+                        <p>Nielsen, Hollywood, CA</p>
+                        <p>2018 - 2019</p>
+                    </div>
+                    <p>Senior Product Analyst</p>
+                    <ul class="about-resume-job-facts">
+                        <li>Built and maintained a dashboard designed to serve detailed viewership data to
+                            clients</li>
+                        <li>Helped build out robust ETL pipelines, primarily utilizing Spark.</li>
+                        <li>Conducted market share analysis of record label recordings in Spark, utilizing
+                            cosine similarity to match tracks between provider data.</li>
+                        <li>Constructed a web scraper using AWS Lambda to concurrently scrape thousands of
+                            webpages at any given time.</li>
+                        <li>Presented coding work &amp; new technologies to co-workers through “coding club”
+                            discussions &amp; AWS working group.</li>
+                    </ul>
+                    <div class="about-resume-title-container">
+                        <p>General Assembly, Los Angeles, CA</p>
+                        <p>2018</p>
+                    </div>
+                    <p>Remote Instruction Assistant - Python Course</p>
+                    <ul class="about-resume-job-facts">
+                        <li>Helped teach relative coding newcomers the basics of Python in a 40hr PT course. The
+                            curriculum included basic object-oriented concepts (classes, state, objects, etc),
+                            as well as data analysis using the Scipy stack (primarily NumPy and Pandas). </li>
+                        <li>Assisted students by answering questions during class on Slack and providing
+                            guidance on the course’s final project.</li>
+                    </ul>
+                </div>
+            </article>
         </div>
-        <div id="gatsby-announcer" aria-live="assertive" aria-atomic="true"
-            style="position: absolute; top: 0px; width: 1px; height: 1px; padding: 0px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border: 0px;">
-            Navigated to About Me</div>
-    </div>
-    <script src="/polyfill.js" nomodule=""></script>
-    <script src="/framework.js"></script>
-    <script src="/commons.js"></script>
-    <div id="query-on-demand-indicator-element"></div><gatsby-qod></gatsby-qod>
 </body>
 
 </html>

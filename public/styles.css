@@ -315,6 +315,10 @@ h6 {
   justify-content: center;
 }
 
+#waving-hand {
+  /* margin-right: 2em; */
+}
+
 .nav > ul > li {
   display: inline-flex;
   padding: 1em 0.7em;
@@ -387,6 +391,9 @@ INDEX PAGE
 
 .column {
   display: flex;
+  flex-basis: 0;
+  flex-grow: 1;
+  flex-shrink: 1;
 }
 
 .hero > .column {
@@ -410,12 +417,12 @@ INDEX PAGE
     flex-direction: column;
   }
 
-  .hero > .column {
+  .hero .column {
     margin: 0.5em;
   }
 }
 
-.main-content > p {
+.main-content p {
   text-align: center;
 }
 
@@ -427,4 +434,64 @@ INDEX PAGE
 
 #palette {
   width: 2.25rem;
+}
+/* 
+
+    BLOG PAGE
+
+*/
+.blog-hero .column {
+  margin: 0.5em;
+}
+
+.blog-hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-blog {
+  margin: 0 auto;
+  max-width: 60%;
+}
+
+.blog-list-box {
+  border-top: 1px solid var(--grey-darker);
+}
+
+.blog-list-box ul {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline-start: 0;
+  font-size: 2em;
+}
+
+.blog-list-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 
+    TODO: Might want the same link functionality everywhere 
+*/
+.blog-list-title a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+@media (max-width: 400px) {
+  .container-blog {
+    max-width: 95%;
+  }
+
+  .blog-list-box {
+    margin: 1.5em 0;
+  }
+
+  .blog-list-box ul {
+    font-size: 1em;
+  }
 }
