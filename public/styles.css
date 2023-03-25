@@ -430,15 +430,19 @@ INDEX PAGE
 
 .main-content {
   display: flex;
+  justify-content: center;
+  align-items: center;
   margin-inline: 10em;
 }
 
 @media (max-width: 500px) {
   .main-content {
-    margin-inline: 1em;
+    justify-content: center;
+    align-items: center;
+    margin-inline: 0;
   }
 
-  .main-content > p {
+  .main-content p {
     font-size: 2em;
   }
 
