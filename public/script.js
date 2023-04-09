@@ -9,10 +9,7 @@ palette.addEventListener("click", () => {
   dropDown();
 });
 window.onclick = function (event) {
-  if (
-    !event.target.matches("#dropdown-content") &&
-    !event.target.matches("#palette")
-  ) {
+  if (!event.target.matches("#palette")) {
     const dropDown = document.getElementById("dropdown-content");
     if (dropDown.classList.contains("open")) {
       dropDown.classList.remove("open");
