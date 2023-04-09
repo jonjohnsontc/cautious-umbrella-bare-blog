@@ -1,0 +1,17 @@
+{% set non_commercial %}
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
+    Creative Commons Attribution-NonCommercial 4.0 International License
+</a>.
+{% endset %}
+
+{% set commercial %}
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+</a>.
+{% endset %}
+
+<footer>
+    ~~~<br>
+    This work is licensed under a {{ commercial if license == "commercial" else non_commercial }}<br>
+    Please share if you like :0)
+</footer>
