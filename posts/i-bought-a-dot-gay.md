@@ -1,6 +1,7 @@
 ---
 date: 2022-02-04
 title: I bought a .gay TLD!
+description: Celebrating a gay purchase
 license: commercial
 ---
 
