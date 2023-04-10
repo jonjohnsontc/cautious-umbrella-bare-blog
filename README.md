@@ -1,22 +1,15 @@
 # Blog Bare
 
-I'd like to see if I can remake the basic jons.gay site in html/css/js. Ideally probably moving to a more manageable framework solution, but with the understanding of what underpins my website now.
+Remaking jons.gay with no framework or build tools, unless I'm constructing them myself.
 
-## How to Remake
+## Content
 
-With that said, I don't want to use any js or css frameworks, at least initially. I'm going to put it on Cloudflare pages.
+Blog posts are written in the `./posts` directory, and then built into html pages via the `render_templates.py` script. Right now, the pages are output into the working version of the site in the `./public` directory.
 
-## Checklist
+## Templates
 
-- [x] no bulma
-- [x] three pages (blog, home, about)
-- [] take md pages and output html
-- [x] gruvbox light color
-- [] footer
-- [] themeing still enabled via css
+I'm using jinja templating to put together each blog post. Eventually, I'd like to build or iterate on all of my pages with templates (or at least, some method where I can keep things DRY).
 
-### Templating / md-to-html
+## To-Do:
 
-- can use jinja2
-- take md files from folder (maybe labeled posts/) and template data (maybe from templates/) and output html files in public/blog/
-- the html files should include all the valid header information I need
+- [] Automated way of keeping blog index in sync with blog pages

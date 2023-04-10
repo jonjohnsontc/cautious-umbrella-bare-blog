@@ -30,7 +30,11 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    with socketserver.TCPServer(("", PORT), Handler) as httpd:
-        print(f"Serving from './public/' on {PORT}")
-        httpd.socket()
-        httpd.serve_forever()
+    try:
+        with socketserver.TCPServer(("", PORT), Handler) as httpd:
+            print(f"Serving from './public/' on {PORT}")
+            httpd.serve_forever()
+
+    # don't serve an exception when i exit with CTRL-C
+    except KeyboardInterrupt:
+        SystemExit(0)

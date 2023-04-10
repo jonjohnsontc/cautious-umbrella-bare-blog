@@ -1,5 +1,5 @@
 Jinja2
 markdown
-pyyaml
+Pygments
 black
 ruff

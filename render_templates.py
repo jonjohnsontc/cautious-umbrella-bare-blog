@@ -5,7 +5,6 @@ pages out of them
 import os
 
 import markdown
-import yaml
 
 from jinja2 import Environment, PackageLoader
 
@@ -19,13 +18,7 @@ BASE_TEMPLATE = "base.html.j2"
 
 def get_post(path: str):
     with open(path, "r", encoding="utf-8") as f:
-        contents = f.read()
-
-    # We're naively splitting the markdown content from the frontmatter using
-    # string split, so if anything is malformed, I'm not going to notice it until
-    # it's on the site (or way after :0\)
-    _, frontmatter, post = contents.split("---")
-    return frontmatter, post
+        return f.read()
 
 
 def reformat_val(value: str):
@@ -34,10 +27,6 @@ def reformat_val(value: str):
     month = value[5:7]
     day = value[8:]
     return f"{month}-{day}-{year}"
-
-
-def parse_frontmatter(frontmatter: str):
-    return yaml.safe_load(frontmatter)
 
 
 if __name__ == "__main__":
@@ -49,18 +38,19 @@ if __name__ == "__main__":
     with os.scandir(POSTS) as dir:
         for entry in dir:
             if entry.path.endswith(".md"):
-                config, mkdn = get_post(entry.path)
-                frontmatter: dict = parse_frontmatter(config)
-                post = markdown.markdown(mkdn)
+                mkdn = get_post(entry.path)
+                parser = markdown.Markdown(extensions=["tables", "meta", "codehilite"])
+                post = parser.convert(mkdn)
+                print("Working on", entry.path, end="\n")
                 filename = os.path.basename(entry.path)[:-3]
                 with open(
                     f"./public/blog/{filename}.html", "w+", encoding="utf-8"
                 ) as f:
                     f.write(
                         template.render(
-                            title=frontmatter["title"],
+                            title=parser.Meta.get("title").pop(),
                             post=post,
-                            date=frontmatter["date"],
-                            license=frontmatter["license"],
+                            date=parser.Meta.get("date").pop(),
+                            license=parser.Meta.get("license").pop(),
                         )
                     )

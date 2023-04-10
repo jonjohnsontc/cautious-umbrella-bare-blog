@@ -1,8 +1,7 @@
 ---
-slug: "/blog/i-bought-a-dot-gay/"
-date: "2022-02-04"
-title: "I bought a .gay TLD!"
-license: "commercial"
+date: 2022-02-04
+title: I bought a .gay TLD!
+license: commercial
 ---
 
 I've been thinking about changing up my TLD from JonJ.io ever since it was announced that the .io domain would see a fun price hike in 2022 to $59.99 for renewals. Jon, Jonj, and jonjohnson.com are all taken, so it looks like I'm still going to pick a vanity TLD.

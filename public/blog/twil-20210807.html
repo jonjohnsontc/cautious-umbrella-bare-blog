@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> This Week I Learned - I ~ jons.gay </title>
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <nav class="nav" role="navigation" aria-label="main-navigation">
+    <ul>
+        <li id="waving-hand">
+            <a aria-current="page" class="nav-link" href="/">
+                👋🏽
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" href="/about">
+                about
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" href="/blog">blog</a>
+        </li>
+        <li>
+            <div class="palette-dropdown">
+                <button class="nav-button">
+                    <svg id="palette" width="auto" viewBox="0 0 201 199" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M201 99.5C201 138.678 177.558 131.651 156.19 125.246C143.464 121.427 131.467 117.82 125.625 124.375C118.05 132.87 119.658 146.999 121.216 160.693C123.439 180.282 125.575 199 100.5 199C80.623 199 61.1924 193.164 44.6652 182.231C28.1381 171.298 15.2568 155.758 7.65015 137.577C0.0435447 119.396 -1.94669 99.3897 1.93112 80.0885C5.80894 60.7874 15.3806 43.0582 29.4358 29.1429C43.491 15.2276 61.3984 5.75114 80.8935 1.91191C100.389 -1.92732 120.596 0.0431115 138.96 7.57403C157.324 15.1049 173.02 27.8581 184.063 44.2208C195.106 60.5835 201 79.8208 201 99.5V99.5ZM100.5 186.563C108.176 186.563 108.716 184.436 108.728 184.374C109.708 182.558 110.286 178.603 109.608 170.456C109.432 168.366 109.143 165.854 108.842 163.105C108.188 157.334 107.435 150.606 107.359 144.922C107.234 136.128 108.402 124.897 116.203 116.141C120.839 110.955 126.818 108.953 132.183 108.455C137.258 107.982 142.383 108.778 146.755 109.749C151.064 110.706 155.574 112.062 159.632 113.281L159.983 113.38C164.33 114.686 168.25 115.855 171.956 116.689C180.159 118.529 183.312 117.721 184.405 116.987C184.882 116.664 188.438 113.94 188.438 99.5C188.438 82.2807 183.28 65.4481 173.617 51.1307C163.955 36.8133 150.221 25.6543 134.152 19.0648C118.084 12.4752 100.402 10.7511 83.3443 14.1104C66.2861 17.4697 50.6171 25.7616 38.3188 37.9376C26.0206 50.1135 17.6453 65.6265 14.2522 82.515C10.8591 99.4034 12.6006 116.909 19.2564 132.817C25.9122 148.726 37.1833 162.323 51.6446 171.89C66.1058 181.456 83.1076 186.563 100.5 186.563V186.563Z"
+                            style="fill: var(--primary)" />
+                        <ellipse lass="ellipse-cyan" cx="50" cy="86.1342" rx="19" ry="18.8109"
+                            style="fill: var(--cyan)" />
+                        <ellipse class="ellipse-purple" cx="100" cy="43.5624" rx="19" ry="18.8109"
+                            style="fill: var(--purple)" />
+                        <ellipse class="ellipse-red" cx="151" cy="81.184" rx="19" ry="18.8109"
+                            style="fill: var(--red)" />
+                        <ellipse class="ellipse-yellow" cx="75" cy="142.567" rx="19" ry="18.8109"
+                            style="fill: var(--yellow)" />
+                    </svg>
+
+                </button>
+                <div id="dropdown-content" class="dropdown-content">
+                    <div class="theme-selector">
+                        <div class="disc disc-gruvbox">
+                            <!-- gruvbox icon -->
+                        </div>
+                        <h4>Gruvbox</h4>
+                    </div>
+                    <div class="theme-selector">
+                        <div class="disc disc-booberry">
+                            <!-- booberry-icon -->
+                        </div>
+                        <h4>Booberry</h4>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</nav>
+    <section class="blog-post-container">
+        <article class="blog-post-content container">
+            <h1 class="blog-title">This Week I Learned - I</h1>
+            <h5>Published on: 08-21-2021</h5>
+            
+            <p>Too small to be updates in their own right, but I gotta tell somebody!
+            Here's what I learned this past week, ending on 8/21/21.</p>
+            <h2>Profiling Python Applications on a Server</h2>
+            <p>In trying to diagnose bottlenecks in a slow running application at work, I
+            learned about different profiling options within Python. For Flask
+            applications, Werkzeug <a href="https://werkzeug.palletsprojects.com/en/2.0.x/m
+            iddleware/profiler/">provides</a> a <code>ProfilerMiddleware</code>that makes
+            it simple to see which processes are taking the most time. However, because it
+            uses <a href="https://docs.python.org/3/library/profile.html#module-
+            cProfile">cProfile</a> to do the profiling, it doesn't give you any
+            introspection into multithreaded applications in the non-main thread.</p>
+            <p>Enabling it is pretty simple. All you need to do is wrap your Flask wsgi
+            instance in the middleware, and any calls you make to the API are automatically
+            returned with a printout of the timing of function calls customized to your
+            liking via the standard library's <code>pstats.Stats</code> interpretation of
+            <a href="https://docs.python.org/3/library/profile.html#pstats.Stats.print_stat
+            s">restrictions</a>.</p>
+            <p><strong>e.g.,</strong></p>
+            <p>```python
+            from flask import Flask</p>
+            <p>app = Flask(<strong>name</strong>)
+            ...
+            app.wsgi_app = ProfilerMiddleware(app.wsgi_app, restrictions=[0.05])
+            ```</p>
+            <p>Here's where <a href="https://pypi.org/project/yappi/">yappi</a> comes in.
+            It's a library that allows you to profile any multithreaded applications at run
+            simply by running <code>yappi.start()</code> and <code>yappi.stop()</code> to
+            indicate when the profiler should in fact, be running. The best thing is, yappi
+            provides a method to convert its statistical output in
+            <code>pstats.Stats()</code> format, the same used by cProfile.</p>
+            <p>```python
+            from flask import current_app, request
+            from flask_restx import Namespace, Resource
+            import yappi</p>
+            <p>ns = Namepace("sprocket-rocket", description="delivering sprockets to kewl
+            users")</p>
+            <p>...
+            @ns.route("/profile", methods=["POST"])
+            class SprocketProfile(Resource):
+                def post(self) -&gt; dict:
+                    data = request.get_json()
+                    yappi.start()
+                    result = process_sprockets(data)
+                    yappi.stop()
+                    response = current_app.response_class(
+                        response=json.dumps({"result": "upload successful"}),
+                        status=200,
+                        mimetype="application/json"
+                    )
+                    return response
+            ```</p>
+            <p>I chose to hack together an endpoint, and start/stop yappi around the
+            process which I wanted to profile.</p>
+            <h2>Putting Together a Markdown based blog with Gatsby</h2>
+            <p>Due to creative frustrations, my curiosity pulling me in a thousand
+            directions, and just a lack of vision, I've been putting off the creation of my
+            own website for some time. However, finally deploying my Songwriter Graph <a
+            href="https://www.songwritergraph.org">website</a> I think gave me the
+            encouragement that I needed to get started.</p>
+            <p>I hadn't ever built anything in javascript outside of a couple of automated
+            frontend testing scripts (the songwriter graph is written in clojurescript, as
+            is
+            the UI I contribute to at work), so I wanted my personal site to be a "gentle"
+            introduction
+            to the language. After a heated "eeny meeny..." session between a few frontend
+            frameworks
+            that specialize in Server Side Rendering (SSR), I decided to roll with making
+            my
+            site in Gatsby (v3 in particular).</p>
+            <p>The idea of having a personal website / blog, which has pages are written in
+            Markdown has appealed to me since I'd heard of it a few years back. It's
+            surprising just how quickly I was able to get started crafting my own with the
+            combination of <a href="https://pages.github.com/">GitHub Pages</a> and a
+            couple of Gatsby
+            "plugins", <code>gatsby-transformer-remark</code> and <code>gatsby-source-
+            filesystem</code>.</p>
+            <p>Within a few hours, I had built a few React components strewn across some
+            Gatsby
+            pages. One component in particular, named <code>blogTemplate</code> gave me all
+            I needed to
+            start rendering Markdown pages as blog posts:</p>
+            <p><br /></p>
+            <p>```jsx
+            export default function Template({ data }) {
+              const { markdownRemark } = data;
+              const { frontmatter, html } = markdownRemark;</p>
+            <p>return (
+                <div className={"blog-post-container container"}>
+                  <div className={"blog-post hero is-medium has-background-grey-darker"}>
+                    {/<em> We render a blank hero-body, and hero-foot with text to
+                    give the title at bottom look </em>/}
+                    <div className={"hero-body"}></div>
+                    <div className={"hero-foot"}>
+                      <p
+                        className={
+                          "title is-size-1 is-inline has-text-white is-family-sans-serif"
+                        }
+                      >
+                        {frontmatter.title}
+                      </p>
+                      <p className={"pl-6 subtitle is-inline has-text-white"}>
+                        {frontmatter.date}
+                      </p>
+                    </div>
+                  </div></p>
+            <pre class="codehilite"><code>  &lt;div
+                className={&quot;blog-post-content mt-6&quot;}
+                dangerouslySetInnerHTML={{ __html: html }}
+              /&gt;
+              &lt;footer
+                className=&quot;footer&quot;
+                children={
+                  &lt;span className=&quot;has-text-centered&quot;&gt;
+                    ~ Thanks for reading! If you enjoyed it, consider sharing it with
+                    someone u like 💜 ~
+                  &lt;/span&gt;
+                }
+              /&gt;
+            &lt;/div&gt;
+            </code></pre>
+
+            <p>);
+            }
+            ```</p>
+            <p>Here, <code>Template</code> is a template for an individual post. Coupled
+            with a page to
+            list all of the blog entries, I've got a solution for my website's blog that I
+            can continue to improve upon with time.</p>
+            
+
+
+
+<footer>
+    ~~~<br>
+    This work is licensed under a 
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+</a>.
+<br>
+    Please share if you like :0)
+</footer>
+        </article>
+    </section>
+    <script src="../../script.js"></script>
+</body>
+
+
+</html>
