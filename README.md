@@ -12,4 +12,9 @@ I'm using jinja templating to put together each blog post. Eventually, I'd like 
 
 ## To-Do:
 
+- [] why is the index page being served from /blog/twil-20210821?
+- [] remove `<meta name="note" content="environment=development">` from pages
 - [] Automated way of keeping blog index in sync with blog pages
+- [] get dropdown to fire/remove-itself correctly on click
+- [] add themes
+- [] add footnotes
