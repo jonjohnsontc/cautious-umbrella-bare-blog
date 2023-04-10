@@ -1,10 +1,9 @@
 ---
 date: 2023-02-26
 title: Moving from SPA to MPA
+description: "A lil story about how curiosity into the traditional server-side model also helped me gain some performance (and indirectly save some money) on a website of mine."
 license: commercial
 ---
-
-A lil story about how curiosity into the traditional server-side model also helped me gain some performance (and indirectly save some money) on a website of mine.
 
 I've built a site called [Songwriter Graph](https://www.songwritergraph.org), which tries to map how songwriters write music in relation to one another. You can search for a songwriter, and it'll name their 5 most similar peers. It's been served via a big ol' bundle of Javascript from a Heroku Dyno ever since it was first deployed, but it was something that I've had regrets about. Mostly due to how I'd learned more about the web worked, with websites in the traditional server driven model, and indexing and discovery on search engines. Having a single-page application isn't ideal for a website which just indexes information it reads from a db, as no pages need to be dynamically generated. So, I found some time in-between a million other side-projects to explore the traditional server side model with my website, on a framework that I'd been hearing a lot about recently, Remix.
 
