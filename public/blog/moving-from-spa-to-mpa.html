@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title> Moving from SPA to MPA ~ jons.gay </title>
     <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/codehilite-styles.css">
 </head>
 
 <body>
@@ -64,7 +65,7 @@
 </nav>    <section class="blog-post-container">
         <article class="blog-post-content container">
             <h1 class="blog-title">Moving from SPA to MPA</h1>
-            <h5>Published on: 2023-02-26</h5>
+            <h5 class="blog-subtitle">Published on: 2023-02-26</h5>
             <p>I've built a site called <a href="https://www.songwritergraph.org">Songwriter Graph</a>, which tries to map how songwriters write music in relation to one another. You can search for a songwriter, and it'll name their 5 most similar peers. It's been served via a big ol' bundle of Javascript from a Heroku Dyno ever since it was first deployed, but it was something that I've had regrets about. Mostly due to how I'd learned more about the web worked, with websites in the traditional server driven model, and indexing and discovery on search engines. Having a single-page application isn't ideal for a website which just indexes information it reads from a db, as no pages need to be dynamically generated. So, I found some time in-between a million other side-projects to explore the traditional server side model with my website, on a framework that I'd been hearing a lot about recently, Remix.</p>
 <p>In this piece, I'll talk about how I first built the site, and some of the bigger conceptual changes that I had to translate into code. Afterwards, I'll talk about some performance differences I recorded with Lighthouse after deploying a version of the site to fly.io. You can jump to sections using the helper here, or just follow along.</p>
 <h2>Why Remix?</h2>
@@ -185,7 +186,7 @@
     Please share if you like :0)
 </footer>        </article>
     </section>
-    <script src="../../script.js"></script>
+    <script src="/script.js"></script>
 </body>
 
 

@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title> This Week I Learned - I ~ jons.gay </title>
     <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/codehilite-styles.css">
 </head>
 
 <body>
@@ -64,7 +65,7 @@
 </nav>    <section class="blog-post-container">
         <article class="blog-post-content container">
             <h1 class="blog-title">This Week I Learned - I</h1>
-            <h5>Published on: 2021-08-21</h5>
+            <h5 class="blog-subtitle">Published on: 2021-08-21</h5>
             <p>Too small to be updates in their own right, but I gotta tell somebody! Here's what I learned this past week, ending on 8/21/21.</p>
 <h2>Profiling Python Applications on a Server</h2>
 <p>In trying to diagnose bottlenecks in a slow running application at work, I learned about different profiling options within Python. For Flask applications, Werkzeug <a href="https://werkzeug.palletsprojects.com/en/2.0.x/middleware/profiler/">provides</a> a <code>ProfilerMiddleware</code>that makes it simple to see which processes are taking the most time. However, because it uses <a href="https://docs.python.org/3/library/profile.html#module-cProfile">cProfile</a> to do the profiling, it doesn't give you any introspection into multithreaded applications in the non-main thread.</p>
@@ -173,7 +174,7 @@ can continue to improve upon with time.</p>
     Please share if you like :0)
 </footer>        </article>
     </section>
-    <script src="../../script.js"></script>
+    <script src="/script.js"></script>
 </body>
 
 
