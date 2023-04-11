@@ -18,3 +18,4 @@ I'm using jinja templating to put together each blog post. Eventually, I'd like 
 - [] get dropdown to fire/remove-itself correctly on click
 - [] add themes
 - [] add footnotes
+- [] update colors for links

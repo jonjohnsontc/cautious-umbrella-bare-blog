@@ -31,7 +31,10 @@ def reformat_val(value: str):
 
 if __name__ == "__main__":
     env = Environment(
-        loader=PackageLoader("render_templates", TEMPLATES), autoescape=False
+        loader=PackageLoader("render_templates", TEMPLATES),
+        autoescape=False,
+        keep_trailing_newline=True,
+        trim_blocks=True,
     )
     env.filters["date_format"] = reformat_val
     template = env.get_template(BASE_TEMPLATE)
@@ -41,7 +44,7 @@ if __name__ == "__main__":
                 mkdn = get_post(entry.path)
                 parser = markdown.Markdown(extensions=["tables", "meta", "codehilite"])
                 post = parser.convert(mkdn)
-                print("Working on", entry.path, end="\n")
+                print("Working on", entry.path)
                 filename = os.path.basename(entry.path)[:-3]
                 with open(
                     f"./public/blog/{filename}.html", "w+", encoding="utf-8"

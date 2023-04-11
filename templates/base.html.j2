@@ -15,9 +15,8 @@
     <section class="blog-post-container">
         <article class="blog-post-content container">
             <h1 class="blog-title">{{ title }}</h1>
-            <h5>Published on: {{ date|date_format }}</h5>
-            {# lightly formatting the html post content #}
-            {{ post|wordwrap|indent(width=12) }}
+            <h5>Published on: {{ date }}</h5>
+            {{ post }}
             {% include "footer.html.j2" %}
         </article>
     </section>

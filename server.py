@@ -37,4 +37,4 @@ if __name__ == "__main__":
 
     # don't serve an exception when i exit with CTRL-C
     except KeyboardInterrupt:
-        SystemExit(0)
+        raise SystemExit(0)
