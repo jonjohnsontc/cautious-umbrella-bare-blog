@@ -3,7 +3,6 @@ Simple dev server for building blog site
 """
 import socketserver
 import http.server
-import os
 
 PORT = 8989
 
@@ -20,16 +19,14 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         # We'll serve from the public directory, even though this server is top-level
         super().__init__(request, client_address, server, directory="./public/")
 
-    def translate_path(self, path):
-        # Strip off the extension if it exists
-        if ".html" in os.path.basename(path):
-            path = path[: path.rfind(".")]
-            breakpoint()
-        # Call the superclass method to get the translated path
-        return super().translate_path(path)
-
-    def do_GET(self) -> None:
-        return super().do_GET()
+    def do_GET(self):
+        # I want to serve the about.html page from /about
+        if self.path.endswith("/about"):
+            self.send_response(302)
+            self.send_header("Location", "/about.html")
+            self.end_headers()
+        else:
+            super(Handler, self).do_GET()
 
 
 if __name__ == "__main__":
