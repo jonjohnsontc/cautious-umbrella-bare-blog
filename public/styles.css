@@ -73,6 +73,14 @@ h3 {
     - Font sizes
     - etc, etc
 */
+a:visited {
+	font-weight: bolder;
+	color: var(--purple);
+}
+a {
+	font-weight: bolder;
+	color: var(--cyan);
+}
 
 :root {
 	font-size: calc(0.5em + 1vw);
