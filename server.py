@@ -1,6 +1,7 @@
 """
 Simple dev server for building blog site
 """
+import os
 import socketserver
 import http.server
 
@@ -25,6 +26,16 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             self.send_response(302)
             self.send_header("Location", "/about.html")
             self.end_headers()
+        # If there is no file suffix on the path and the path
+        # isn't a directory, let's look for the file
+        elif "." not in os.path.basename(self.path) and not self.path.endswith("/"):
+            path, maybe_file = os.path.split(self.path)
+            dir = os.listdir(os.path.join(self.directory, path[1:]))
+            for file in dir:
+                if file.endswith(".html") and file.rstrip(".html") == maybe_file:
+                    self.path += ".html"
+                    break
+            super(Handler, self).do_GET()
         else:
             super(Handler, self).do_GET()
 
