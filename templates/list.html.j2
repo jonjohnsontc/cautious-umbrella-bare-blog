@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> Blog ~ jons.gay </title>
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/codehilite-styles.css">
+</head>
+
+<body>
+    <div class="app">
+        {% include "nav.html.j2" %}
+        <div class="container-blog">
+            <div class="blog-hero">
+                <div class="column blog-column">
+                    <h1>Blog</h1>
+                </div>
+                <div class="column blog-column">
+                    <h2>Standard issue blog fare served fresh</h2>
+                </div>
+            </div>
+        </div>
+        <div class="container-blog">
+            {% for post in posts %}
+            <div class="blog-list-box">
+                <ul>
+                    <li class="blog-list-date">{{ post.date }}</li>
+                    <li class="blog-list-title">
+                        <a href={{ post.path }}>{{ post.title }}</a>
+                    </li>
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script src="/script.js"></script>
+</body>
+
+</html>
