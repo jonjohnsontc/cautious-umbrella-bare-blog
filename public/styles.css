@@ -73,6 +73,12 @@ h3 {
     - Font sizes
     - etc, etc
 */
+
+/* 
+
+  Links should have the same style as the theme
+
+*/
 a:visited {
 	font-weight: bolder;
 	color: var(--purple);

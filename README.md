@@ -14,9 +14,15 @@ I'm using jinja templating to put together each blog post. Eventually, I'd like 
 
 - [x] why is the index page being served from /blog/twil-20210821?
   - wrong address! That's the 404 basically?
-- [] remove `<meta name="note" content="environment=development">` from pages
+- [x] remove `<meta name="note" content="environment=development">` from pages
 - [] Automated way of keeping blog index in sync with blog pages
 - [] get dropdown to fire/remove-itself correctly on click
 - [] add themes
 - [] add footnotes
 - [] update colors for links
+
+## Keeping Blog index in sync with blog pages
+
+- Use a jinja template for the blog index page
+  - (nice to have) if the file's have changed, the blog page is updated
+  - Runs during the `render_templates` script
