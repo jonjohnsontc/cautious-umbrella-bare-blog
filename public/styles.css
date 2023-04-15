@@ -1,8 +1,4 @@
 /* 
-  Base styles - no class names/IDs  
-
-
-
   Much of this is sourced/taken from 
   Josh's Custom CSS Reset
   https://www.joshwcomeau.com/css/custom-css-reset/ 
@@ -31,6 +27,9 @@ body {
 	font-family: "Noto Sans", BlinkMacSystemFont, -apple-system, "Segoe UI",
 		"Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
 		"Helvetica Neue", "Helvetica", "Arial", sans-serif;
+	color: var(--grey-dark);
+}
+button {
 	color: var(--grey-dark);
 }
 img,
@@ -388,6 +387,49 @@ GENERIC CONTAINER
 	}
 }
 
+/* 
+
+  dropdown themes
+
+*/
+.disc-gruvbox {
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
+	border-radius: 50%;
+	height: 2rem;
+	width: 2rem;
+	background-color: #d79921;
+}
+.disc-booberry {
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
+	border-radius: 50%;
+	height: 2rem;
+	width: 2rem;
+	background-color: #7139bf;
+}
+
+.theme-button {
+	border: none;
+	background-color: transparent;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	min-width: 6em;
+}
+
+.theme-selector {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.theme-selector h4 {
+	margin-top: 0.8em;
+}
+
 .swing-in-top-fwd {
 	-webkit-animation: swing-in-top-fwd 0.5s
 		cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
@@ -439,36 +481,6 @@ GENERIC CONTAINER
 	}
 }
 
-/* 
-
-  Panel Colors
-
-*/
-.disc-gruvbox {
-	margin-top: 0.5em;
-	margin-bottom: 0.25em;
-	border-radius: 50%;
-	height: 2rem;
-	width: 2rem;
-	background-color: #d79921;
-}
-.disc-booberry {
-	margin-top: 0.5em;
-	margin-bottom: 0.25em;
-	border-radius: 50%;
-	height: 2rem;
-	width: 2rem;
-	background-color: #7139bf;
-}
-.theme-selector {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-.theme-selector h4 {
-	margin-top: 0.8em;
-}
 /* 
 
 INDEX PAGE

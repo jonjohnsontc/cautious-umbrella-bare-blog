@@ -15,3 +15,29 @@ document.documentElement.addEventListener("click", () => {
 		toggleDropdown();
 	}
 });
+
+/**
+ * Change theme when button is clicked
+ *
+ * If I already have a class on the root element, I would like
+ * to remove that class, and replace it with the new one
+ */
+const gruvbox = document.getElementById("gruvbox");
+const booberry = document.getElementById("booberry");
+function toggleTheme(name) {
+	let classList = document.body.classList;
+	while (classList.length > 0) {
+		classList.remove(classList.item(0));
+	}
+	window.localStorage.setItem("theme", name);
+	classList.add(name);
+}
+gruvbox.addEventListener("click", () => {
+	toggleTheme("gruvbox");
+});
+booberry.addEventListener("click", () => {
+	toggleTheme("booberry");
+});
+if (window.localStorage.getItem("theme")) {
+	toggleTheme(window.localStorage.getItem("theme"));
+}

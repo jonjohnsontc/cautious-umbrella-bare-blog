@@ -52,8 +52,8 @@ def page_has_been_modified(filepath: str, store: dict):
 
 
 def blog_index_needs_to_be_updated():
-    """Examines the pages to be rendered and determines if the
-    index page needs to be rendered
+    """Examines the blog posts that have been picked up and determines if the
+    index page needs to be updated
     """
     # TODO: Implement
     return True

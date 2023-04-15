@@ -16,10 +16,12 @@ I'm using jinja templating to put together each blog post. Eventually, I'd like 
   - wrong address! That's the 404 basically?
 - [x] remove `<meta name="note" content="environment=development">` from pages
 - [x] Automated way of keeping blog index in sync with blog pages
-- [] get dropdown to fire/remove-itself correctly on click
+- [x] get dropdown to fire/remove-itself correctly on click
 - [] add themes
+- [] generate about and index pages with templates
 - [] add footnotes
 - [] update colors for links
+- [] serve proper 404 with cloudflare pages
 
 ## Keeping Blog index in sync with blog pages
 
