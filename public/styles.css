@@ -56,14 +56,8 @@ h5,
 h6 {
 	overflow-wrap: break-word;
 }
-* > h1,
-h2,
-h3 {
+* > h1 {
 	font-family: "Noto Serif Display", serif;
-}
-#root,
-#__next {
-	isolation: isolate;
 }
 
 /* 
@@ -80,12 +74,12 @@ h3 {
 
 */
 a:visited {
-	font-weight: bolder;
-	color: var(--purple);
+	font-weight: 500;
+	color: var(--cyan);
 }
 a {
-	font-weight: bolder;
-	color: var(--cyan);
+	font-weight: 500;
+	color: var(--purple);
 }
 
 :root {
@@ -288,10 +282,6 @@ GENERIC CONTAINER
 	max-width: 60%;
 }
 
-.container-article p {
-	margin: 0.5em 0em;
-}
-
 @media (max-width: 500px) {
 	.container-article {
 		max-width: 95%;
@@ -355,6 +345,10 @@ GENERIC CONTAINER
 .nav-link:hover {
 	color: var(--hover);
 	text-decoration: none;
+}
+
+.nav-link:visited {
+	color: var(--primary);
 }
 
 .nav-link--active {
@@ -578,14 +572,6 @@ INDEX PAGE
 	justify-content: center;
 }
 
-/* 
-    TODO: Might want the same link functionality everywhere 
-*/
-.blog-list-title a {
-	color: var(--primary);
-	text-decoration: none;
-}
-
 @media (max-width: 500px) {
 	.container-blog {
 		max-width: 95%;
@@ -628,16 +614,22 @@ INDEX PAGE
 	max-width: 60%;
 }
 
-.blog-post-content p {
-	margin-bottom: 1em;
+.blog-post-content p,
+.blog-post-content h2,
+.blog-post-content h3,
+.blog-post-content h4,
+.blog-post-content h5,
+.blog-post-content table,
+.blog-post-content div {
+	margin-bottom: 1rem;
 }
 
 @media (max-width: 500px) {
 	.blog-post-content {
 		max-width: 95%;
 	}
+}
 
-	.blog-post-content p {
-		margin-bottom: 1em;
-	}
+footer {
+	padding-bottom: 1em;
 }

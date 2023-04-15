@@ -1,18 +1,17 @@
 /**
  * Script to show dropdown menu when clicked
  * */
-const palette = document.getElementById("palette");
-function dropDown() {
-  document.getElementById("dropdown-content").classList.toggle("open");
+const dropdownBtn = document.getElementById("dropdown-button");
+const content = document.getElementById("dropdown-content");
+function toggleDropdown() {
+	content.classList.toggle("open");
 }
-palette.addEventListener("click", () => {
-  dropDown();
+dropdownBtn.addEventListener("click", (e) => {
+	e.stopPropagation();
+	toggleDropdown();
 });
-window.onclick = function (event) {
-  if (!event.target.matches("#palette")) {
-    const dropDown = document.getElementById("dropdown-content");
-    if (dropDown.classList.contains("open")) {
-      dropDown.classList.remove("open");
-    }
-  }
-};
+document.documentElement.addEventListener("click", () => {
+	if (content.classList.contains("open")) {
+		toggleDropdown();
+	}
+});

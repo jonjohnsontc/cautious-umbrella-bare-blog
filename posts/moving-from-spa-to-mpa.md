@@ -27,10 +27,6 @@ I made the choice to build the site as a [single-page application](https://devel
 
 In the time since I initially deployed the site, I've learned a whole lot more about the traditional client-server model on the web, and figured the songwriter graph would be a much better fit for that setup.
 
-## ASIDE: "Traditional Client-Server" Model
-
-When I refer to traditional client-server model, I'm referring to the idea of website consisting of numerous pages, for which a user will interact with by navigating to different URLs (generally linked on the page). When each page is visited, the user will use their browser (client) to request the specified page from the server.
-
 ## Redesign of the Application
 
 Changing the graph from an SPA to server driven experience felt approachable, and easy. After taking a second to re-orient myself with the site's codebase, I realized that I really only needed to re-create the views and api queries + db calls. The rest of the code base, which was made up of logic surrounding how the site functioned was unnecessary. This is because that logic was there to help navigate users between writers, which was automatically baked into the back/forward buttons of the standard web[FN](If-I-hadn't-made-it-clear-before,-the-graph-made-no-sense-as-an-SPA).

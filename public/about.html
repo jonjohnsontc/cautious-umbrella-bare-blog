@@ -14,12 +14,22 @@
     <div class="app">
         <nav class="nav" role="navigation" aria-label="main-navigation">
             <ul>
-                <li id="waving-hand"><a class="nav-link" href="/">👋🏽</a></li>
-                <li><a class="nav-link nav-link--active" href="/about" aria-current="page">about</a></li>
-                <li><a class="nav-link" href="/blog">blog</a></li>
+                <li id="waving-hand">
+                    <a aria-current="page" class="nav-link" href="/">
+                        👋🏽
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link nav-link--active" href="/about">
+                        about
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="/blog">blog</a>
+                </li>
                 <li>
                     <div class="palette-dropdown">
-                        <button class="nav-button">
+                        <button id="dropdown-button" class="nav-button">
                             <svg id="palette" width="auto" viewBox="0 0 201 199" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -36,6 +46,20 @@
                             </svg>
 
                         </button>
+                        <div id="dropdown-content" class="dropdown-content swing-in-top-fwd">
+                            <div class="theme-selector">
+                                <div class="disc disc-gruvbox">
+                                    <!-- gruvbox icon -->
+                                </div>
+                                <h4>Gruvbox</h4>
+                            </div>
+                            <div class="theme-selector">
+                                <div class="disc disc-booberry">
+                                    <!-- booberry-icon -->
+                                </div>
+                                <h4>Booberry</h4>
+                            </div>
+                        </div>
                     </div>
                 </li>
             </ul>
