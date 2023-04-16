@@ -6,6 +6,8 @@ pages built
 import json
 import os
 
+from datetime import datetime
+
 import markdown
 
 from jinja2 import Environment, PackageLoader
@@ -107,6 +109,7 @@ if __name__ == "__main__":
                         )
                     store.update({entry.path: os.stat(entry.path).st_mtime})
     if blog_index_needs_to_be_updated():
+        posts.sort(key=lambda p: datetime.fromisoformat(p["date"]), reverse=True)
         print("Working on blog index", "🌈🗂")
         template = env.get_template("list.html.j2")
         with open("./public/blog/index.html", "w+", encoding="utf-8") as f:
