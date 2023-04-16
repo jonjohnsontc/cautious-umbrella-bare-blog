@@ -1,18 +1,43 @@
+{#
+
+I'll want to set the active page with at least two different indicators:
+- aria-current state on the <a></a>
+- additional 'nav-link--active' class on <a></a>
+
+#}
+{% macro navbar(active_page='/') -%}
 <nav class="nav" role="navigation" aria-label="main-navigation">
     <ul>
         <li id="waving-hand">
-            <a aria-current="page" class="nav-link" href="/">
+            {% if active_page == "/"%}
+            <a aria-current="page" class="nav-link nav-link--active" href="/">
                 👋🏽
             </a>
+            {% else %}
+            <a class="nav-link" href="/">
+                👋🏽
+            </a>
+            {% endif %}
         </li>
         <li>
+            {% if active_page == "about" %}
+            <a aria-current="page" class="nav-link nav-link--active" href="/about">
+                about
+            </a>
+            {% else %}
             <a class="nav-link" href="/about">
                 about
             </a>
+            {% endif %}
         </li>
         <li>
-            <a class="nav-link nav-link--active" href="/blog">blog</a>
+            {% if active_page == "blog" %}
+            <a aria-current="page" class="nav-link nav-link--active" href="/blog">blog</a>
+            {% else %}
+            <a class="nav-link" href="/blog">blog</a>
+            {% endif %}
         </li>
+
         <li>
             <div class="palette-dropdown">
                 <button id="dropdown-button" class="nav-button">
@@ -52,3 +77,4 @@
         </li>
     </ul>
 </nav>
+{%- endmacro %}

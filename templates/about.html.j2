@@ -4,7 +4,8 @@
 {% include "head.html.j2" %}
 
 <body>
-    {% include "./nav.html.j2" %}
+    {% from "nav.html.j2" import navbar %}
+    {{ navbar(active_page="about") }}
     <div class="container-main">
         <picture>
             <!-- Not sure if I wanna go all out with other versions of the image now -->

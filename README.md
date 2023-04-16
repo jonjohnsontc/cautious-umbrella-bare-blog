@@ -24,6 +24,10 @@ I'm using jinja templating to put together each blog post. Eventually, I'd like 
 - [] add a 404.html page
 - [] include fonts
 
+## Nice to Have's:
+
+- [] consolidate classes that aren't being used in templates, or aren't listed in styles.css + codehilite-styles.css
+
 ## Keeping Blog index in sync with blog pages
 
 - Use a jinja template for the blog index page

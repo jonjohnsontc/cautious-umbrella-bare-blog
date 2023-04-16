@@ -401,6 +401,7 @@ GENERIC CONTAINER
 	justify-content: center;
 	align-items: center;
 	min-width: 6em;
+	cursor: pointer;
 }
 
 .theme-selector {

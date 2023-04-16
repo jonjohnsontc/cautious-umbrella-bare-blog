@@ -3,7 +3,8 @@
 {% include "head.html.j2" %}
 
 <body>
-    {% include "nav.html.j2" %}
+    {% from "nav.html.j2" import navbar %}
+    {{ navbar(active_page="blog") }}
     <section class="blog-post-container">
         <article class="blog-post-content container">
             <h1 class="blog-title">{{ title }}</h1>
