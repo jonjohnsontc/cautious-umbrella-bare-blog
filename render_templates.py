@@ -14,9 +14,9 @@ from jinja2 import Environment, PackageLoader
 
 
 TEMPLATES_LOC = "./templates"
-POSTS_LOC = "./posts"
+POSTS_LOC = "./content/posts"
 BASE_TEMPLATE = "base.html.j2"
-STORE_LOC = "./posts/modified"
+STORE_LOC = ".content/posts/modified"
 
 
 def get_post(path: str):
