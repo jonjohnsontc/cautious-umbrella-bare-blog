@@ -18,14 +18,19 @@ CONTENT_LOC = Path("content")
 TEMPLATES_LOC = Path("templates")
 POSTS_LOC = CONTENT_LOC.joinpath("posts")
 INDEX_LOC = CONTENT_LOC.joinpath("index.md")
+INDEX_TMPL_LOC = TEMPLATES_LOC.joinpath("index.html.j2")
 ABOUT_LOC = CONTENT_LOC.joinpath("about.md")
+ABOUT_TMPL_LOC = TEMPLATES_LOC.joinpath("about.html.j2")
 STORE_LOC = CONTENT_LOC.joinpath("modified")
 
-# Templates to pass through to Jinja
-BASE_TEMPLATE = "base.html.j2"
+BLOG_TEMPLATE = "base.html.j2"
+BLOG_TEMPLATE_LOC = TEMPLATES_LOC.joinpath(BLOG_TEMPLATE)
 INDEX_TEMPLATE = "index.html.j2"
 ABOUT_TEMPLATE = "about.html.j2"
 LIST_TEMPLATE = "list.html.j2"
+ERR_TEMPLATE = "404.html.j2"
+ERR_TMPL_LOC = TEMPLATES_LOC.joinpath(ERR_TEMPLATE)
+ERR_LOC = CONTENT_LOC.joinpath("404.md")
 
 
 def get_post(path: str):
@@ -49,42 +54,78 @@ def load_store():
     return store
 
 
-def file_has_been_modified(filepath: str, store: dict):
+def file_has_been_modified(filepath: str | Path, store: dict):
     """Returns a bool indicating whether or not the file has
     been modified since this script has last been run
 
     If the page can't be found in the store, the function will
     return True
     """
+    if isinstance(filepath, os.PathLike):
+        filepath = str(filepath)
     modified_at = store.get(filepath, None)
     if modified_at:
         return modified_at != os.stat(filepath).st_mtime
     return True
 
 
-def index_page_needs_to_be_updated(store: dict):
-    return True
+def index_page_needs_to_be_updated(store: dict) -> bool:
+    tmpl_path = TEMPLATES_LOC.joinpath(INDEX_TEMPLATE)
+    if file_has_been_modified(tmpl_path, store=store) or file_has_been_modified(
+        INDEX_LOC, store=store
+    ):
+        return True
+    return False
 
 
-def about_page_needs_to_be_updated(store: dict):
-    return True
+def about_page_needs_to_be_updated(store: dict) -> bool:
+    templ_path = TEMPLATES_LOC.joinpath(ABOUT_TEMPLATE)
+    if file_has_been_modified(templ_path, store=store) or file_has_been_modified(
+        ABOUT_LOC, store=store
+    ):
+        return True
+    return False
 
 
-def blog_list_needs_to_be_updated(store: dict):
+def err_page_needs_to_be_updated(store: dict) -> bool:
+    if file_has_been_modified(ERR_LOC, store) or file_has_been_modified(
+        ERR_TMPL_LOC, store
+    ):
+        return True
+    return False
+
+
+def blog_list_needs_to_be_updated(store: dict, store_snapshot: dict) -> bool:
     """Examines the blog posts that have been picked up and determines if the
     blog list page needs to be updated
     """
-    if file_has_been_modified(INDEX_LOC, store=store) or file_has_been_modified():
-        pass
-    return True
+    if store != store_snapshot or file_has_been_modified(
+        TEMPLATES_LOC.joinpath(LIST_TEMPLATE), store=store
+    ):
+        return True
+    return False
 
 
-def output_page(template: Template, content: str, **kwargs):
-    """Outputs a page, given an jinja template and content parsed through
-    python-markdown
-    """
-    mkdn = markdown.markdown(content)
-    return template.render(mkdn, **kwargs)
+def output_page(template: Template, content_loc: str):
+    """Outputs a page, given an jinja template and location of content file"""
+    with open(content_loc, "r", encoding="utf-8") as f:
+        content = f.read()
+    parser = markdown.Markdown(extensions=["meta"], output_format="html")
+    kwargs = {}
+    # we'll convert the post to from markdown to html, and
+    # add it as a kwarg to the template
+    kwargs["post"] = parser.convert(content)
+    # if there's any metadata, we'll convert it from
+    # having list values to str values and use them
+    # as keyword arguments for the template
+    if parser.Meta:
+        for k in parser.Meta:
+            # we assume there's no underlying list of content
+            # i don't think the meta-data extension can parse
+            # shit like that anyhoot
+            val = parser.Meta[k].pop()
+            kwargs[k] = val
+    return template.render(**kwargs)
 
 
 def output_blog_pages():
@@ -101,9 +142,13 @@ if __name__ == "__main__":
         keep_trailing_newline=True,
         trim_blocks=True,
     )
-    template = env.get_template(BASE_TEMPLATE)
+    template = env.get_template(BLOG_TEMPLATE)
     posts = []
     store = load_store()
+    # creating this snapshot to see if anything
+    # changes with the store while we build the
+    # blog pages
+    snapshot = store.copy()
     with os.scandir(POSTS_LOC) as dir:
         for entry in dir:
             if entry.path.endswith(".md"):
@@ -141,17 +186,55 @@ if __name__ == "__main__":
                             )
                         )
                     store.update({entry.path: os.stat(entry.path).st_mtime})
-    if blog_list_needs_to_be_updated(store):
+    if blog_list_needs_to_be_updated(store, snapshot):
         posts.sort(key=lambda p: datetime.fromisoformat(p["date"]), reverse=True)
-        print("Working on blog index", "🌈🗂")
-        template = env.get_template("list.html.j2")
+        print("Working on blog index 🌈🗂")
+        template = env.get_template(LIST_TEMPLATE)
         with open("./public/blog/index.html", "w+", encoding="utf-8") as f:
             f.write(template.render(posts=posts))
+        store.update(
+            {
+                TEMPLATES_LOC.joinpath(LIST_TEMPLATE)
+                .as_posix(): os.stat(TEMPLATES_LOC.joinpath(LIST_TEMPLATE))
+                .st_mtime
+            }
+        )
     if about_page_needs_to_be_updated(store):
-        pass
+        print("Working on the about page 🧑🏽")
+        template = env.get_template(ABOUT_TEMPLATE)
+        page = output_page(template, ABOUT_LOC)
+        with open("./public/about.html", "w+") as f:
+            f.write(page)
+        store.update(
+            {
+                ABOUT_TMPL_LOC.as_posix(): os.stat(ABOUT_TMPL_LOC).st_mtime,
+                ABOUT_LOC.as_posix(): os.stat(ABOUT_LOC).st_mtime,
+            }
+        )
     if index_page_needs_to_be_updated(store):
-        pass
-
+        print("Working on the index page 👋🏽")
+        template = env.get_template(INDEX_TEMPLATE)
+        page = output_page(template, INDEX_LOC)
+        with open("./public/index.html", "w+") as f:
+            f.write(page)
+        store.update(
+            {
+                INDEX_TMPL_LOC.as_posix(): os.stat(INDEX_TMPL_LOC).st_mtime,
+                INDEX_LOC.as_posix(): os.stat(INDEX_LOC).st_mtime,
+            }
+        )
+    if err_page_needs_to_be_updated(store):
+        print("Working on the 404 page ❌")
+        template = env.get_template(ERR_TEMPLATE)
+        page = output_page(template, ERR_LOC)
+        with open("./public/404.html", "w+") as f:
+            f.write(page)
+        store.update(
+            {
+                ERR_LOC.as_posix(): os.stat(ERR_LOC).st_mtime,
+                ERR_TMPL_LOC.as_posix(): os.stat(ERR_TMPL_LOC).st_mtime,
+            }
+        )
     with open(STORE_LOC, "w+", encoding="utf-8") as f:
         print("Updating store 📙")
         json.dump(store, f)

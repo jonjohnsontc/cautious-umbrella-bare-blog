@@ -18,7 +18,7 @@ I'm using jinja templating to put together each blog post. Eventually, I'd like 
 - [x] Automated way of keeping blog index in sync with blog pages
 - [x] get dropdown to fire/remove-itself correctly on click
 - [] add themes
-- [] generate about and index pages with templates
+- [x] generate about and index pages with templates
 - [] add footnotes
 - [] update colors for links
 - [] add a 404.html page
@@ -27,6 +27,7 @@ I'm using jinja templating to put together each blog post. Eventually, I'd like 
 ## Nice to Have's:
 
 - [] consolidate classes that aren't being used in templates, or aren't listed in styles.css + codehilite-styles.css
+- [] add dark mode via os-system settings
 
 ## Keeping Blog index in sync with blog pages
 
