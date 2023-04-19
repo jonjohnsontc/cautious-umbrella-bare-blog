@@ -633,3 +633,20 @@ INDEX PAGE
 footer {
 	padding-bottom: 1em;
 }
+/* 
+
+	404 
+
+*/
+#sad-face {
+	font-size: 3em;
+}
+
+.error-msg {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: 1em;
+	min-height: 40%;
+}
