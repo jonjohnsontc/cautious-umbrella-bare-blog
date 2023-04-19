@@ -138,17 +138,17 @@ body.booberry {
 }
 
 body.dark {
-	--white-ter: hsl(261, 98%, 17%);
-	--white: #5a31a3;
-	--turquoise: #d1f4f6;
-	--green: #bed9ca;
+	--white-ter: #1b1436;
+	--white: #7c58ff;
+	--turquoise: #11a8cd;
+	--green: #0dbc79;
 	--grey-darker: #f2f2f2;
-	--cyan: var(--green);
+	--cyan: #4fc1ff;
 	--yellow: #f0eec9;
-	--purple: #f3e3e7;
-	--red: #dca69d;
+	--purple: #b267e6;
+	--red: #cd3131;
 	--grey-dark: var(--yellow);
-	--primary: var(--yellow);
+	--primary: var(--green);
 	--hover: var(--turquoise);
 }
 /* 
@@ -373,7 +373,7 @@ GENERIC CONTAINER
 .dropdown-content {
 	display: none;
 	position: absolute;
-	border: 4px solid var(--grey-dark);
+	border: 4px solid var(--primary);
 	border-radius: 5%;
 	background-color: var(--white);
 	min-width: 6em;
@@ -399,6 +399,7 @@ GENERIC CONTAINER
 */
 .theme-button {
 	border: none;
+	border-bottom: 1px solid var(--primary);
 	background-color: var(--white-ter);
 	display: flex;
 	flex-direction: column;
@@ -408,11 +409,16 @@ GENERIC CONTAINER
 	cursor: pointer;
 }
 
+.theme-button--active {
+	font-weight: 800;
+}
+
 .theme-selector {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	margin-bottom: 5px;
 }
 .theme-selector h4 {
 	margin-top: 0.8em;

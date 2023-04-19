@@ -200,7 +200,7 @@ if __name__ == "__main__":
             }
         )
     if about_page_needs_to_be_updated(store):
-        print("Working on the about page 🧑🏽")
+        print("Working on the about page 🤗")
         template = env.get_template(ABOUT_TEMPLATE)
         page = output_page(template, ABOUT_LOC)
         with open("./public/about.html", "w+") as f:
@@ -212,7 +212,7 @@ if __name__ == "__main__":
             }
         )
     if index_page_needs_to_be_updated(store):
-        print("Working on the index page 👋🏽")
+        print("Working on the index page 🙈")
         template = env.get_template(INDEX_TEMPLATE)
         page = output_page(template, INDEX_LOC)
         with open("./public/index.html", "w+") as f:

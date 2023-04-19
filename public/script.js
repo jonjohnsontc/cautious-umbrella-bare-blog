@@ -21,12 +21,31 @@ const gruvbox = document.getElementById("gruvbox");
 const booberry = document.getElementById("booberry");
 const dark = document.getElementById("dark");
 function toggleTheme(name) {
+	// toggle the theme in the body
 	let classList = document.body.classList;
 	while (classList.length > 0) {
 		classList.remove(classList.item(0));
 	}
 	window.localStorage.setItem("theme", name);
 	classList.add(name);
+
+	// untoggle any active theme btn
+	const prevActiveBtns = document.getElementsByClassName(
+		"theme-button--active"
+	);
+	if (prevActiveBtns) {
+		for (let i; i < prevActiveBtns.length; i++) {
+			const prevActive = prevActiveBtns[i].classList;
+			if (prevActive) {
+				prevActive.remove("theme-button--active");
+			}
+		}
+	}
+
+	// add the active class for the new btn
+	let activeBtn = document.getElementById(name);
+	let activeBtnClasses = activeBtn.classList;
+	activeBtnClasses.add("theme-button--active");
 }
 gruvbox.addEventListener("click", () => {
 	toggleTheme("gruvbox");
