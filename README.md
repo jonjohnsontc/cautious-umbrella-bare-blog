@@ -21,13 +21,27 @@ I'm using jinja templating to put together each blog post. Eventually, I'd like 
 - [x] generate about and index pages with templates
 - [] add footnotes
 - [] update colors for links
-- [] add a 404.html page
+- [x] add a 404.html page
 - [] include fonts
 
 ## Nice to Have's:
 
 - [] consolidate classes that aren't being used in templates, or aren't listed in styles.css + codehilite-styles.css
 - [] add dark mode via os-system settings
+- [] remove meta theme tags
+
+## Including Fonts
+
+- Looks like I can do so with @font-face declaration in my css
+- Thought I have done it somewhere before, but not in my Gatsby blog or swg-remix
+
+## Themes
+
+- Add tango theme for codehilite styles (booberry)
+- Add github-dark theme for codehilite styles (dark)
+
+- You added a border for the code snippet, along with some padding
+  - .codehilite { background: #f9f5d7; padding: 1em; border: 3px solid var(--primary)}
 
 ## Keeping Blog index in sync with blog pages
 

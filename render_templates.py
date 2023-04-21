@@ -121,8 +121,8 @@ def output_page(template: Template, content_loc: str):
     if parser.Meta:
         for k in parser.Meta:
             # we assume there's no underlying list of content
-            # i don't think the meta-data extension can parse
-            # shit like that anyhoot
+            # rather, the first value in the list is the only
+            # thing we need
             val = parser.Meta[k].pop()
             kwargs[k] = val
     return template.render(**kwargs)
