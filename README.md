@@ -17,12 +17,12 @@ I'm using jinja templating to put together each blog post. Eventually, I'd like 
 - [x] remove `<meta name="note" content="environment=development">` from pages
 - [x] Automated way of keeping blog index in sync with blog pages
 - [x] get dropdown to fire/remove-itself correctly on click
-- [] add themes
+- [x] add themes
 - [x] generate about and index pages with templates
 - [] add footnotes
 - [] update colors for links
 - [x] add a 404.html page
-- [] include fonts
+- [x] include fonts
 
 ## Nice to Have's:
 
@@ -42,6 +42,14 @@ I'm using jinja templating to put together each blog post. Eventually, I'd like 
 
 - You added a border for the code snippet, along with some padding
   - .codehilite { background: #f9f5d7; padding: 1em; border: 3px solid var(--primary)}
+
+## Adding Footnotes
+
+I want to add footnotes as both clickable elements, and collected at the very bottom of any post.
+
+Python-Markdown already has support for footnotes in the latter context
+
+I could write an extension that adds what I need (I think.)
 
 ## Keeping Blog index in sync with blog pages
 

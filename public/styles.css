@@ -4,11 +4,6 @@
   https://www.joshwcomeau.com/css/custom-css-reset/ 
 */
 
-/* Noto Serif Display Extra Bold - 800 */
-/* @import url("https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@800&display=swap"); */
-/* Fira Sans Bold - 700 */
-/* @import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@700&display=swap"); */
-
 @font-face {
 	font-family: "Fira Sans";
 	src: url("/assets/fonts/firasans-regular-webfont.woff2") format("woff2"),
@@ -154,25 +149,7 @@ body {
 	--primary: var(--purple);
 	--hover: var(--turquoise);
 	--navlink: var(--purple);
-	/* 
-		codehilite/preformatted code colors
-	*/
-	--code1: #000000;
-	--code2: #ffffc0;
-	--code3: #3c3836;
-	--code4: #f9f5d7;
-	--code5: var(--primary); /* for the border */
-	--code6: #928374;
-	--code7: #9d0006;
-	--code8: #427b58;
-	--code9: #3c3836;
-	--code10: #79740e;
-	--code11: #32302f;
-	--code12: #8f3f71;
-	--code13: #b57614;
-	--code14: #af3a03;
-	--code15: #427b58;
-	--code16: #076678;
+	--accent: var(--green);
 }
 
 body.booberry {
@@ -189,6 +166,7 @@ body.booberry {
 	--primary: var(--purple);
 	--hover: var(--red);
 	--navlink: var(--purple);
+	--accent: var(--turquoise);
 }
 
 body.dark {
@@ -202,9 +180,10 @@ body.dark {
 	--purple: #b267e6;
 	--red: #cd3131;
 	--grey-dark: var(--yellow);
-	--primary: var(--yellow);
+	--primary: var(--purple);
 	--hover: var(--turquoise);
-	--navlink: var(--green);
+	--navlink: var(--primary);
+	--accent: var(--purple);
 }
 /* 
 
@@ -423,17 +402,12 @@ GENERIC CONTAINER
 .dropdown-content {
 	display: none;
 	position: absolute;
-	border: 4px solid var(--primary);
+	border: 2px solid var(--primary);
 	border-radius: 5%;
 	background-color: var(--white);
 	min-width: 6em;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	z-index: 1;
-}
-
-/* dropdown-content will show via this class */
-.open {
-	display: block;
 }
 
 @media (max-width: 500px) {
@@ -455,12 +429,16 @@ GENERIC CONTAINER
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	min-width: 6em;
+	min-width: 7em;
 	cursor: pointer;
 }
 
-.theme-button--active {
-	font-weight: 800;
+.theme-button--active h4::before {
+	content: "* ";
+}
+
+.theme-button--active h4::after {
+	content: " *";
 }
 
 .theme-selector {
@@ -471,7 +449,7 @@ GENERIC CONTAINER
 	margin-bottom: 5px;
 }
 .theme-selector h4 {
-	margin-top: 0.8em;
+	margin-top: 0.2em;
 }
 
 .swing-in-top-fwd {
@@ -705,4 +683,35 @@ footer {
 	justify-content: center;
 	font-size: 1em;
 	min-height: 40%;
+}
+.footnote-content {
+	display: none;
+	position: absolute;
+	border-radius: 0.5em;
+	padding-inline: 1em;
+	padding-top: 0.5em;
+	background-color: var(--white);
+	min-width: 2em;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+.footnote-btn {
+	cursor: pointer;
+	border: none;
+	background-color: transparent;
+}
+.footnote-btn::before {
+	content: "[";
+	color: var(--primary);
+	font-weight: bolder;
+}
+.footnote-btn::after {
+	content: "]";
+	color: var(--primary);
+	font-weight: bolder;
+}
+
+/* dropdown-content will show via this class */
+.open {
+	display: block;
 }

@@ -151,10 +151,17 @@ if __name__ == "__main__":
     snapshot = store.copy()
     with os.scandir(POSTS_LOC) as dir:
         for entry in dir:
-            if entry.path.endswith(".md"):
+            if entry.path.endswith(".md") and "_" not in entry.path:
                 mkdn = get_post(entry.path)
                 parser = markdown.Markdown(
-                    extensions=["tables", "meta", "codehilite"], output_format="html"
+                    extensions=[
+                        "tables",
+                        "meta",
+                        "codehilite",
+                        "attr_list",
+                        "footnotes",
+                    ],
+                    output_format="html",
                 )
                 post = parser.convert(mkdn)
                 filename = os.path.basename(entry.path)[:-3]

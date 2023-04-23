@@ -23,13 +23,13 @@ The data underlying the graph is ancient and fairly biased towards a couple genr
 
 The app was previously served as a big ol' bundle of Javascript from a Heroku Dyno. The bundle being built from clojurescript - specifically with reagent, self-described as a minimalistic React for clojurescript, along with re-frame a view library to help ensure a stateful UX. Underneath the hood, the API that served the songwriter info was built in Flask, leveraging SQLAlchemy as an ORM to chat with the data sitting in a SQLite db.
 
-I made the choice to build the site as a [single-page application](https://developer.mozilla.org/en-US/docs/Glossary/SPA) (SPA) in cljs, because it mirrored the architecture of an application that I was working on at my job. The app I worked on at the time wasn't functionally similar to the graph at all, but I didn't have any other frontend experience at the time[FN], and felt like the easiest way to get up and moving.
+I made the choice to build the site as a [single-page application](https://developer.mozilla.org/en-US/docs/Glossary/SPA) (SPA) in cljs, because it mirrored the architecture of an application that I was working on at my job. The app I worked on at the time wasn't functionally similar to the graph at all, but I didn't have any other frontend experience at the time, and felt like the easiest way to get up and moving.
 
 In the time since I initially deployed the site, I've learned a whole lot more about the traditional client-server model on the web, and figured the songwriter graph would be a much better fit for that setup.
 
 ## Redesign of the Application
 
-Changing the graph from an SPA to server driven experience felt approachable, and easy. After taking a second to re-orient myself with the site's codebase, I realized that I really only needed to re-create the views and api queries + db calls. The rest of the code base, which was made up of logic surrounding how the site functioned was unnecessary. This is because that logic was there to help navigate users between writers, which was automatically baked into the back/forward buttons of the standard web[FN](If-I-hadn't-made-it-clear-before,-the-graph-made-no-sense-as-an-SPA).
+Changing the graph from an SPA to server driven experience felt approachable. After taking a second to re-orient myself with the site's codebase, I realized that I really only needed to re-create the views and api queries + db calls. The rest of the code base, which was made up of logic surrounding how the site functioned was unnecessary. This is because that logic was there to help navigate users between writers, which was automatically baked into the back/forward buttons of the standard web.
 
 In terms of recreating the views & queries + api calls, it required a slight reshuffling of concepts in my head, which we'll get into below.
 
@@ -39,7 +39,7 @@ Keeping the 'single' in single page application, all views within the app (write
 
 Each of these routes performs the same task as the views, rendering components for the given page of the graph, dynamically based on the search term or id passed in the url params. However, the routes in Remix also load the data required for the page (like writer details) via a `LoaderFunction`.
 
-This replaces the REST API that I left for anyone to peruse/abuse[FN](the-graph-is-roughly-20MB-so-it-wouldnt-take-long-to-pull-the-whole-thing.-Though-honestly-more-power-to-ya), which I think could potentially save me money in the long run.
+This replaces the REST API that I left for anyone to peruse/abuse, which I think could potentially save me money in the long run.
 
 ### The Database & App 'State'
 
