@@ -19,7 +19,7 @@ function addFootnotes(el) {
 			for (let i = 0; i < refs.length; i++) {
 				// create a footnote and insert text content
 				const fn = document.createElement("aside");
-				fn.className = "footnote-content";
+				fn.className = "footnote-content swing-in-top-fwd";
 				const fnEl = backrefs[i].parentElement.parentElement.cloneNode(true);
 				const fnContent = fnEl.children;
 				// iterate through and remove any backref links from the footnote
