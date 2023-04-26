@@ -386,6 +386,7 @@ GENERIC CONTAINER
 .nav-link--active {
 	text-underline-offset: 0.3em;
 	text-decoration: underline solid var(--navlink) 0.05em;
+	-webkit-text-decoration: underline solid var(--navlink);
 }
 
 .nav-button {
@@ -671,6 +672,10 @@ INDEX PAGE
 footer {
 	padding-bottom: 1em;
 }
+
+.footnote hr {
+	margin: 1em;
+}
 /* 
 
 	404 
@@ -691,6 +696,7 @@ footer {
 .footnote-content {
 	display: none;
 	position: absolute;
+	right: 2em;
 	border-radius: 0.5em;
 	padding-inline: 1em;
 	padding-top: 0.5em;
@@ -715,7 +721,9 @@ footer {
 	font-weight: bolder;
 }
 
-/* dropdown-content will show via this class */
+/* previously hidden content will show via this class
+ so, I'd like to keep this at the bottom to make sure
+ it always appears if needed */
 .open {
 	display: block;
 }

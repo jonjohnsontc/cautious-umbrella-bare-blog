@@ -43,6 +43,8 @@ I'm using jinja templating to put together each blog post. Eventually, I'd like 
 - You added a border for the code snippet, along with some padding
   - .codehilite { background: #f9f5d7; padding: 1em; border: 3px solid var(--primary)}
 
+- One thing that I just remembered, the `<meta name="theme-color">` tag that 
+
 ## Adding Footnotes
 
 I want to add footnotes as both clickable elements, and collected at the very bottom of any post.

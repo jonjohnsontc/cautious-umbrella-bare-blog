@@ -91,6 +91,15 @@ function toggleTheme(name) {
 	window.localStorage.setItem("theme", name);
 	classList.add(name);
 
+	const themeMap = new Map([
+		["gruvbox", "#b16286"],
+		["booberry", "#7139bf"],
+		["dark", "#1b1436"],
+	]);
+	// replace meta theme element
+	const metaTheme = document.querySelector("meta[name=theme-color]");
+	metaTheme.setAttribute("content", themeMap.get(name));
+
 	// untoggle any active theme btn
 	const prevActiveBtns = document.getElementsByClassName(
 		"theme-button--active"
