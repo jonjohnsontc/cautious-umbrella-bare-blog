@@ -30,9 +30,8 @@ function addFootnotes(el) {
 					}
 				}
 				fn.append(...fnContent);
-				// the superscript text, we'll add the footnote next to it
+				// the superscript text
 				const sup = refs[i].parentElement;
-				sup.after(fn);
 				// remove the a link from the superscipt
 				const aEl = sup.querySelector("a.footnote-ref");
 				aEl.removeAttribute("href");
@@ -44,6 +43,8 @@ function addFootnotes(el) {
 					buttonEl.appendChild(aEl.firstChild);
 				}
 				aEl.replaceWith(buttonEl);
+				// Add footnote as child of button element
+				buttonEl.appendChild(fn);
 				// add an event listener to open the aside
 				sup.addEventListener("click", (e) => {
 					e.stopPropagation();

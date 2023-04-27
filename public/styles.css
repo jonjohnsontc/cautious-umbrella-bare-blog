@@ -696,7 +696,6 @@ footer {
 .footnote-content {
 	display: none;
 	position: absolute;
-	right: 2em;
 	border-radius: 0.5em;
 	padding-inline: 1em;
 	padding-top: 0.5em;
