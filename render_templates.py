@@ -12,6 +12,7 @@ from pathlib import Path
 import markdown
 
 from jinja2 import Environment, PackageLoader, Template
+from extras.ex_footnotes import FootnoteExtension
 
 # Different paths that we rely on to build the website
 CONTENT_LOC = Path("content")
@@ -159,7 +160,7 @@ if __name__ == "__main__":
                         "meta",
                         "codehilite",
                         "attr_list",
-                        "footnotes",
+                        FootnoteExtension(),
                     ],
                     output_format="html",
                 )

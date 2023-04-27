@@ -19,7 +19,7 @@ I'm using jinja templating to put together each blog post. Eventually, I'd like 
 - [x] get dropdown to fire/remove-itself correctly on click
 - [x] add themes
 - [x] generate about and index pages with templates
-- [] add footnotes
+- [x] add footnotes
 - [] update colors for links
 - [x] add a 404.html page
 - [x] include fonts
@@ -29,6 +29,8 @@ I'm using jinja templating to put together each blog post. Eventually, I'd like 
 - [] consolidate classes that aren't being used in templates, or aren't listed in styles.css + codehilite-styles.css
 - [] add dark mode via os-system settings
 - [] remove meta theme tags
+- [] some way to not have to deal with re-doing the css for TWIL 1 post
+- [] checking all sub-templates to see if they've been updated too
 
 ## Including Fonts
 

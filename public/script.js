@@ -93,9 +93,9 @@ function toggleTheme(name) {
 	classList.add(name);
 
 	const themeMap = new Map([
-		["gruvbox", "#b16286"],
-		["booberry", "#7139bf"],
-		["dark", "#1b1436"],
+		["gruvbox", "#b16286"], // same as purple
+		["booberry", "#7139bf"], // same as grey-darker
+		["dark", "#1b1436"], // same as grey-darker
 	]);
 	// replace meta theme element
 	const metaTheme = document.querySelector("meta[name=theme-color]");
