@@ -24,9 +24,11 @@ I'm using jinja templating to put together each blog post. Eventually, I'd like 
 - [x] add a 404.html page
 - [x] include fonts
 - [x] green lighthouse scores
-- [] fix blog list page title
+- [x] fix blog list page title
 - [] 'OS default' in theme selector
 - [] properly integrate gruvbox as default theme
+- [] remove footnote demo
+- [] finish moving-from-spa-to-mpa
 
 ## Nice to Have's:
 
