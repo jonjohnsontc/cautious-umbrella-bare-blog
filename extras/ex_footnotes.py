@@ -1,6 +1,8 @@
 """
 An extended version of the footnotes extension made for
-use in my blog. 
+use in my blog. I thought the <hr> element it inserted before
+footnotes was ugly, and I wanted to customize it by adding 
+"Footnotes" to the element like any other header.
 =======================================
 Adds footnote handling to Python-Markdown.
 See <https://Python-Markdown.github.io/extensions/footnotes>

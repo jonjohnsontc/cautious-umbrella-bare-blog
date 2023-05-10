@@ -5,6 +5,7 @@ pages built
 """
 import json
 import os
+import re
 
 from datetime import datetime
 from pathlib import Path
@@ -33,6 +34,9 @@ ERR_TEMPLATE = "404.html.j2"
 ERR_TMPL_LOC = TEMPLATES_LOC.joinpath(ERR_TEMPLATE)
 ERR_LOC = CONTENT_LOC.joinpath("404.md")
 
+# Right now, this is how we check if any sub-templates have been modified
+DEPENDENCIES = ["footer.html.j2", "head.html.j2", "nav.html.j2"]
+
 
 def get_post(path: str):
     with open(path, "r", encoding="utf-8") as f:
@@ -55,6 +59,19 @@ def load_store():
     return store
 
 
+def depedency_has_been_modified(filepath: str | Path, store: dict):
+    """Looks for any sub-templates using regex and returns a bool indicating
+    whether or not one of them has been modified
+    """
+    pattern = r"\w+\.\w+\.j2"
+    template = get_post(filepath)
+    if sub_templates := re.findall(pattern, template):
+        for template in sub_templates:
+            if file_has_been_modified(TEMPLATES_LOC.joinpath(template), store):
+                return True
+    return False
+
+
 def file_has_been_modified(filepath: str | Path, store: dict):
     """Returns a bool indicating whether or not the file has
     been modified since this script has last been run
@@ -72,8 +89,10 @@ def file_has_been_modified(filepath: str | Path, store: dict):
 
 def index_page_needs_to_be_updated(store: dict) -> bool:
     tmpl_path = TEMPLATES_LOC.joinpath(INDEX_TEMPLATE)
-    if file_has_been_modified(tmpl_path, store=store) or file_has_been_modified(
-        INDEX_LOC, store=store
+    if (
+        file_has_been_modified(tmpl_path, store=store)
+        or file_has_been_modified(INDEX_LOC, store=store)
+        or depedency_has_been_modified(tmpl_path, store=store)
     ):
         return True
     return False
@@ -81,16 +100,20 @@ def index_page_needs_to_be_updated(store: dict) -> bool:
 
 def about_page_needs_to_be_updated(store: dict) -> bool:
     templ_path = TEMPLATES_LOC.joinpath(ABOUT_TEMPLATE)
-    if file_has_been_modified(templ_path, store=store) or file_has_been_modified(
-        ABOUT_LOC, store=store
+    if (
+        file_has_been_modified(templ_path, store=store)
+        or file_has_been_modified(ABOUT_LOC, store=store)
+        or depedency_has_been_modified(templ_path, store=store)
     ):
         return True
     return False
 
 
 def err_page_needs_to_be_updated(store: dict) -> bool:
-    if file_has_been_modified(ERR_LOC, store) or file_has_been_modified(
-        ERR_TMPL_LOC, store
+    if (
+        file_has_been_modified(ERR_LOC, store)
+        or file_has_been_modified(ERR_TMPL_LOC, store)
+        or depedency_has_been_modified(ERR_TMPL_LOC, store=store)
     ):
         return True
     return False
@@ -100,8 +123,12 @@ def blog_list_needs_to_be_updated(store: dict, store_snapshot: dict) -> bool:
     """Examines the blog posts that have been picked up and determines if the
     blog list page needs to be updated
     """
-    if store != store_snapshot or file_has_been_modified(
-        TEMPLATES_LOC.joinpath(LIST_TEMPLATE), store=store
+    if (
+        store != store_snapshot
+        or file_has_been_modified(TEMPLATES_LOC.joinpath(LIST_TEMPLATE), store=store)
+        or depedency_has_been_modified(
+            TEMPLATES_LOC.joinpath(LIST_TEMPLATE), store=store
+        )
     ):
         return True
     return False
@@ -113,7 +140,7 @@ def output_page(template: Template, content_loc: str):
         content = f.read()
     parser = markdown.Markdown(extensions=["meta"], output_format="html")
     kwargs = {}
-    # we'll convert the post to from markdown to html, and
+    # we'll convert the post from markdown to html, and
     # add it as a kwarg to the template
     kwargs["post"] = parser.convert(content)
     # if there's any metadata, we'll convert it from
@@ -174,7 +201,11 @@ if __name__ == "__main__":
                     "path": f"/blog/{filename}",
                 }
                 posts.append(bp)
-                if file_has_been_modified(entry.path, store):
+                if (
+                    file_has_been_modified(entry.path, store)
+                    or file_has_been_modified(BLOG_TEMPLATE_LOC, store)
+                    or depedency_has_been_modified(BLOG_TEMPLATE_LOC, store)
+                ):
                     # looking for posts that need syntax highlighting, and
                     # including it if necessary
                     codehilite = None
@@ -243,6 +274,17 @@ if __name__ == "__main__":
                 ERR_TMPL_LOC.as_posix(): os.stat(ERR_TMPL_LOC).st_mtime,
             }
         )
+    # adding all of the sub-templates/dependencies to the store
+    # we wait till the end to make sure that all pages that need to be updated
+    # are output
+    store.update(
+        {
+            TEMPLATES_LOC.joinpath(i)
+            .as_posix(): os.stat(TEMPLATES_LOC.joinpath(i))
+            .st_mtime
+            for i in DEPENDENCIES
+        }
+    )
     with open(STORE_LOC, "w+", encoding="utf-8") as f:
         print("Updating store 📙")
         json.dump(store, f)

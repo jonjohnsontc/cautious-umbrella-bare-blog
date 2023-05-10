@@ -7,7 +7,7 @@ license: commercial
 
 I've built a site called [Songwriter Graph](https://www.songwritergraph.org), which tries to map how songwriters write music in relation to one another. You can search for a songwriter, and it'll name their 5 most similar peers. It's been served via a big ol' bundle of Javascript from a Heroku Dyno ever since it was first deployed, but it was something that I've had regrets about. Mostly due to how I'd learned more about the web worked, with websites in the traditional server driven model, and indexing and discovery on search engines. Having a single-page application isn't ideal for a website which just indexes information it reads from a db, as no pages need to be dynamically generated. So, I found some time in-between a million other side-projects to explore the traditional server side model with my website, on a framework that I'd been hearing a lot about recently, Remix.
 
-In this piece, I'll talk about how I first built the site, and some of the bigger conceptual changes that I had to translate into code. Afterwards, I'll talk about some performance differences I recorded with Lighthouse after deploying a version of the site to fly.io. You can jump to sections using the helper here, or just follow along.
+In this piece, I'll talk about how I first built the site, and some of the bigger conceptual changes that I had to translate into code. Afterwards, I'll talk about some performance differences I recorded with Lighthouse after deploying a version of the site to fly.io.
 
 ## Why Remix?
 

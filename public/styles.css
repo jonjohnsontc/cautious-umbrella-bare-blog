@@ -152,6 +152,42 @@ body {
 	--accent: var(--green);
 }
 
+body.gruvbox {
+	--white-ter: #fbf1c7;
+	--white: #f9f5d7;
+	--turquoise: #458588;
+	--green: #98971a;
+	--grey-darker: #504945;
+	--cyan: #076678;
+	--yellow: #d79921;
+	--purple: #b16286;
+	--red: #cc241d;
+	--grey-dark: hsl(0, 0%, 29%);
+	--primary: var(--purple);
+	--hover: var(--turquoise);
+	--navlink: var(--purple);
+	--accent: var(--green);
+}
+
+@media (prefers-color-scheme: dark) {
+	body {
+		--white-ter: #1b1436;
+		--white: #7c58ff;
+		--turquoise: #11a8cd;
+		--green: #0dbc79;
+		--grey-darker: #f2f2f2;
+		--cyan: #4fc1ff;
+		--yellow: #f0eec9;
+		--purple: #b267e6;
+		--red: #cd3131;
+		--grey-dark: var(--yellow);
+		--primary: var(--purple);
+		--hover: var(--turquoise);
+		--navlink: var(--primary);
+		--accent: var(--purple);
+	}
+}
+
 body.booberry {
 	--white-ter: #f2f2f2;
 	--white: hsl(0, 0%, 100%, 1);
@@ -418,6 +454,7 @@ GENERIC CONTAINER
 
 	.dropdown-content {
 		min-width: 7em;
+		right: 2.5px;
 	}
 }
 
@@ -684,7 +721,6 @@ footer {
 #sad-face {
 	font-size: 3em;
 }
-
 .error-msg {
 	display: flex;
 	flex-direction: column;

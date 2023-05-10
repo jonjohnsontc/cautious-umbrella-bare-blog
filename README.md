@@ -29,13 +29,17 @@ I'm using jinja templating to put together each blog post. Eventually, I'd like 
 - [] consolidate classes that aren't being used in templates, or aren't listed in styles.css + codehilite-styles.css
 - [] add dark mode via os-system settings
 - [] remove meta theme tags
-- [] some way to not have to deal with re-doing the css for TWIL 1 post
+- [x] some way to not have to deal with re-doing the css for TWIL 1 post
 - [] checking all sub-templates to see if they've been updated too
 
 ## Including Fonts
 
 - Looks like I can do so with @font-face declaration in my css
 - Thought I have done it somewhere before, but not in my Gatsby blog or swg-remix
+
+## Checking sub-templates
+
+I'd like to recursively check all of the main templates, and see if any sub-templates are defined within
 
 ## Themes
 
