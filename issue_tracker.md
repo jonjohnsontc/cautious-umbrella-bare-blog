@@ -12,15 +12,19 @@ Bare bones checklist to figure out what I'd like to do next with my blog
 - [x] add themes
 - [x] generate about and index pages with templates
 - [x] add footnotes
-- [] update colors for links
 - [x] add a 404.html page
 - [x] include fonts
 - [x] green lighthouse scores
 - [x] fix blog list page title
-- [] 'OS default' in theme selector
-- [] properly integrate gruvbox as default theme
+- [x] 'OS default' in theme selector
+- [x] show correct code styles on load
+- [x] add favicon
+- [] update colors for links
 - [] remove footnote demo
-- [] finish moving-from-spa-to-mpa
+- [] finish 'moving-from-spa-to-mpa'
 
 ### OS default in theme selector
 
+Right now, I store a value in local storage if someone has selected a theme. That changes the value of the body attribute on load via javascript.
+
+I want the default theme to be 'gruvbox' during the day, but 'dark' if prefers-color-scheme: dark is set. 

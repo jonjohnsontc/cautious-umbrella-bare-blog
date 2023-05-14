@@ -25,7 +25,7 @@ I'm using jinja templating to put together each blog post. Eventually, I'd like 
 - [x] include fonts
 - [x] green lighthouse scores
 - [x] fix blog list page title
-- [] 'OS default' in theme selector
+- [x] 'OS default' in theme selector
 - [] properly integrate gruvbox as default theme
 - [] remove footnote demo
 - [] finish moving-from-spa-to-mpa

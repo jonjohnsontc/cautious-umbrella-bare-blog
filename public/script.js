@@ -80,6 +80,7 @@ document.documentElement.addEventListener("click", () => {
 // *Change theme when button is clicked*
 // If I already have a class on the root element, I would like
 // to remove that class, and replace it with the new one
+const osDefault = document.getElementById("default");
 const gruvbox = document.getElementById("gruvbox");
 const booberry = document.getElementById("booberry");
 const dark = document.getElementById("dark");
@@ -91,15 +92,6 @@ function toggleTheme(name) {
 	}
 	window.localStorage.setItem("theme", name);
 	classList.add(name);
-
-	const themeMap = new Map([
-		["gruvbox", "#b16286"], // same as purple
-		["booberry", "#7139bf"], // same as grey-darker
-		["dark", "#1b1436"], // same as grey-darker
-	]);
-	// replace meta theme element
-	const metaTheme = document.querySelector("meta[name=theme-color]");
-	metaTheme.setAttribute("content", themeMap.get(name));
 
 	// untoggle any active theme btn
 	const prevActiveBtns = document.getElementsByClassName(
@@ -116,6 +108,25 @@ function toggleTheme(name) {
 	let activeBtn = document.getElementById(name);
 	let activeBtnClasses = activeBtn.classList;
 	activeBtnClasses.add("theme-button--active");
+
+	// if the default theme is being requested, check
+	// for dark mode request and grant it
+	if (name === "default") {
+		name = window.matchMedia("(prefers-color-scheme: dark)")
+			? "default-dark"
+			: "default-light";
+	}
+
+	const themeMap = new Map([
+		["default-light", "#b16286"], // same as gruvbox.purple
+		["default-dark", "#1b1436"], // same as booberry.grey-darker
+		["gruvbox", "#b16286"], // same as gruvbox.purple
+		["booberry", "#7139bf"], // same as booberry.grey-darker
+		["dark", "#1b1436"], // same as dark.grey-darker
+	]);
+	// replace meta theme element
+	const metaTheme = document.querySelector("meta[name=theme-color]");
+	metaTheme.setAttribute("content", themeMap.get(name));
 }
 gruvbox.addEventListener("click", () => {
 	toggleTheme("gruvbox");
@@ -126,7 +137,12 @@ booberry.addEventListener("click", () => {
 dark.addEventListener("click", () => {
 	toggleTheme("dark");
 });
+osDefault.addEventListener("click", () => {
+	toggleTheme("default");
+});
 if (window.localStorage.getItem("theme")) {
 	toggleTheme(window.localStorage.getItem("theme"));
+} else {
+	toggleTheme("default");
 }
 addFootnotes(footnotes);

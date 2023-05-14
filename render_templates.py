@@ -1,5 +1,5 @@
 """
-Takes content in the "posts" directory, and makes a bunch of html
+Takes content in the "content" directory, and makes a bunch of html
 pages out of them. Then it builds the blog index based on all the
 pages built
 """

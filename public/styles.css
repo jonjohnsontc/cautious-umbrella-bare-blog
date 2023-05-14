@@ -1,9 +1,3 @@
-/* 
-  Much of this is sourced/taken from 
-  Josh's Custom CSS Reset
-  https://www.joshwcomeau.com/css/custom-css-reset/ 
-*/
-
 @font-face {
 	font-family: "Fira Sans";
 	src: url("/assets/fonts/firasans-regular-webfont.woff2") format("woff2"),
@@ -29,6 +23,11 @@
 	font-style: normal;
 }
 
+/* 
+  Much of this is sourced/taken from 
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/ 
+*/
 html {
 	box-sizing: border-box;
 }
