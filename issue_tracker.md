@@ -19,6 +19,7 @@ Bare bones checklist to figure out what I'd like to do next with my blog
 - [x] 'OS default' in theme selector
 - [x] show correct code styles on load
 - [x] add favicon
+- [] fix sorting posts without a date
 - [] update colors for links
 - [] remove footnote demo
 - [] finish 'moving-from-spa-to-mpa'

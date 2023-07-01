@@ -1,17 +1,17 @@
 ---
-date: 
-title: 
+date: 2023-05-17
+title: Drag Queens and the Godot Engine
 description: 
 license: commercial
 draft: true
 ---
-# Drag Queens, Godot, and C++
+# Drag Queens and Godot
 
 This past week marked my birthday, and to celebrate, I went out to RuPaul's Drag Con here in LA. I've never seen so many fabulous looking people in a single location. With House of Love cocktails to guide my friends and I, we were lucky to meet a few of our favorites while testing the limits of how intoxicated a group should be in public.
 
 I also learned a bit about how games are constructed in the newest version of Godot, and started reading up on C++.
 
-## Godot and a Drag Themed Card Game
+## A Drag themed trading card game
 
 After completing a framework-less rewrite of my website[^1], I decided that it was time to start working on a game. And, to celebrate the timing of DragCon, I decided to make a drag themed card game in the style of Triple Triad. Triple Triad is a card battler originally from Final Fantasy VIII, but was re-tailored for Final Fantasy XIV some years later. There's also mobile and web game versions that I've seen in the wild that do and don't carry any fun likely unlicensed finaly fantasy ip[^2]. 
 
@@ -22,7 +22,7 @@ Two players play against one another, on a 3x3 board. Each come equipped to play
 
 I spent some time deliberating how I would build out the game, before deciding on using the Godot Engine v4. The balance of approachability, and iteration speed with GDScript, along with the ability to compile to mobile and PC/Mac targets won me over :hugging_face:.
 
-I haven't made much of a game yet, on startup you can move a card around a pink bubbly background, and flip it around to show which player has 'control'.
+I haven't made much of a game yet, on startup you can move a card around` a pink bubbly background, and flip it around to show which player has 'control'.
 
 ```
     SHOW GIF OF CARD FLIPPING IN GAME
@@ -32,10 +32,6 @@ That being said, my efforts in learning and using Godot so far haven't been much
 
 My goal is to create a working demo of 'Triple Trial with Queens', where two players can play against each other using the same device. I'd like to create at least 10 unique cards for this demo, because I think it would look a little more polished than say, 2 copies each of five cards. Once finished, I can decide whether or not to take the idea further.
 
-## Dipping my toes in the water of the C++ Language
-
-Coinciding with trying to learn a bit of game development, I (lightly) jumped into learning some of the foundations of C++ by digging into _Modern C++ for Absolute Beginners_ by Slobodan Dmitrovic. According to O'Reillys' progress tracker, I'm about halfway through, and I find it to be an approachable text on a language that seems less approachable than when I started learning.
-
 [^1]:Writeup coming soon
 [^2]:I'm also not making this with the queens explicit permission, though I'd like to think if I build something of interest, perhaps it's something that could get packaged and sold to serve the queens :raised_hands: :queen:.
-[^3]: https://docs.godotengine.org/en/stable/getting_started/introduction/key_concepts_overview.html
+[^3]: [https://docs.godotengine.org/en/stable/getting_started/introduction/key_concepts_overview.html](https://docs.godotengine.org/en/stable/getting_started/introduction/key_concepts_overview.html)

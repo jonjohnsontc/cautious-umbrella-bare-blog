@@ -74,7 +74,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+details {
 	overflow-wrap: break-word;
 	/* 
 	Without this, the letters fl/fi would not appear using 
@@ -686,7 +687,7 @@ INDEX PAGE
 .blog-post-content {
 	display: inline-block;
 	text-align: left;
-	max-width: 60%;
+	max-width: 80ch;
 }
 
 .blog-post-content p,
@@ -695,8 +696,12 @@ INDEX PAGE
 .blog-post-content h4,
 .blog-post-content h5,
 .blog-post-content table,
+.blog-post-content details,
 .blog-post-content div {
 	margin-bottom: 1rem;
+}
+
+.blog-post-content details {
 }
 
 @media (max-width: 500px) {
