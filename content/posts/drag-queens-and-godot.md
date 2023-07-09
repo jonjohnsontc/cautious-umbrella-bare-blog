@@ -7,9 +7,9 @@ draft: true
 ---
 # Drag Queens and Godot
 
-This past week marked my birthday, and to celebrate, I went out to RuPaul's Drag Con here in LA. I've never seen so many fabulous looking people in a single location. With House of Love cocktails to guide my friends and I, we were lucky to meet a few of our favorites while testing the limits of how intoxicated a group should be in public.
+On my birthday this past year, I visited Drag Con here in LA. It happening on my birthday felt right. As a show Drag Race has slowly taken over my life, and I have a huge appreciation for the art of Drag. I'm also lucky to have a friend who does drag (spledidly). With House of Love cocktails to guide my friends and I, we were lucky to meet a few of our favorites while testing the limits of how intoxicated a group should be in public.
 
-I also learned a bit about how games are constructed in the newest version of Godot, and started reading up on C++.
+I'm using that story mostly as an excuse to share these pictures of my friends and I being drunk next to drag queens, but also to intro a drag-themed card game I've been working on, called Slay Qween.
 
 ## A Drag themed trading card game
 

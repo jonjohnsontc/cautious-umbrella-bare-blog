@@ -1,5 +1,5 @@
 ---
-date: 2023-02-26
+date: 2023-07-06
 title: Moving from SPA to MPA
 description: A lil story about how curiosity into the traditional server-side model also helped me gain some performance (and indirectly save some money) on a website of mine.
 license: commercial
