@@ -192,6 +192,9 @@ if __name__ == "__main__":
                     output_format="html",
                 )
                 post = parser.convert(mkdn)
+                # if the blog post is a draft, we'll skip creating it
+                if parser.Meta.get("draft"):
+                    continue
                 filename = os.path.basename(entry.path)[:-3]
                 bp = {
                     "title": parser.Meta.get("title").pop(),
