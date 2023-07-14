@@ -8,4 +8,4 @@ draft: true
 
 # The Promise of a new PC and the Peril of the Firsttime Build
 
-I'm working on 
+I'm typing this to you on my brand new self-built (maybe dual-boot one day) Linux box. My first ever desktop build
