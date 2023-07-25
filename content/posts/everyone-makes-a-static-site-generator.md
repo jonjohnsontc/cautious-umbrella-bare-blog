@@ -3,6 +3,7 @@ date: 2023-07-25
 title: Everyone Makes a Static Site Generator
 description: And I am no exception. This is a tale about me and my own static site generator which now backs this website.
 license: commercial
+draft: true
 ---
 
 I heard Jared Santo on The Changelog [mention](https://changelog.com/podcast/546#transcript-176) that every developer makes a Static Site Generator ("SSG"), almost as a right of passage to become an adult, and I too, had recently decided that now would be the time I *blossomed* into dev-adulthood. 
