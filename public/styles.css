@@ -626,7 +626,7 @@ INDEX PAGE
 
 .container-blog {
 	margin: 0 auto;
-	max-width: 60%;
+	max-width: 80ch;
 }
 
 .blog-list-box {
@@ -639,7 +639,7 @@ INDEX PAGE
 	align-items: center;
 	justify-content: space-between;
 	padding-inline-start: 0;
-	font-size: 2em;
+	font-size: 1.5em;
 }
 
 .blog-list-title {
@@ -665,6 +665,7 @@ INDEX PAGE
 		font-size: 1em;
 	}
 }
+
 /* 
 
   BLOG TEMPLATES
