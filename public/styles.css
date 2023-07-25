@@ -702,9 +702,6 @@ INDEX PAGE
 	margin-bottom: 1rem;
 }
 
-.blog-post-content details {
-}
-
 @media (max-width: 500px) {
 	.blog-post-content {
 		max-width: 95%;
