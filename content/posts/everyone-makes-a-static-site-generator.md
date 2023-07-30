@@ -6,7 +6,7 @@ license: commercial
 draft: true
 ---
 
-I heard Jared Santo on The Changelog [mention](https://changelog.com/podcast/546#transcript-176) that every developer makes a Static Site Generator ("SSG"), almost as a right of passage to become an adult, and I too, had recently decided that now would be the time I *blossomed* into dev-adulthood. 
+I heard Jared Santo on The Changelog [mention](https://changelog.com/podcast/546#transcript-176) that every developer makes a Static Site Generator ("SSG"), almost as a right of passage to become an adult, and I too, had recently decided that now would be the time I *blossomed* into dev-adulthood.
 
 ## Background
 
@@ -26,17 +26,20 @@ Some months later, I witnessed some shots fired in the *Great React Debate of 20
 
 This isn't an anti-React/Gatsby, or anti-component driven design post. The technologies and approach both have their completely valid use cases, but I realized for myself that the trade offs involved with using them given my own situation wasn't worth it.
 
-I can't remember when I first had the idea to make my own SSG, it may have been around the same time I read TKs post, where they mentioned their blog was a simple set of html pages with no framework, and definitely didn't require a build step or dev server to run and see changes quickly. 
+For this react-less rewrite, I deliberated between using an established static site generator like 11ty or Hugo, crafting my own static site generator in a language of my choice, or just handrolling html and javascript.
+
+I can't remember when I first got the idea to make my rebuild framework-less. But, at some point during the great react debate, I stumbled across a blog post with someone detailing their own website's setup. They mentioned that it was just some html pages with a script tag linked. No build step required, no frameworks or additional layers of abstraction.
 
 ## A Tiny Site Tour
 
-[Here's](https://github.com/jonjohnsontc/cautious-umbrella-bare-blog) the sites git repo. 
+[Here's](https://github.com/jonjohnsontc/cautious-umbrella-bare-blog) the sites git repo.
 
-Right now, it's bare bones, and only appeals to the few needs that I wrote down on the combined RFC+Jira+README that is my README file. Essentially, I have python script `render_templates`, that iterates through markdown-based content files, and combines them with jinja templates to produce a bunch of web pages in the `public` directory. There's a local store that I rely on, to check whether or not a content file has been modified since the script was last run. If so, the script creates a new version of the html page in `public`.
+Right now, it's bare bones, and only appeals to the few needs that I wrote down on the combined RFC+Jira Board+README that is my README file. Essentially, I have python script `render_templates`, that iterates through markdown-based content files, and combines them with jinja templates to produce a bunch of web pages in the `public` directory. There's a local store that I rely on, to check whether or not a content file has been modified since the script was last run. If so, the script creates a new version of the html page in `public`.
 
-I also use a small python script to run as my development server if I need it (`server.py`). I find myself reaching for it a lot more often than just clicking on an html file in the Finder app for checking my pages out. 
+In terms of scripting, I have a bit of javascript in a `script.js` file that's linked to every page. It powers the lil theme dropdown menu above, and allows you to change the colors that the website appears in. Those details are saved across sessions using [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
+
+I also use a small python script to run as my development server if I need it (`server.py`). I find myself reaching for it a lot more often than just clicking on an html file in the Finder app for checking my pages out.
 
 And that's about it. There's no other content management to speak of. I don't have any support for images yet...and I think I'm okay with that now? I realize that after spending so much time starting and never finishing anything on my site before, that any work-in-progress on this bad-boy is worth publishing. The site is living, so it can improve over time. Maybe you'll be reading this in 2 years and see that there's some cute swirling pig animation that whistles when you click it adorning the top of this page. Or really any other piece of visual content. It wasn't there when this article was first published. So, thanks for stopping by after it's improved.
 
 [^1]: That and talent. I have zero-discernible drawing skills, and am not making anything that looks remotely as nice as the illustrations and animations they put out.
-
