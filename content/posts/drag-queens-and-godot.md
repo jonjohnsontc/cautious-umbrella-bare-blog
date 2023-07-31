@@ -13,7 +13,7 @@ I'm using that story mostly as an excuse to share these pictures of my friends a
 
 ## A Drag themed trading card game
 
-After completing a framework-less rewrite of my website[^1], I decided that it was time to start working on a game. And, to celebrate the timing of DragCon, I decided to make a drag themed card game in the style of Triple Triad. Triple Triad is a card battler originally from Final Fantasy VIII, but was re-tailored for Final Fantasy XIV some years later. There's also mobile and web game versions that I've seen in the wild that do and don't carry any fun likely unlicensed final fantasy IP[^2]. 
+After completing a framework-less rewrite of my website, I decided that it was time to start working on a game. And, to celebrate the timing of DragCon, I decided to make a drag themed card game in the style of Triple Triad. Triple Triad is a card battler originally from Final Fantasy VIII, but was re-tailored for Final Fantasy XIV some years later. There's also mobile and web game versions that I've seen in the wild that do and don't carry any fun likely unlicensed final fantasy IP[^1]. 
 
 <details>
 <summary>Click for a brief Triple Triad description</summary>
@@ -21,7 +21,4 @@ Two players play against one another, on a 3x3 board. Each come equipped to play
 </details>
 I spent some time deliberating how I would build out the game, before deciding on using the Godot Engine v4. The balance of approachability, and iteration speed with GDScript, along with the ability to compile to mobile and PC/Mac targets won me over :hugging_face.
 
-
-
-[^1]:Writeup coming soon
-[^2]:I'm also not making this with the queens explicit permission, though I'd like to think if I build something of interest, perhaps it's something that could get packaged and sold to serve the queens :raised_hands: :queen:.
+[^1]:I'm also not making this with the queens explicit permission, though I'd like to think if I build something of interest, perhaps it's something that could get packaged and sold to serve the queens :raised_hands: :queen:.

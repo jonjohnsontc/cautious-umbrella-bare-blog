@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title> Everyone Makes a Static Site Generator ~ jons.gay </title>
+    <meta name="theme-color" content="#b16286">
+    <link rel="stylesheet" href="/styles.css">
+    </head>
+<body>
+        <nav class="nav" role="navigation" aria-label="main-navigation">
+    <ul>
+        <li id="waving-hand">
+                        <a class="nav-link" href="/">
+                👋🏽
+            </a>
+                    </li>
+        <li>
+                        <a class="nav-link" href="/about">
+                about
+            </a>
+                    </li>
+        <li>
+                        <a aria-current="page" class="nav-link nav-link--active" href="/blog">blog</a>
+                    </li>
+
+        <li>
+            <div class="palette-dropdown">
+                <button id="dropdown-button" class="nav-button">
+                    <svg id="palette" viewBox="0 0 201 199" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M201 99.5C201 138.678 177.558 131.651 156.19 125.246C143.464 121.427 131.467 117.82 125.625 124.375C118.05 132.87 119.658 146.999 121.216 160.693C123.439 180.282 125.575 199 100.5 199C80.623 199 61.1924 193.164 44.6652 182.231C28.1381 171.298 15.2568 155.758 7.65015 137.577C0.0435447 119.396 -1.94669 99.3897 1.93112 80.0885C5.80894 60.7874 15.3806 43.0582 29.4358 29.1429C43.491 15.2276 61.3984 5.75114 80.8935 1.91191C100.389 -1.92732 120.596 0.0431115 138.96 7.57403C157.324 15.1049 173.02 27.8581 184.063 44.2208C195.106 60.5835 201 79.8208 201 99.5V99.5ZM100.5 186.563C108.176 186.563 108.716 184.436 108.728 184.374C109.708 182.558 110.286 178.603 109.608 170.456C109.432 168.366 109.143 165.854 108.842 163.105C108.188 157.334 107.435 150.606 107.359 144.922C107.234 136.128 108.402 124.897 116.203 116.141C120.839 110.955 126.818 108.953 132.183 108.455C137.258 107.982 142.383 108.778 146.755 109.749C151.064 110.706 155.574 112.062 159.632 113.281L159.983 113.38C164.33 114.686 168.25 115.855 171.956 116.689C180.159 118.529 183.312 117.721 184.405 116.987C184.882 116.664 188.438 113.94 188.438 99.5C188.438 82.2807 183.28 65.4481 173.617 51.1307C163.955 36.8133 150.221 25.6543 134.152 19.0648C118.084 12.4752 100.402 10.7511 83.3443 14.1104C66.2861 17.4697 50.6171 25.7616 38.3188 37.9376C26.0206 50.1135 17.6453 65.6265 14.2522 82.515C10.8591 99.4034 12.6006 116.909 19.2564 132.817C25.9122 148.726 37.1833 162.323 51.6446 171.89C66.1058 181.456 83.1076 186.563 100.5 186.563V186.563Z"
+                            style="fill: var(--primary)" />
+                        <ellipse lass="ellipse-cyan" cx="50" cy="86.1342" rx="19" ry="18.8109"
+                            style="fill: var(--cyan)" />
+                        <ellipse class="ellipse-purple" cx="100" cy="43.5624" rx="19" ry="18.8109"
+                            style="fill: var(--purple)" />
+                        <ellipse class="ellipse-red" cx="151" cy="81.184" rx="19" ry="18.8109"
+                            style="fill: var(--red)" />
+                        <ellipse class="ellipse-yellow" cx="75" cy="142.567" rx="19" ry="18.8109"
+                            style="fill: var(--yellow)" />
+                    </svg>
+
+                </button>
+                <div id="dropdown-content" class="dropdown-content swing-in-top-fwd">
+                    <button id="default" class="theme-button theme-button--active">
+                        <div class="theme-selector">
+                            <h4>default</h4>
+                        </div>
+                    </button>
+                    <button id="gruvbox" class="theme-button">
+                        <div class="theme-selector">
+                            <h4>Gruvbox</h4>
+                        </div>
+                    </button>
+                    <button id="booberry" class="theme-button">
+                        <div class="theme-selector">
+                            <h4>Booberry</h4>
+                        </div>
+                    </button>
+                    <button id="dark" class="theme-button">
+                        <div class="theme-selector">
+                            <h4>Dark</h4>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </li>
+    </ul>
+</nav>
+    <section class="blog-post-container">
+        <article class="blog-post-content container">
+            <h1 class="blog-title">Everyone Makes a Static Site Generator</h1>
+            <h5 class="blog-subtitle">Published on: 2023-07-30</h5>
+            <p>I heard Jared Santo on The Changelog <a href="https://changelog.com/podcast/546#transcript-176">mention</a> that every developer makes a Static Site Generator ("SSG"), almost as a right of passage to become an adult, and I too, had recently decided that now would be the time I <em>blossomed</em> into dev-adulthood.</p>
+<h2>Background</h2>
+<p>For as long as I've had this blog, I've used Gatsby as my framework of choice. Early on, I decided that I wanted to use something that was easy to understand and that enabled me to do cute things that I saw on other developer websites. Which is to say, interactive <em>good</em> feeling web components you'd see shared on frontend focused developer blogs like joshwcomeau.com or kentcdodds.com  I've used Medium in my previous career to blog, and I always wanted that touch of something special, which told people that not only was I <em>professional</em>, but good professional worthy of the magic validation that comes from your peers when you make websites like that.</p>
+<p>Now's the time for you to tell me, "But Jon, you can do kewl, interactive, attractive web components in (virtually) any web stack, all it takes is some elbow grease and a great idea"<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>. And yes, that's true, but Jon from a few years back is a different person compared to Jon from now. And Jon from back then didn't have a foundation for web technologies that Jon has now, and Jon has now wants to stop writing in third person.</p>
+<p>Gatsby has been in the static site gen-o-sphere since 2015. It marries a number of popular js libraries together (React, React Router, and GraphQL, most notably) for a developer experience that makes painting within the lines <em>super nice</em>. The happy path in Gatsby of creating page components with JSX, and creating dynamic content in MDX is easy to follow. You marry that with some component-driven development ("COD"), and I'm sure you can generate some fantastic 2018-era recommendations on how someone should make a static site.</p>
+<p>CDD is a practice that I encountered on my first professional front-end code base, and observed when digging into different web applications in github for reference. And it happens to be what I tried using as well on my static site. When I refer to CDD, I'm talking about the approach to building UI from small components, typically written in its own file like a Java class. The small components build into other components, eventually coming together into a view component that represents the page.</p>
+<p>For every month that went by, an average of one article idea came into my head, or perhaps an idea of some subtle improvements to my About Me page, and with that, at least one or two single page components would get added to my git tree. Unfortunately, I didn't have the interest and/or discipline to continue working on these ideas, and they languished quickly after being created. Sometimes, I would just quit on an idea after realizing that I needed a stronger base of knowledge of each layer of abstraction in my codebase. How can I complete displaying that SVG icon properly, with the correct colors given the site's theme, if I don't understand how Gatsby, React, and GraphQL work with their underlying web primitives? There were some problems with my website that I realized I couldn't npm install my way out of. And I managed to <code>npm install</code> my way into a few more problems whenever a major upgrade of these pillars came around.</p>
+<p>Pretty soon, while my website was still devoid of content, my blog's repository continued to grow, with abandoned components littering my folder structure to greet me every time I lied to myself and said "TODAY, I WILL PRODUCE CONTENT". And looking at all of those files was a <em>pain</em>. Yes, it was a pain of my own creation, and probably nothing that a few solid minutes of pruning and serious reflection couldn't solve. But, it was a pain that produced enough anxiety to really distract from writing. I eventually stopped thinking about article ideas, and moved on to something else to scratch my creative itch.</p>
+<p>Some months later, I witnessed some shots fired in the <em>Great React Debate of 2023</em>, and felt a renewed sense of motivation to work on my website. Why, many large voices in the web world were writing that I didn't need React. And, what better source of meaning(less) content then a full rewrite of something that I built earlier? Seriously though, I did read through several posts, along with heated hacker news threads following the saga, and did realize that maybe all of the additional abstractions I had signed-up for with a component driven Gatsby environment wasn't worth it for as small as my site is, especially since I haven't been in a front-end focused role for a few years now.</p>
+<p>This isn't an anti-React/Gatsby, or anti-component driven design post. The technologies and approach both have their completely valid use cases, but I realized for myself that the trade offs involved with using them given my own situation wasn't worth it.</p>
+<h2>Deciding How to Rewrite</h2>
+<p>For this react-less rewrite, I deliberated between using an established static site generator like 11ty or Hugo, crafting my own static site generator in a language of my choice, or just handrolling html and javascript. Regardless, I just wanted an experience that would allow me to conceptualize the entire stack of my website in my pea brain without 15 mins of reading documentation and 30 mins of updating dependencies in-between posts</p>
+<p>I first migrated what existed of my Gatsby website into handrolled HTML. That was relatively easy, as I was able to strip the included javascript and Gatsby/React specific HTML tags from the last successful Gatsby build files. Afterwards, I tried to see if I could do the same with a static site generator, and chose Hugo. I dug through the documentation, and read through roughly half of <em>Hugo in Action</em>. But, it didn't take me too long to feel like many of the features weren't for me, and the one's that were I could customize to my preferred structure if I built it myself. So, I decided to start creating a static site generator to back the website, and if it ever became too much of an annoyance, I could always fallback to handrolled HTML.</p>
+<h2>A Tiny Site Tour</h2>
+<p>You can find the source behind the website <a href="https://github.com/jonjohnsontc/cautious-umbrella-bare-blog">here</a></p>
+<p>Right now, it's bare bones, and only appeals to the few needs that I wrote down on the combined RFC+Jira Board+README that is my README file. Essentially, I have python script <code>render_templates</code>, that iterates through markdown-based content files, and combines them with jinja templates to produce a bunch of web pages in the <code>public</code> directory. There's a local store that I rely on, to check whether or not a content file has been modified since the script was last run. If so, the script creates a new version of the html page in <code>public</code>.</p>
+<p>In terms of scripting, I have a bit of javascript in a <code>script.js</code> file that's linked to every page. It powers the lil theme dropdown menu above, and allows you to change the colors that the website appears in. Those details are saved across sessions using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage">localStorage</a>.</p>
+<p>I also use a small python script to run as my development server if I need it (<code>server.py</code>). I find myself reaching for it a lot more often than just clicking on an html file in the Finder app for checking my pages out, but I like that I have both options.</p>
+<p>And that's about it. There's no other content management to speak of. I don't have any support for images yet...and I think I'm okay with that now? I realize that after spending so much time starting and never finishing anything on my site before, that any work-in-progress on this bad-boy is worth publishing. The site is living, so it can improve over time. Maybe you'll be reading this in 2 years and see that there's some cute swirling pig animation that whistles when you click it adorning the top of this page. It wasn't there when this article was first published, so thanks for stopping by after it's improved.</p>
+<div class="footnote">
+<h2 class="blog-subtitle">Footnotes</h2>
+<ol>
+<li id="fn:1">
+<p>That and talent. I have zero-discernible drawing skills, and am not making anything that looks remotely as nice as the illustrations and animations they put out.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+            
+
+<footer>
+    ~~~<br>
+    This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+</a>.
+<br>
+    Please share if you like :0)
+</footer>        </article>
+    </section>
+    <script src="/script.js"></script>
+</body>
+
+</html>
