@@ -21,6 +21,11 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         super().__init__(request, client_address, server, directory="./public/")
 
     def do_GET(self):
+        # really lazy way to retrieve the blog index file
+        # (at blog/index) even though I link to it like "/blog"
+        # definitely change this 
+        if self.path.endswith("blog"):
+            self.path += "/index.html"
         # If there is no file suffix on the path and the path
         # isn't a directory, let's look for the file
         if "." not in os.path.basename(self.path) and not self.path.endswith("/"):

@@ -203,7 +203,10 @@ if __name__ == "__main__":
                     # the server is using this to find it
                     "path": f"/blog/{filename}",
                 }
-                posts.append(bp)
+                # This is a silly temporary way to avoid publishing changes to my blog
+                # the blog index if a new post is a draft page
+                if not parser.Meta.get("draft"):
+                    posts.append(bp)
                 if (
                     file_has_been_modified(entry.path, store)
                     or file_has_been_modified(BLOG_TEMPLATE_LOC, store)
