@@ -156,11 +156,6 @@ def output_page(template: Template, content_loc: str):
     return template.render(**kwargs)
 
 
-def rm_draft_pages():
-    """Deletes any .draft.html files in the /public/blog folder"""
-    pass
-
-
 # TODO: Before outputting any page, I wanna check if either
 # the template has been modified or the content file. If either
 # has been modified, the page will be output.

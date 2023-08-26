@@ -19,6 +19,7 @@ Bare bones checklist to figure out what I'd like to do next with my blog
 - [x] add favicon
 - [x] ability to see draft posts in dev server
 - [x] finish 'moving-from-spa-to-mpa'
+- [] change content font
 - [] fix sorting posts without a date
 - [] fix the 'modified' file
 - [] start implementing some tests to validate these features
@@ -79,7 +80,6 @@ I think I'm gonna plan on having the structure (e.g, what pages are being create
 
 No, I think some elements should customized through `render_templates` (i.e., in code), while other elements should be defined completely in the template.
 
-
 ## OS default in theme selector
 
 Right now, I store a value in local storage if someone has selected a theme. That changes the value of the body attribute on load via javascript.
@@ -91,3 +91,8 @@ I want the default theme to be 'gruvbox' during the day, but 'dark' if prefers-c
 Right now, I have to execute `render_templates.py` if I want to see any changes that I've made to my website. However, every page that's output with render templates will make its way to the public folder, and exactly where Cloudflare pages looks for my pages every time I push.
 
 Solution: I'm going to have `render_templates` add a .draft.html suffix to the draft files, and place that in my .gitignore file.
+
+## start implementing some tests to validate these features
+
+I wanna look at my `dependency_has_been_modified` functions, and make sure that render_templates is writing new versions of pages when I need to, and not writing them when I don't (aka working as intended).
+
