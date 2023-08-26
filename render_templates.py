@@ -59,7 +59,7 @@ def load_store():
     return store
 
 
-def depedency_has_been_modified(filepath: str | Path, store: dict):
+def dependency_has_been_modified(filepath: str | Path, store: dict):
     """Looks for any sub-templates using regex and returns a bool indicating
     whether or not one of them has been modified
     """
@@ -92,7 +92,7 @@ def index_page_needs_to_be_updated(store: dict) -> bool:
     if (
         file_has_been_modified(tmpl_path, store=store)
         or file_has_been_modified(INDEX_LOC, store=store)
-        or depedency_has_been_modified(tmpl_path, store=store)
+        or dependency_has_been_modified(tmpl_path, store=store)
     ):
         return True
     return False
@@ -103,7 +103,7 @@ def about_page_needs_to_be_updated(store: dict) -> bool:
     if (
         file_has_been_modified(templ_path, store=store)
         or file_has_been_modified(ABOUT_LOC, store=store)
-        or depedency_has_been_modified(templ_path, store=store)
+        or dependency_has_been_modified(templ_path, store=store)
     ):
         return True
     return False
@@ -113,7 +113,7 @@ def err_page_needs_to_be_updated(store: dict) -> bool:
     if (
         file_has_been_modified(ERR_LOC, store)
         or file_has_been_modified(ERR_TMPL_LOC, store)
-        or depedency_has_been_modified(ERR_TMPL_LOC, store=store)
+        or dependency_has_been_modified(ERR_TMPL_LOC, store=store)
     ):
         return True
     return False
@@ -126,7 +126,7 @@ def blog_list_needs_to_be_updated(store: dict, store_snapshot: dict) -> bool:
     if (
         store != store_snapshot
         or file_has_been_modified(TEMPLATES_LOC.joinpath(LIST_TEMPLATE), store=store)
-        or depedency_has_been_modified(
+        or dependency_has_been_modified(
             TEMPLATES_LOC.joinpath(LIST_TEMPLATE), store=store
         )
     ):
@@ -156,7 +156,8 @@ def output_page(template: Template, content_loc: str):
     return template.render(**kwargs)
 
 
-def output_blog_pages():
+def rm_draft_pages():
+    """Deletes any .draft.html files in the /public/blog folder"""
     pass
 
 
@@ -192,10 +193,14 @@ if __name__ == "__main__":
                     output_format="html",
                 )
                 post = parser.convert(mkdn)
-                # if the blog post is a draft, we'll skip creating it
-                if parser.Meta.get("draft"):
-                    continue
+                suffix = ".html"
                 filename = os.path.basename(entry.path)[:-3]
+                # if the blog post is a draft, we'll add the following suffix
+                # to make sure it doesn't get pushed to my deployment
+                if parser.Meta.get("draft"):
+                    suffix = ".draft.html"
+                    # we'll add today's date so drafts get published at the top of the blog list
+                    parser.Meta["date"].append(datetime.strftime(datetime.today(), "%Y-%m-%d"))
                 bp = {
                     "title": parser.Meta.get("title").pop(),
                     "date": parser.Meta.get("date").pop(),
@@ -207,7 +212,7 @@ if __name__ == "__main__":
                 if (
                     file_has_been_modified(entry.path, store)
                     or file_has_been_modified(BLOG_TEMPLATE_LOC, store)
-                    or depedency_has_been_modified(BLOG_TEMPLATE_LOC, store)
+                    or dependency_has_been_modified(BLOG_TEMPLATE_LOC, store)
                 ):
                     # looking for posts that need syntax highlighting, and
                     # including it if necessary
@@ -215,8 +220,9 @@ if __name__ == "__main__":
                     if parser.Meta.get("code"):
                         codehilite = True
                     print("Working on", entry.path, "🪩")
+                    
                     with open(
-                        f"./public/blog/{filename}.html", "w+", encoding="utf-8"
+                        f"./public/blog/{filename}{suffix}", "w+", encoding="utf-8"
                     ) as f:
                         f.write(
                             template.render(

@@ -27,8 +27,11 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             path, maybe_file = os.path.split(self.path)
             dir = os.listdir(os.path.join(self.directory, path[1:]))
             for file in dir:
-                if file.endswith(".html") and file.removesuffix(".html") == maybe_file:
+                if file.removesuffix(".html") == maybe_file:
                     self.path += ".html"
+                    break
+                if file.removesuffix(".draft.html") == maybe_file:
+                    self.path += ".draft.html"
                     break
             super(Handler, self).do_GET()
         else:
