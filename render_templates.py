@@ -3,6 +3,7 @@ Takes content in the "content" directory, and makes a bunch of html
 pages out of them. Then it builds the blog index based on all the
 pages built
 """
+import argparse
 import json
 import os
 import re
@@ -34,6 +35,8 @@ ERR_TEMPLATE = "404.html.j2"
 ERR_TMPL_LOC = TEMPLATES_LOC.joinpath(ERR_TEMPLATE)
 ERR_LOC = CONTENT_LOC.joinpath("404.md")
 
+OUTPUT_DIR = Path("public")
+
 # Right now, this is how we check if any sub-templates have been modified
 DEPENDENCIES = ["footer.html.j2", "head.html.j2", "nav.html.j2"]
 
@@ -43,10 +46,10 @@ def get_post(path: str):
         return f.read()
 
 
-def load_store():
+def load_store(store_loc=None):
     """Loads the modified store to see if a file should be updated"""
-    if os.path.isfile(STORE_LOC):
-        with open(STORE_LOC, "r", encoding="utf-8") as f:
+    if os.path.isfile(store_loc):
+        with open(store_loc, "r", encoding="utf-8") as f:
             try:
                 store: dict = json.load(f)
             # if we have trouble opening the store we'll just
@@ -155,11 +158,42 @@ def output_page(template: Template, content_loc: str):
             kwargs[k] = val
     return template.render(**kwargs)
 
+def create_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        prog='Render Templates',
+        description='Creates all the blog pages on my website',
+    )
+    # Where to output files
+    parser.add_argument(
+        '-o', 
+        '--output-dir',
+        required=False,
+        type=Path,
+        help="The location to write html files to"
+    )
+    # location of the modified store. If not present the script
+    # will look in ./content
+    parser.add_argument(
+        '-s',
+        '--store-loc',
+        required=False,
+        type=Path,
+        help="""Where the modified store is to be located. If not provided, 
+                the script will look in the content directory""",   
+        default=STORE_LOC
+    )
+    return parser
+
 
 # TODO: Before outputting any page, I wanna check if either
 # the template has been modified or the content file. If either
 # has been modified, the page will be output.
 if __name__ == "__main__":
+    parser = create_parser()
+    # NOTE: all args could potentially be null, so I want to 
+    # use dict.get(item, default) whenever pulling args
+    args = vars(parser.parse_args())
+    output_dir = args.get('output-dir', OUTPUT_DIR)
     env = Environment(
         loader=PackageLoader("render_templates", TEMPLATES_LOC),
         autoescape=False,
@@ -168,11 +202,16 @@ if __name__ == "__main__":
     )
     template = env.get_template(BLOG_TEMPLATE)
     posts = []
-    store = load_store()
+    # store_location is potentially null
+    store = load_store(args.get('store-loc', STORE_LOC))
     # creating this snapshot to see if anything
     # changes with the store while we build the
     # blog pages
     snapshot = store.copy()
+    # todo delete
+    print("blog template has been modified: ", file_has_been_modified(BLOG_TEMPLATE_LOC, store))
+    # todo delete
+    print("blog dependencies have been modified: ", dependency_has_been_modified(BLOG_TEMPLATE_LOC, store))
     with os.scandir(POSTS_LOC) as dir:
         for entry in dir:
             if entry.path.endswith(".md") and "_" not in entry.path:
@@ -207,6 +246,8 @@ if __name__ == "__main__":
                 # the blog index if a new post is a draft page
                 if not parser.Meta.get("draft"):
                     posts.append(bp)
+                # todo delete
+                print("file has been modified: ", file_has_been_modified(entry.path, store))
                 if (
                     file_has_been_modified(entry.path, store)
                     or file_has_been_modified(BLOG_TEMPLATE_LOC, store)

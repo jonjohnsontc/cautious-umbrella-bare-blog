@@ -6,3 +6,6 @@ modified
 # we don't want them in version control, or they'll
 # get pushed to the deployment
 *.draft.html
+# html and modified files created for testing will be
+# written here
+test_output

@@ -96,3 +96,12 @@ Solution: I'm going to have `render_templates` add a .draft.html suffix to the d
 
 I wanna look at my `dependency_has_been_modified` functions, and make sure that render_templates is writing new versions of pages when I need to, and not writing them when I don't (aka working as intended).
 
+### How will testing generally work?
+
+For every test scenario, I'm going to run render_templates, and verify the output. My plan currently is to keep each test result around in a `test_output` directory, but not put that directory in version control.
+
+In order for this to work, I need to modify the render_templates script to accept an argument for it's output directory.
+
+### How do i test the situation of making sure all dependencies have been written to the modified file?
+
+I think the easiest way would be to run the entire thing and check the resulting `modified` file. The same would go for any other scenarios.
