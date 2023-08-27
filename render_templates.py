@@ -35,7 +35,7 @@ ERR_TEMPLATE = "404.html.j2"
 ERR_TMPL_LOC = TEMPLATES_LOC.joinpath(ERR_TEMPLATE)
 ERR_LOC = CONTENT_LOC.joinpath("404.md")
 
-OUTPUT_DIR = Path("public")
+OUTPUT_DIR = Path(".")
 
 # Right now, this is how we check if any sub-templates have been modified
 DEPENDENCIES = ["footer.html.j2", "head.html.j2", "nav.html.j2"]
@@ -166,34 +166,36 @@ def create_parser() -> argparse.ArgumentParser:
     # Where to output files
     parser.add_argument(
         '-o', 
-        '--output-dir',
+        '--output_dir',
         required=False,
-        type=Path,
-        help="The location to write html files to"
+        type=str,
+        help="The location to write html files to",
+        default="."
     )
     # location of the modified store. If not present the script
     # will look in ./content
     parser.add_argument(
         '-s',
-        '--store-loc',
+        '--store_loc',
         required=False,
-        type=Path,
+        type=str,
         help="""Where the modified store is to be located. If not provided, 
                 the script will look in the content directory""",   
         default=STORE_LOC
     )
     return parser
 
+parser = create_parser()
 
 # TODO: Before outputting any page, I wanna check if either
 # the template has been modified or the content file. If either
 # has been modified, the page will be output.
 if __name__ == "__main__":
-    parser = create_parser()
     # NOTE: all args could potentially be null, so I want to 
     # use dict.get(item, default) whenever pulling args
-    args = vars(parser.parse_args())
-    output_dir = args.get('output-dir', OUTPUT_DIR)
+    qwargs = parser.parse_args()
+    arg_dict = vars(qwargs)
+    output_dir = arg_dict.get('output_dir', OUTPUT_DIR)
     env = Environment(
         loader=PackageLoader("render_templates", TEMPLATES_LOC),
         autoescape=False,
@@ -203,15 +205,12 @@ if __name__ == "__main__":
     template = env.get_template(BLOG_TEMPLATE)
     posts = []
     # store_location is potentially null
-    store = load_store(args.get('store-loc', STORE_LOC))
+    store_loc = arg_dict.get('store_loc', STORE_LOC)
+    store = load_store(store_loc)
     # creating this snapshot to see if anything
     # changes with the store while we build the
     # blog pages
     snapshot = store.copy()
-    # todo delete
-    print("blog template has been modified: ", file_has_been_modified(BLOG_TEMPLATE_LOC, store))
-    # todo delete
-    print("blog dependencies have been modified: ", dependency_has_been_modified(BLOG_TEMPLATE_LOC, store))
     with os.scandir(POSTS_LOC) as dir:
         for entry in dir:
             if entry.path.endswith(".md") and "_" not in entry.path:
@@ -246,8 +245,6 @@ if __name__ == "__main__":
                 # the blog index if a new post is a draft page
                 if not parser.Meta.get("draft"):
                     posts.append(bp)
-                # todo delete
-                print("file has been modified: ", file_has_been_modified(entry.path, store))
                 if (
                     file_has_been_modified(entry.path, store)
                     or file_has_been_modified(BLOG_TEMPLATE_LOC, store)
@@ -261,7 +258,7 @@ if __name__ == "__main__":
                     print("Working on", entry.path, "🪩")
                     
                     with open(
-                        f"./public/blog/{filename}{suffix}", "w+", encoding="utf-8"
+                        f"{output_dir}/public/blog/{filename}{suffix}", "w+", encoding="utf-8"
                     ) as f:
                         f.write(
                             template.render(
@@ -277,7 +274,7 @@ if __name__ == "__main__":
         posts.sort(key=lambda p: datetime.fromisoformat(p["date"]), reverse=True)
         print("Working on blog index 🌈🗂")
         template = env.get_template(LIST_TEMPLATE)
-        with open("./public/blog/index.html", "w+", encoding="utf-8") as f:
+        with open(f"{output_dir}/public/blog/index.html", "w+", encoding="utf-8") as f:
             f.write(template.render(posts=posts))
         store.update(
             {
@@ -290,7 +287,7 @@ if __name__ == "__main__":
         print("Working on the about page 🤗")
         template = env.get_template(ABOUT_TEMPLATE)
         page = output_page(template, ABOUT_LOC)
-        with open("./public/about.html", "w+") as f:
+        with open(f"{output_dir}/public/about.html", "w+") as f:
             f.write(page)
         store.update(
             {
@@ -302,7 +299,7 @@ if __name__ == "__main__":
         print("Working on the index page 🙈")
         template = env.get_template(INDEX_TEMPLATE)
         page = output_page(template, INDEX_LOC)
-        with open("./public/index.html", "w+") as f:
+        with open(f"{output_dir}/public/index.html", "w+") as f:
             f.write(page)
         store.update(
             {
@@ -314,7 +311,7 @@ if __name__ == "__main__":
         print("Working on the 404 page ❌")
         template = env.get_template(ERR_TEMPLATE)
         page = output_page(template, ERR_LOC)
-        with open("./public/404.html", "w+") as f:
+        with open(f"{output_dir}/public/404.html", "w+") as f:
             f.write(page)
         store.update(
             {
@@ -333,6 +330,12 @@ if __name__ == "__main__":
             for i in DEPENDENCIES
         }
     )
-    with open(STORE_LOC, "w+", encoding="utf-8") as f:
+    # we'll add the base blog template to the store, now that we've created all the posts
+    store.update(
+        {
+            BLOG_TEMPLATE_LOC.as_posix(): os.stat(BLOG_TEMPLATE_LOC).st_mtime,
+        }
+    )
+    with open(store_loc, "w+", encoding="utf-8") as f:
         print("Updating store 📙")
         json.dump(store, f)

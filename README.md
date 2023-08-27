@@ -16,6 +16,10 @@ Draft posts can be identified in yaml frontmatter (with `draft: true`), and `ren
 
 I'm using jinja templating to put together each blog post. Eventually, I'd like to build or iterate on all of my pages with templates (or at least, some method where I can keep things DRY).
 
+## Tests
+
+Tests are located in the `./tests` directory. I've tried to keep things as simple as possible, and for now, have chosen to not rely on any testing frameworks.
+
 ## Issues
 
 Issues and upcoming features are all noted in issue_tracker.md
