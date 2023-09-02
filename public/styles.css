@@ -49,6 +49,11 @@ body {
 	font-family: "Fira Sans", BlinkMacSystemFont, -apple-system, "Segoe UI",
 		"Roboto", "Oxygen", "Ubuntu", "Cantarell", "Droid Sans", "Helvetica Neue",
 		"Helvetica", "Arial", sans-serif;
+    /*
+       'fi' not not displaying with fira sans
+       https://stackoverflow.com/questions/42269783/combinations-of-letters-fi-and-fl-is-not-displayed-by-browsers
+     */
+	font-feature-settings: "liga" 0;
 	color: var(--grey-dark);
 }
 button {
