@@ -1,9 +1,8 @@
 ---
-date: "2023-10-10"
-title: SQLite as a data repl
+date: 2023-10-10
+title: SQLite as a Data REPL
 description: If I have some large csv of data that I need to look at, I've typically reached first for pandas, served via a standard python or ipython repl - but I'm writing this to remember to consider looking at sqlite instead.
 license: commercial
-draft: false
 ---
 
 If I have some large csv of data that I need to look at, I've typically reached first for pandas, served via a standard python or ipython repl - but I'm writing this to remember to consider looking at sqlite instead.

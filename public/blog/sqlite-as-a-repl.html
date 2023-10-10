@@ -5,13 +5,12 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title> Blog ~ Jon Johnson </title>
+        <title> SQLite as a Data REPL ~ Jon Johnson </title>
     <meta name="theme-color" content="#b16286">
     <link rel="stylesheet" href="/styles.css">
     </head>
 <body>
-    <div class="app">
-                <nav class="nav" role="navigation" aria-label="main-navigation">
+        <nav class="nav" role="navigation" aria-label="main-navigation">
     <ul>
         <li id="waving-hand">
                         <a class="nav-link" href="/">
@@ -71,59 +70,24 @@
         </li>
     </ul>
 </nav>
-        <div class="container-blog">
-            <div class="blog-hero">
-                <div class="column blog-column">
-                    <h1>Blog</h1>
-                </div>
-                <div class="column blog-column">
-                    <h2>Standard issue blog fare served fresh</h2>
-                </div>
-            </div>
-        </div>
-        <div class="container-blog">
-                        <div class="blog-list-box">
-                <ul>
-                    <li class="blog-list-date">2023-10-10</li>
-                    <li class="blog-list-title">
-                        <a href=/blog/sqlite-as-a-repl>SQLite as a Data REPL</a>
-                    </li>
-                </ul>
-            </div>
-                        <div class="blog-list-box">
-                <ul>
-                    <li class="blog-list-date">2023-07-30</li>
-                    <li class="blog-list-title">
-                        <a href=/blog/everyone-makes-a-static-site-generator>Everyone Makes a Static Site Generator</a>
-                    </li>
-                </ul>
-            </div>
-                        <div class="blog-list-box">
-                <ul>
-                    <li class="blog-list-date">2023-07-06</li>
-                    <li class="blog-list-title">
-                        <a href=/blog/moving-from-spa-to-mpa>Moving from SPA to MPA</a>
-                    </li>
-                </ul>
-            </div>
-                        <div class="blog-list-box">
-                <ul>
-                    <li class="blog-list-date">2022-02-04</li>
-                    <li class="blog-list-title">
-                        <a href=/blog/i-bought-a-dot-gay>I bought a .gay TLD!</a>
-                    </li>
-                </ul>
-            </div>
-                        <div class="blog-list-box">
-                <ul>
-                    <li class="blog-list-date">2021-08-21</li>
-                    <li class="blog-list-title">
-                        <a href=/blog/twil-20210807>This Week I Learned - I</a>
-                    </li>
-                </ul>
-            </div>
-                    </div>
-    </div>
+    <section class="blog-post-container">
+        <article class="blog-post-content container">
+            <h1 class="blog-title">SQLite as a Data REPL</h1>
+            <h5 class="blog-subtitle">Published on: 2023-10-10</h5>
+            <p>If I have some large csv of data that I need to look at, I've typically reached first for pandas, served via a standard python or ipython repl - but I'm writing this to remember to consider looking at sqlite instead.</p>
+<p>Anecdotally (I'm typing it at the command-line now), the sqlite3 cli starts up much faster than python3 repl. Add in the cost of <code>import pandas as pd</code>, and you've probably already taken like 6-8 seconds. Reading in data with sqlite3 seems much quicker than <code>pd.read_csv</code>, and I get the benefit of easy persistance with <code>.backup FILE</code> instead of saving a bunch of additional csv files with the results of different filters.</p>
+<p><code>.import FILENAME TABLE --csv</code> is all you need to read a csv file as a new table, so give it a shot next time you find yourself with the need to munge some data quickly</p>
+            
+
+<footer>
+    ~~~<br>
+    This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+</a>.
+<br>
+    Please share if you like :0)
+</footer>        </article>
+    </section>
     <script src="/script.js"></script>
 </body>
 
