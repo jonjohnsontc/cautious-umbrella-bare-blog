@@ -19,10 +19,10 @@ Bare bones checklist to figure out what I'd like to do next with my blog
 - [x] add favicon
 - [x] ability to see draft posts in dev server
 - [x] finish 'moving-from-spa-to-mpa'
+- [x] start implementing some tests to validate these features
 - [] change content font
 - [] fix sorting posts without a date
 - [] fix the 'modified' file
-- [] start implementing some tests to validate these features
 - [] update colors for links
 - [] remove footnote demo
 
