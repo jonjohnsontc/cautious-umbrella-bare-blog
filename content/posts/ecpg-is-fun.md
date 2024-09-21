@@ -10,9 +10,19 @@ I've come to really appreciate SQL, and how it has come to be the common interfa
 
 An ORM is one approach to handling the problem differently. I came across these when I started working on web applications, where my team had used it to handle the operations that users were able to do on our fancy dashboard generator (tm). This model comes with another set of tradeoffs that much smarter and experience developers can extol on.
 
-I recently learned of another, more brute force approach to marrying the querying interface with a programming language, and that's Embedded SQL. It's a method defined in the SQL standard of writing queries inline in a host language, and then having a preprocessor transform those that code into valid(tm) host source code that can be compiled and run like any other program.
+Thanks to the time suck of a Hackernews comment, I learned of a more brute force approach to marrying the querying interface with a programming language, and that's Embedded SQL. It's a method defined in the SQL standard of writing queries inline in a host language, and then having a preprocessor transform those that code into valid(tm) host source code that can be compiled and run like any other program.
 
-God's favorite RDBMS <strike>SQLite</strike> Postgres provides a way of using embedded SQL through ECPG, which has been part of the db since version 6.3[^1]. As long as your language of choice happens to be C or C++ , you can use it to build your own programs. With a brief[^2] read through of the docs, one can come up with a pretty trivial example that gives you 
+God's favorite RDBMS <strike>SQLite</strike> Postgres provides a way of using embedded SQL through ECPG, which has been part of the db since version 6.3[^1]. As long as your language of choice happens to be C or C++ , you can use it to build your own programs. With a brief[^2] read through of the docs, one can come up with a pretty trivial example that gives returns a scalar for a simple query.
 
-[^1]: https://www.postgresql.org/docs/release/6.3.0/
+```SQL
+```
+
+You can iterate over multiple results while using a cursor
+
+```SQL
+```
+
+The preprocessor step also provides checking to make sure the query is syntactically correct. I found this to be helpful, and caught a few silly mistakes before passing it off to the server. The preprocessing step turned the demo queries into C code, though probably not one that could be mistaken for something you'd craft by hand with libpq.
+
+[^1]: <https://www.postgresql.org/docs/release/6.3.0/>
 [^2]: For you, not me. I spent a few hours futzing with the connection string before a helpful SO post helped me realize that just maybe my demo postgres instance wasn't listening on port 5432.
