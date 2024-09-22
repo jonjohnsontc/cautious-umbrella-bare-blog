@@ -15,6 +15,23 @@ Thanks to the time suck of a Hackernews comment, I learned of a SQL-first approa
 God's favorite RDBMS <strike>SQLite</strike> Postgres provides a way of using embedded SQL through ECPG, which has been part of the db since version 6.3[^1]. As long as your language of choice happens to be C or C++ , you can use it to build your own programs. With a brief[^2] read through of the docs, one can come up with a pretty trivial example that gives returns a scalar for a simple query.
 
     :::postgres
+    EXEC SQL WHENEVER SQLWARNING SQLPRINT;  // print SQL warnings to console 
+    EXEC SQL WHENEVER SQLERROR STOP;  // terminate program on SQL runtime err
+
+
+    EXEC SQL BEGIN DECLARE SECTION;
+      const char *pword = getenv("POSTGRES_PASSWORD");
+      const char *user = "jon";
+      const int filter = 4;
+      const char *dbname = "unix:postgresql://localhost:5433/ecpg_demo";
+      long long int count;
+    EXEC SQL END DECLARE SECTION;  
+
+    if (pword == NULL) {
+      fprintf(stderr, "Env var not found\n");
+      exit(1);
+    }
+
     EXEC SQL CONNECT TO :dbname USER :user USING :pword;  
     printf("SQL connection executed\n");  
     EXEC SQL SELECT count(*) INTO :count  
@@ -28,15 +45,34 @@ The console would show:
     jon@wendy:~/projects/ternary-implosion$ ./main 
     SQL connection executed
     Total number of rows in electricity_market: 6288
-    SQL connection exited
 
-You can iterate over multiple results while using a cursor
+You can iterate over multiple results while using a cursor, and there is a header for handling some Postgres types that can't be expressed in C primitives.
 
-The preprocessor step also provides checking to make sure the query is syntactically correct. I found this to be helpful, and caught a few silly mistakes before passing it off to the server. It's not going to be able to tell you if a query can successfully execute, however, because it doesn't validate the tables or columns referred. I still think this is a step up from zero SQL checking, although you never want to be stuck in the sad cycle of fixing SQL build errors, C build errors, and SQL runtime errors when building queries[^3].
+    :::postgres
+    #include <pgtypes_numeric.h>
+    EXEC SQL BEGIN DECLARE SECTION;
+      numeric *hydro_gen;
+      int *hydro_gen_ind;
+    EXEC SQL END DECLARE SECTION;
 
-Word is that historically programs compiled through ECPG were less performant, as dynamic optimization was difficult for compilers using generated code[^4].
+    // use cursors for iterating over a result set
+    EXEC SQL DECLARE cur CURSOR FOR
+      SELECT miso_hydro_gen FROM electricity_market
+      ORDER BY miso_hydro_gen;
+    EXEC SQL OPEN cur;
+    EXEC SQL FETCH NEXT FROM cur INTO :hydro_gen INDICATOR :hydro_gen_ind;  
+    EXEC SQL CLOSE cur;
+
+The preprocessor step also provides checking to make sure the query is syntactically correct. I found this to be helpful, and caught a few silly mistakes before passing it off to the server. It's not going to be able to tell you if a query can successfully execute, however, because it doesn't validate the tables or columns referred. I still think this is a step up from *zero* SQL checking, although you never want to be stuck in the sad cycle of fixing SQL build errors, C build errors, and SQL runtime errors when building queries[^3].
+
+When it comes to SQL runtime errors, by default there is no handling. You can silently trigger an error through one query tied to a bound parameter, and that could propagate to all other queries in your program that use it. We can set callbacks to the top of the program, like in the first example. They allow some simple actions to be taken in case of an error, like terminating the program, or jumping to some labelled part of it. There is also a `sqlca` (SQL communications area) struct exposed which gives you more control over exactly what you can do. It behaves much like `errno` does in C, meaning if there's multiple errors in your SQL code it will only contain information about the last one[^4].
+
+I don't know how much embedded SQL has ever caught on. Word is that historically programs compiled through ECPG were less performant, as dynamic optimization was difficult for compilers using generated code[^5].
+
+I guess the "fun" part of my experience with ECPG has been learning about the ways that standards bodies and developers have worked on bridging the ever present gap between SQL and the programming language glue that's needed to for interaction between data and the rest of the application. Most of the work surrounding embedded SQL seems to have occurred around 30 years ago. Sometimes I'm doing exploratory work against tables I'm not super familiar with, and I still don't even have the lowest form of SQL syntax linting before I submit queries off. So, it's given me an appreciation of the facilities that are available to me as a developer using Postgres in applications, and just how big the SQL standard is.
 
 [^1]: <https://www.postgresql.org/docs/release/6.3.0/>
-[^2]: For you, not me. I spent a few hours futzing with the connection string before a helpful StackOverflow post helped me realize that just _maybe_ my demo postgres instance wasn't listening on port 5432.
-[^3]: Exploratory data analysis is probably not something you would do using ECPG. I imagine it's been used for different class of problems traditionally.
-[^4]: <https://www.quora.com/Does-anyone-still-actively-write-Embedded-SQL/>
+[^2]: For you, not me. I spent a few hours futzing with the connection string before a helpful StackOverflow post helped me realize that just *maybe* my demo postgres instance wasn't listening on port 5432.
+[^3]: I'm totally guessing here, but I imagine that exploratory data analysis is probably not something you would do using ECPG. I imagine it's been used for different class of problems traditionally.
+[^4]: <https://www.postgresql.org/docs/current/ecpg-errors.html#ECPG-SQLCA/>
+[^5]: <https://www.quora.com/Does-anyone-still-actively-write-Embedded-SQL/>

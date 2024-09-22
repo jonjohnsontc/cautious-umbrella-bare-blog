@@ -21,6 +21,7 @@ Bare bones checklist to figure out what I'd like to do next with my blog
 - [x] finish 'moving-from-spa-to-mpa'
 - [x] start implementing some tests to validate these features
 - [] Fix code block's default appearance on dark mode
+- [] codehilite styles don't seem to be used in draft posts
 - [] change content font
 - [] fix sorting posts without a date
 - [] fix the 'modified' file
