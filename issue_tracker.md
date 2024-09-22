@@ -20,16 +20,16 @@ Bare bones checklist to figure out what I'd like to do next with my blog
 - [x] ability to see draft posts in dev server
 - [x] finish 'moving-from-spa-to-mpa'
 - [x] start implementing some tests to validate these features
+- [] Fix code block's default appearance on dark mode
 - [] change content font
 - [] fix sorting posts without a date
 - [] fix the 'modified' file
 - [] update colors for links
-- [] remove footnote demo
 
 ## Nice to Have's
 
 - [] consolidate classes that aren't being used in templates, or aren't listed in styles.css + codehilite-styles.css
-- [] add dark mode via os-system settings
+- [x] add dark mode via os-system settings
 - [x] some way to not have to deal with re-doing the css for TWIL 1 post
 - [] checking all sub-templates to see if they've been updated too
 
@@ -50,7 +50,7 @@ I'd like to recursively check all of the main templates, and see if any sub-temp
 - You added a border for the code snippet, along with some padding
   - .codehilite { background: #f9f5d7; padding: 1em; border: 3px solid var(--primary)}
 
-- One thing that I just remembered, the `<meta name="theme-color">` tag that 
+- One thing that I just remembered, the `<meta name="theme-color">` tag that
 
 ## Adding Footnotes
 

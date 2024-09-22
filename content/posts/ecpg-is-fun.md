@@ -25,7 +25,10 @@ God's favorite RDBMS <strike>SQLite</strike> Postgres provides a way of using em
 The console would show:
 
     :::shell
-    >>> SQL connection executed
+    jon@wendy:~/projects/ternary-implosion$ ./main 
+    SQL connection executed
+    Total number of rows in electricity_market: 6288
+    SQL connection exited
 
 You can iterate over multiple results while using a cursor
 
