@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title> ECPG is fun ~ Jon Johnson </title>
+    <meta name="theme-color" content="#b16286">
+    <link rel="stylesheet" href="/styles.css">
+        <link rel="stylesheet" href="/codehilite-styles.css">
+    <link rel="stylesheet" href="/code-styles-booberry.css">
+    <link rel="stylesheet" href="/code-styles-dark-2.css">
+    </head>
+<body>
+        <nav class="nav" role="navigation" aria-label="main-navigation">
+    <ul>
+        <li id="waving-hand">
+                        <a class="nav-link" href="/">
+                👋🏽
+            </a>
+                    </li>
+        <li>
+                        <a class="nav-link" href="/about">
+                about
+            </a>
+                    </li>
+        <li>
+                        <a aria-current="page" class="nav-link nav-link--active" href="/blog">blog</a>
+                    </li>
+
+        <li>
+            <div class="palette-dropdown">
+                <button id="dropdown-button" class="nav-button">
+                    <svg id="palette" viewBox="0 0 201 199" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M201 99.5C201 138.678 177.558 131.651 156.19 125.246C143.464 121.427 131.467 117.82 125.625 124.375C118.05 132.87 119.658 146.999 121.216 160.693C123.439 180.282 125.575 199 100.5 199C80.623 199 61.1924 193.164 44.6652 182.231C28.1381 171.298 15.2568 155.758 7.65015 137.577C0.0435447 119.396 -1.94669 99.3897 1.93112 80.0885C5.80894 60.7874 15.3806 43.0582 29.4358 29.1429C43.491 15.2276 61.3984 5.75114 80.8935 1.91191C100.389 -1.92732 120.596 0.0431115 138.96 7.57403C157.324 15.1049 173.02 27.8581 184.063 44.2208C195.106 60.5835 201 79.8208 201 99.5V99.5ZM100.5 186.563C108.176 186.563 108.716 184.436 108.728 184.374C109.708 182.558 110.286 178.603 109.608 170.456C109.432 168.366 109.143 165.854 108.842 163.105C108.188 157.334 107.435 150.606 107.359 144.922C107.234 136.128 108.402 124.897 116.203 116.141C120.839 110.955 126.818 108.953 132.183 108.455C137.258 107.982 142.383 108.778 146.755 109.749C151.064 110.706 155.574 112.062 159.632 113.281L159.983 113.38C164.33 114.686 168.25 115.855 171.956 116.689C180.159 118.529 183.312 117.721 184.405 116.987C184.882 116.664 188.438 113.94 188.438 99.5C188.438 82.2807 183.28 65.4481 173.617 51.1307C163.955 36.8133 150.221 25.6543 134.152 19.0648C118.084 12.4752 100.402 10.7511 83.3443 14.1104C66.2861 17.4697 50.6171 25.7616 38.3188 37.9376C26.0206 50.1135 17.6453 65.6265 14.2522 82.515C10.8591 99.4034 12.6006 116.909 19.2564 132.817C25.9122 148.726 37.1833 162.323 51.6446 171.89C66.1058 181.456 83.1076 186.563 100.5 186.563V186.563Z"
+                            style="fill: var(--primary)" />
+                        <ellipse lass="ellipse-cyan" cx="50" cy="86.1342" rx="19" ry="18.8109"
+                            style="fill: var(--cyan)" />
+                        <ellipse class="ellipse-purple" cx="100" cy="43.5624" rx="19" ry="18.8109"
+                            style="fill: var(--purple)" />
+                        <ellipse class="ellipse-red" cx="151" cy="81.184" rx="19" ry="18.8109"
+                            style="fill: var(--red)" />
+                        <ellipse class="ellipse-yellow" cx="75" cy="142.567" rx="19" ry="18.8109"
+                            style="fill: var(--yellow)" />
+                    </svg>
+
+                </button>
+                <div id="dropdown-content" class="dropdown-content swing-in-top-fwd">
+                    <button id="default" class="theme-button theme-button--active">
+                        <div class="theme-selector">
+                            <h4>default</h4>
+                        </div>
+                    </button>
+                    <button id="gruvbox" class="theme-button">
+                        <div class="theme-selector">
+                            <h4>Gruvbox</h4>
+                        </div>
+                    </button>
+                    <button id="booberry" class="theme-button">
+                        <div class="theme-selector">
+                            <h4>Booberry</h4>
+                        </div>
+                    </button>
+                    <button id="dark" class="theme-button">
+                        <div class="theme-selector">
+                            <h4>Dark</h4>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </li>
+    </ul>
+</nav>
+    <section class="blog-post-container">
+        <article class="blog-post-content container">
+            <h1 class="blog-title">ECPG is fun</h1>
+            <h5 class="blog-subtitle">Published on: 2024-09-22</h5>
+            <p>I've come to really appreciate SQL, and how it has come to be the common interface for accessing data in a table, even if that table isn't stored in a relational database. There's tradeoffs though, many times you have to run the query before knowing if the syntax is correct, and you generally have to make some sort of mapping between the SQL and whatever language you've chosen to do all the other fun stuff.</p>
+<p>An ORM is one approach to handling the problem differently. I came across these when I started working on web applications, where my team had used it to handle the operations that users were able to do on our fancy dashboard generator&trade;, and turn them into queries against postgres. This model comes with another set of tradeoffs that much smarter and experience developers can extol on.</p>
+<p>Thanks to a Hackernews comment<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>, I learned of a SQL-first approach to marrying the querying interface with a programming language, and that's Embedded SQL. It's a method defined in the SQL standard of writing queries inline in a host language, and then having a preprocessor transform those that code into valid <em>host language source code</em>&trade; that can be compiled and run like any other program.</p>
+<p>God's favorite RDBMS <strike>SQLite</strike> Postgres provides a way of using embedded SQL through ECPG, which has been part of the database since version 6.3<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>. As long as your language of choice happens to be C or C++ , you can use it to build your own programs. With a brief<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> read through of the docs, one can come up with a pretty trivial example that gives returns a scalar for a simple query.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">EXEC</span><span class="w"> </span><span class="n">SQL</span><span class="w"> </span><span class="n">WHENEVER</span><span class="w"> </span><span class="n">SQLWARNING</span><span class="w"> </span><span class="n">SQLPRINT</span><span class="p">;</span><span class="w">  </span><span class="c1">// print SQL warnings to console </span>
+<span class="n">EXEC</span><span class="w"> </span><span class="n">SQL</span><span class="w"> </span><span class="n">WHENEVER</span><span class="w"> </span><span class="n">SQLERROR</span><span class="w"> </span><span class="n">STOP</span><span class="p">;</span><span class="w">  </span><span class="c1">// terminate program on SQL runtime err</span>
+
+<span class="n">EXEC</span><span class="w"> </span><span class="n">SQL</span><span class="w"> </span><span class="n">BEGIN</span><span class="w"> </span><span class="n">DECLARE</span><span class="w"> </span><span class="n">SECTION</span><span class="p">;</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pword</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getenv</span><span class="p">(</span><span class="s">&quot;POSTGRES_PASSWORD&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;jon&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">filter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">dbname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;unix:postgresql://localhost:5433/ecpg_demo&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
+<span class="n">EXEC</span><span class="w"> </span><span class="n">SQL</span><span class="w"> </span><span class="n">END</span><span class="w"> </span><span class="n">DECLARE</span><span class="w"> </span><span class="n">SECTION</span><span class="p">;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pword</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Env var not found</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">EXEC</span><span class="w"> </span><span class="n">SQL</span><span class="w"> </span><span class="n">CONNECT</span><span class="w"> </span><span class="n">TO</span><span class="w"> </span><span class="o">:</span><span class="n">dbname</span><span class="w"> </span><span class="n">USER</span><span class="w"> </span><span class="o">:</span><span class="n">user</span><span class="w"> </span><span class="n">USING</span><span class="w"> </span><span class="o">:</span><span class="n">pword</span><span class="p">;</span><span class="w">  </span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;SQL connection executed</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w">  </span>
+<span class="n">EXEC</span><span class="w"> </span><span class="n">SQL</span><span class="w"> </span><span class="n">SELECT</span><span class="w"> </span><span class="n">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">INTO</span><span class="w"> </span><span class="o">:</span><span class="n">count</span><span class="w">  </span>
+<span class="n">FROM</span><span class="w"> </span><span class="n">electricity_market</span><span class="w">  </span>
+<span class="n">WHERE</span><span class="w"> </span><span class="n">weekday</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">:</span><span class="n">filter</span><span class="p">;</span><span class="w">  </span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;Total number of rows in electricity_market: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="p">);</span>
+</code></pre></div>
+
+<p>The console would show:</p>
+<div class="codehilite"><pre><span></span><code><span class="gp">jon@wendy:~/projects/ternary-implosion$ </span>./main<span class="w"> </span>
+<span class="go">SQL connection executed</span>
+<span class="go">Total number of rows in electricity_market: 6288</span>
+</code></pre></div>
+
+<p>You can iterate over multiple results while using a cursor, and there is a header for handling Postgres types that can't be expressed in C primitives. This makes un-marshalling / handling data between the application and db far more trivial. In the example below, the <code>electricty_market</code> table has a number of columns which require arbitrary precision, so they use the postgres 'numeric' type.</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pgtypes_numeric.h&gt;</span>
+<span class="n">EXEC</span><span class="w"> </span><span class="n">SQL</span><span class="w"> </span><span class="n">BEGIN</span><span class="w"> </span><span class="n">DECLARE</span><span class="w"> </span><span class="n">SECTION</span><span class="p">;</span>
+<span class="w">  </span><span class="n">numeric</span><span class="w"> </span><span class="o">*</span><span class="n">hydro_gen</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">hydro_gen_ind</span><span class="p">;</span>
+<span class="n">EXEC</span><span class="w"> </span><span class="n">SQL</span><span class="w"> </span><span class="n">END</span><span class="w"> </span><span class="n">DECLARE</span><span class="w"> </span><span class="n">SECTION</span><span class="p">;</span>
+
+<span class="c1">// use cursors for iterating over a result set</span>
+<span class="n">EXEC</span><span class="w"> </span><span class="n">SQL</span><span class="w"> </span><span class="n">DECLARE</span><span class="w"> </span><span class="n">cur</span><span class="w"> </span><span class="n">CURSOR</span><span class="w"> </span><span class="n">FOR</span>
+<span class="w">  </span><span class="n">SELECT</span><span class="w"> </span><span class="n">miso_gas_gen</span><span class="w"> </span><span class="n">FROM</span><span class="w"> </span><span class="n">electricity_market</span>
+<span class="w">  </span><span class="n">ORDER</span><span class="w"> </span><span class="n">BY</span><span class="w"> </span><span class="n">miso_gas_gen</span><span class="p">;</span>
+<span class="n">EXEC</span><span class="w"> </span><span class="n">SQL</span><span class="w"> </span><span class="n">OPEN</span><span class="w"> </span><span class="n">cur</span><span class="p">;</span>
+<span class="n">EXEC</span><span class="w"> </span><span class="n">SQL</span><span class="w"> </span><span class="n">FETCH</span><span class="w"> </span><span class="n">NEXT</span><span class="w"> </span><span class="n">FROM</span><span class="w"> </span><span class="n">cur</span><span class="w"> </span><span class="n">INTO</span><span class="w"> </span><span class="o">:</span><span class="n">hydro_gen</span><span class="w"> </span><span class="n">INDICATOR</span><span class="w"> </span><span class="o">:</span><span class="n">hydro_gen_ind</span><span class="p">;</span><span class="w">  </span>
+<span class="n">EXEC</span><span class="w"> </span><span class="n">SQL</span><span class="w"> </span><span class="n">CLOSE</span><span class="w"> </span><span class="n">cur</span><span class="p">;</span>
+
+<span class="c1">// else you can run into a SQL ERROR if the value is NULL </span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">hydro_gen_ind</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;miso_gas_gen was NULL</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="k">else</span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;miso_gas_gen is %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">PGTYPESnumeric_to_asc</span><span class="p">(</span><span class="n">hydro_gen</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">));</span>
+</code></pre></div>
+
+<p>shows</p>
+<div class="codehilite"><pre><span></span><code><span class="go">miso_gas_gen is 6314.58</span>
+</code></pre></div>
+
+<p>The preprocessor step also provides checking to make sure the query is syntactically correct. I found this to be helpful, and caught a few silly mistakes before passing it off to the server. It's not going to be able to tell you if a query can successfully execute, however, because it doesn't validate the tables or columns referred. I still think this is a step up from <em>zero</em> SQL checking, although you never want to be stuck in the sad cycle of fixing SQL build errors, C build errors, and SQL runtime errors when building queries<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>.</p>
+<p>When it comes to SQL runtime errors, by default there is no handling. You can silently trigger an error through one query tied to a bound parameter, and that could propagate to all other queries in your program that use it. To prevent this, we can set callbacks to the top of the program, like in the first example. They allow some simple actions to be taken in case of an error, like terminating the program, or jumping to some labelled part of it. There is also a <code>sqlca</code> (SQL communication area) struct that's exposed which gives you more control over exactly what you can do. It behaves much like <code>errno</code> does in C, meaning if there's multiple errors in your SQL code it will only contain information about the last one<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>.</p>
+<p>I don't know how much embedded SQL has ever caught on. Word is that historically programs compiled through ECPG were less performant, as dynamic optimization was difficult for compilers using generated code<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup>. Comparing the performance of a non-trivial application using embedded SQL and code using libpq could be an interesting exercise.  </p>
+<p>I guess the "fun" part of my experience with ECPG has been learning about the ways that standards bodies and developers have worked on bridging the gap between SQL and the programming language glue that's needed to for interaction between data and the rest of the application. Most of the work surrounding embedded SQL seems to have occurred around 30 years ago. Sometimes I'm doing exploratory work against tables I'm not super familiar with, and I still don't even have the lowest form of SQL syntax linting before I submit queries off. So, it's given me an appreciation of the facilities that are available to me as a developer using Postgres in applications, and just how big the SQL standard is.</p>
+<div class="footnote">
+<h2 class="blog-subtitle">Footnotes</h2>
+<ol>
+<li id="fn:1">
+<p><a href="https://news.ycombinator.com/item?id=41478930">https://news.ycombinator.com/item?id=41478930</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="https://www.postgresql.org/docs/release/6.3.0/">https://www.postgresql.org/docs/release/6.3.0/</a>&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>For you, not me. I spent a few hours futzing with the connection string before a helpful StackOverflow post helped me realize that just <em>maybe</em> my demo postgres instance wasn't listening on port 5432.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>I'm totally guessing here, but I imagine that exploratory data analysis is probably not something you would do using ECPG. I imagine it's been used for different class of problems traditionally.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p><a href="https://www.postgresql.org/docs/current/ecpg-errors.html#ECPG-SQLCA/">https://www.postgresql.org/docs/current/ecpg-errors.html#ECPG-SQLCA/</a>&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p><a href="https://www.quora.com/Does-anyone-still-actively-write-Embedded-SQL/">https://www.quora.com/Does-anyone-still-actively-write-Embedded-SQL/</a>&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+            
+
+<footer>
+    ~~~<br>
+    This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+</a>.
+<br>
+    Please share if you like :0)
+</footer>        </article>
+    </section>
+    <script src="/script.js"></script>
+</body>
+
+</html>
