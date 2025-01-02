@@ -3,7 +3,6 @@ date: 2025-01-02
 title: Recommended Reading - PostgreSQL Query Optimization 
 description: I recently read "PostgreSQL Query Optimization:\ The Ultimate Guide to Building Efficient Queries" and think it's a great resource for helping to build a better intuition on how to query postgres effectively
 license: commercial
-draft: false 
 ---
 
 If you're looking to learn a about how to craft queries in PostgreSQL effectively, you have a loads of documentation, lessons, and LLMs to query that you can find on the internet. I found myself in a similar spot recently, I've spent some time working through attempting to optimize individual queries through a combination of trial and error, EXPLAIN ANALYZE, praying to foundational models, and mentioning to all my colleagues about how much better _my_ DDL would've been if only I had been given a chance to design all the tables with the benefit of years of hindsight. But, I was looking for a framework for understanding how to better craft queries in the first place, because that can save a lot of those aforementioned issues, and help save my colleagues sanity.

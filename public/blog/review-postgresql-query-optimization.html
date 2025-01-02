@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title> Recommended Reading - PostgreSQL Query Optimization ~ Jon Johnson </title>
+    <meta name="theme-color" content="#b16286">
+    <link rel="stylesheet" href="/styles.css">
+    </head>
+<body>
+        <nav class="nav" role="navigation" aria-label="main-navigation">
+    <ul>
+        <li id="waving-hand">
+                        <a class="nav-link" href="/">
+                👋🏽
+            </a>
+                    </li>
+        <li>
+                        <a class="nav-link" href="/about">
+                about
+            </a>
+                    </li>
+        <li>
+                        <a aria-current="page" class="nav-link nav-link--active" href="/blog">blog</a>
+                    </li>
+
+        <li>
+            <div class="palette-dropdown">
+                <button id="dropdown-button" class="nav-button">
+                    <svg id="palette" viewBox="0 0 201 199" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M201 99.5C201 138.678 177.558 131.651 156.19 125.246C143.464 121.427 131.467 117.82 125.625 124.375C118.05 132.87 119.658 146.999 121.216 160.693C123.439 180.282 125.575 199 100.5 199C80.623 199 61.1924 193.164 44.6652 182.231C28.1381 171.298 15.2568 155.758 7.65015 137.577C0.0435447 119.396 -1.94669 99.3897 1.93112 80.0885C5.80894 60.7874 15.3806 43.0582 29.4358 29.1429C43.491 15.2276 61.3984 5.75114 80.8935 1.91191C100.389 -1.92732 120.596 0.0431115 138.96 7.57403C157.324 15.1049 173.02 27.8581 184.063 44.2208C195.106 60.5835 201 79.8208 201 99.5V99.5ZM100.5 186.563C108.176 186.563 108.716 184.436 108.728 184.374C109.708 182.558 110.286 178.603 109.608 170.456C109.432 168.366 109.143 165.854 108.842 163.105C108.188 157.334 107.435 150.606 107.359 144.922C107.234 136.128 108.402 124.897 116.203 116.141C120.839 110.955 126.818 108.953 132.183 108.455C137.258 107.982 142.383 108.778 146.755 109.749C151.064 110.706 155.574 112.062 159.632 113.281L159.983 113.38C164.33 114.686 168.25 115.855 171.956 116.689C180.159 118.529 183.312 117.721 184.405 116.987C184.882 116.664 188.438 113.94 188.438 99.5C188.438 82.2807 183.28 65.4481 173.617 51.1307C163.955 36.8133 150.221 25.6543 134.152 19.0648C118.084 12.4752 100.402 10.7511 83.3443 14.1104C66.2861 17.4697 50.6171 25.7616 38.3188 37.9376C26.0206 50.1135 17.6453 65.6265 14.2522 82.515C10.8591 99.4034 12.6006 116.909 19.2564 132.817C25.9122 148.726 37.1833 162.323 51.6446 171.89C66.1058 181.456 83.1076 186.563 100.5 186.563V186.563Z"
+                            style="fill: var(--primary)" />
+                        <ellipse lass="ellipse-cyan" cx="50" cy="86.1342" rx="19" ry="18.8109"
+                            style="fill: var(--cyan)" />
+                        <ellipse class="ellipse-purple" cx="100" cy="43.5624" rx="19" ry="18.8109"
+                            style="fill: var(--purple)" />
+                        <ellipse class="ellipse-red" cx="151" cy="81.184" rx="19" ry="18.8109"
+                            style="fill: var(--red)" />
+                        <ellipse class="ellipse-yellow" cx="75" cy="142.567" rx="19" ry="18.8109"
+                            style="fill: var(--yellow)" />
+                    </svg>
+
+                </button>
+                <div id="dropdown-content" class="dropdown-content swing-in-top-fwd">
+                    <button id="default" class="theme-button theme-button--active">
+                        <div class="theme-selector">
+                            <h4>default</h4>
+                        </div>
+                    </button>
+                    <button id="gruvbox" class="theme-button">
+                        <div class="theme-selector">
+                            <h4>Gruvbox</h4>
+                        </div>
+                    </button>
+                    <button id="booberry" class="theme-button">
+                        <div class="theme-selector">
+                            <h4>Booberry</h4>
+                        </div>
+                    </button>
+                    <button id="dark" class="theme-button">
+                        <div class="theme-selector">
+                            <h4>Dark</h4>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </li>
+    </ul>
+</nav>
+    <section class="blog-post-container">
+        <article class="blog-post-content container">
+            <h1 class="blog-title">Recommended Reading - PostgreSQL Query Optimization</h1>
+            <h5 class="blog-subtitle">Published on: 2025-01-02</h5>
+            <p>If you're looking to learn a about how to craft queries in PostgreSQL effectively, you have a loads of documentation, lessons, and LLMs to query that you can find on the internet. I found myself in a similar spot recently, I've spent some time working through attempting to optimize individual queries through a combination of trial and error, EXPLAIN ANALYZE, praying to foundational models, and mentioning to all my colleagues about how much better <em>my</em> DDL would've been if only I had been given a chance to design all the tables with the benefit of years of hindsight. But, I was looking for a framework for understanding how to better craft queries in the first place, because that can save a lot of those aforementioned issues, and help save my colleagues sanity.</p>
+<p>I recently read 2024's "<a href="https://link.springer.com/book/10.1007/979-8-8688-0069-6">PostgreSQL Query Optimization: The Ultimate Guide to Building Efficient Queries</a>", in an effort to do so, and I think it's worth your time if you're looking for something similar. At 344 pages, it's a pretty small and approachable text for building queries in a way that works with PostgreSQL as opposed to working against it. It's also less than 11% of the size of PostgreSQL's current documentation, so it allows you to develop a working model of some optimization concepts in an 80-20-like approach. It also includes links to download a postgres_air schema, a schema for a fictional airline which forms the basis of all queries in the book.</p>
+<h2>Book Overview</h2>
+<p>The book follows a nice flow, which starts with some baseline information on why to improve query execution time, as well as some intiuition in <em>how</em> to set and measure optimization goals. It then digs into some basic relational theory, and loosely breaks down the stages of query execution in postgres. All of this culminates with a chapter on execution plans that can be referenced throughout the remainder of the book.</p>
+<p>The next part of the book delves into optimization for the two major types of queries, short and long, and the considerations that need to be made for DML (data modification) queries. Afterwards, it takes a brief look at the effects of some noteworthy configuration parameters. The remainder of the book is spent on optimizing an application's performance that leverages a database, and why one should prefer using functions and dynamic SQL as opposed to an ORM layer to define the contract between the app and db. At the very end, the authors wrap things up by providing a flow-chart for optimizing an arbitrary query using the information previously explored.</p>
+<h2>Lessons Learned</h2>
+<p>I want to touch on a few points in particular that I've learned and hope will stick with me:</p>
+<h3>1. The Difference in Optimizing Short and Long Queries</h3>
+<p>Prior to reading this book, I might've heard of <em>short</em> and <em>long</em> queries, but certainly hadn't a clue of their individual intricacies when attempting to optimize them. The terms <em>short</em> and <em>long</em> refer to the number of rows that need to be scanned relative to the size of the tables in order to provide a result for a query. </p>
+<p>Depending on the type of query you have to optimize, you're looking at a slightly different path of potential modifications. Ensuring that we execute the most restrictive filter or join is often the most important, but the considerations can change up quite a bit from there. If you have a short query for instance, properly set indexes can be a huge performance multiplier. Properly set meaning, they provide coverage for the parameters being filtered and joined on<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
+<p>Long queries, on the other hand can benefit from decisions beyond metadata or table structures. Those of us familiar with OLAP workflows can speak to the benefits of taking some long query and dividing it up amongst a set of incremental updates. We also are gonna be much less reliant on indexes, since a long query by definition is going to be scanning a huge portion of a table. So, making sure that we can setup queries in such a way so that we only scan large tables once can be a huge boon. I think one of the most illustrative examples is from when the author mentions using a VIEW in a large query. The VIEW is being joined against a large table, and results in several large sequental scans against the large table due to how the VIEW was initially built<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>. Decoupling the long query from the VIEW resulted in massive performance gains</p>
+<p>I'm really just scratching the service here. The book presents a number of scenarios and optimizations to consider depending on the query type.</p>
+<h3>2. Configuration Can Harm More Than Help</h3>
+<p>The authors don't spend much time on PostgreSQL configuration parameters, and they state that more impactful optimizations can generally be found elsewhere<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>. On other side of the coin, however, a mis-configured postgres instance could result increased query times and much lower reliability. The authors point to an example of setting <code>work_mem</code> (working memory) to some level
+that would cause users to see OOM errors if the <code>max_connections</code> setting is too high. Postgres isn't going to do the math for you, so you'll need to figure out if the parameters make sense.</p>
+<h3>3. The Benefits of Dynamic Query Execution</h3>
+<p>Unlike say Oracle, Postgres optimizes queries as possible. This allows the db to take into account table statistics for dynamic query elements. For instance, say you have a parameterized query in your application to pull users data out, and it's based on some filter, like the users' home country, postgres is going to return an optimized query plan that's probably going to work <em>really well</em> if the filter condition has high selectivity (represents a low % of rows). Like pulling users in Turkmenistan vs a similar parameterized query in Oracle for your international app.</p>
+<h3>4. NORM as an ORM alternative</h3>
+<p>NORM (aka No-ORM) is an approach to mapping application data to its database in a more "database focused" way than what's typically seen by ORM-backed applications. ORM's can result in fairly succinct code on the application side of things, but they can lead to an applicaton making several database calls for a group of objects that it very well could've done in a single well-formed query (often referred to as the N+1 query problem).</p>
+<p>NORM is backed by a JSON schema that defines a contract between the database and the application objects. Through this schema, objects created can be serialized to JSON, and sent to the database to be executed as a query. Once the JSON is submitted to the database, a function parses the JSON, and executes the necessary transaction. This really flips the ORM approach by making the database responsible for decomposing the object into database updates, as opposed to having the ORM make a number of small queries on behalf of the application to update the database. </p>
+<p>The authors include a link to the <a href="https://github.com/hettie-d/NORM">NORM</a> framework on GitHub, which includes a set of packages that can automate building out NORM functions for your application. There is also a user guide which dives much deeper than this blog post (and the book).</p>
+<h2>Verdict</h2>
+<p>All-in-all, If you're looking to build a better mental model of Postgres, and how to build postgres friendly queries, I'd highly recommend it. The examples make take some time to walk all the way through if you're following along with your own postgres instance, but feels well worth the time<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>. </p>
+<div class="footnote">
+<h2 class="blog-subtitle">Footnotes</h2>
+<ol>
+<li id="fn:1">
+<p>One thing in particular that seems obvious in hindsight, is that indexes don't provide any peformance benefit if your query is applying some transformation to the index in question. If you have an index on an <code>updated_date</code> column, and then filter data in your query by using <code>MONTH(updated_date)</code> the query engine isn't going to leverage the index at all.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="https://learning.oreilly.com/library/view/postgresql-query-optimization/9798868800696/html/501585_2_En_7_Chapter.xhtml#:-:text=Views%3A%20To%20Use,they%20cause%20problems%3F">https://learning.oreilly.com/library/view/postgresql-query-optimization/9798868800696/html/501585_2_En_7_Chapter.xhtml#:-:text=Views%3A%20To%20Use,they%20cause%20problems%3F</a>&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Particularly vs actually adjusting the query joins and filters: <a href="https://learning.oreilly.com/library/view/postgresql-query-optimization/9798868800696/html/501585_2_En_10_Chapter.xhtml#:-:text=Although%20some%20parameter,hundreds%20of%20times">https://learning.oreilly.com/library/view/postgresql-query-optimization/9798868800696/html/501585_2_En_10_Chapter.xhtml#:-:text=Although%20some%20parameter,hundreds%20of%20times</a>&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>This isn't Joe Celko's SQL for Smarties, you can get through the text and run all the examples in recreationally paced week.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+            
+
+<footer>
+    ~~~<br>
+    This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+</a>.
+<br>
+    Please share if you like :0)
+</footer>        </article>
+    </section>
+    <script src="/script.js"></script>
+</body>
+
+</html>
