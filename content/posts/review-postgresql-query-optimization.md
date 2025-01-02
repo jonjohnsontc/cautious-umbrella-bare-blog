@@ -1,13 +1,13 @@
 ---
 date: 2025-01-02
-title: Recommended Reading - PostgreSQL Query Optimization 
+title: "PostgreSQL Query Optimization" - A Review
 description: I recently read "PostgreSQL Query Optimization:\ The Ultimate Guide to Building Efficient Queries" and think it's a great resource for helping to build a better intuition on how to query postgres effectively
 license: commercial
 ---
 
-If you're looking to learn a about how to craft queries in PostgreSQL effectively, you have a loads of documentation, lessons, and LLMs to query that you can find on the internet. I found myself in a similar spot recently, I've spent some time working through attempting to optimize individual queries through a combination of trial and error, EXPLAIN ANALYZE, praying to foundational models, and mentioning to all my colleagues about how much better _my_ DDL would've been if only I had been given a chance to design all the tables with the benefit of years of hindsight. But, I was looking for a framework for understanding how to better craft queries in the first place, because that can save a lot of those aforementioned issues, and help save my colleagues sanity.
+If you're looking to learn a about how to craft queries in PostgreSQL effectively, you have a loads of documentation, lessons, and LLMs to query that you can find on the internet. I found myself in a similar spot recently, I've previously spent some time attempting to optimize individual queries through a combination of trial and error, EXPLAIN ANALYZE, praying to foundational models, and lamenting to colleagues about how much better my DDL would’ve been —if only I’d had the benefit of years of hindsight when designing the tables. I was looking for a framework for understanding how to better craft queries in the first place, because that can save a lot of those aforementioned struggles (and importantly, my colleagues sanity).
 
-I recently read 2024's "[PostgreSQL Query Optimization: The Ultimate Guide to Building Efficient Queries](https://link.springer.com/book/10.1007/979-8-8688-0069-6)", in an effort to do so, and I think it's worth your time if you're looking for something similar. At 344 pages, it's a pretty small and approachable text for building queries in a way that works with PostgreSQL as opposed to working against it. It's also less than 11% of the size of PostgreSQL's current documentation, so it allows you to develop a working model of some optimization concepts in an 80-20-like approach. It also includes links to download a postgres_air schema, a schema for a fictional airline which forms the basis of all queries in the book.
+I recently read 2024's "[PostgreSQL Query Optimization: The Ultimate Guide to Building Efficient Queries](https://link.springer.com/book/10.1007/979-8-8688-0069-6)", in an effort to do so, and I think it's worth your time if you're looking for something similar. At 344 pages, it's a pretty small and approachable text for building queries in a way that works with PostgreSQL as opposed to working against it. It's also less than 11% of the size of PostgreSQL's current documentation, offering an 80-20-like approach to optimization. It also includes links to download a `postgres_air` schema, a schema for a fictional airline which forms the basis of all queries in the book.
 
 ## Book Overview
 
