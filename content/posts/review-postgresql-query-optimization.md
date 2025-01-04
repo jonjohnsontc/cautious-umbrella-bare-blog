@@ -1,7 +1,7 @@
 ---
 date: 2025-01-02
 title: "PostgreSQL Query Optimization" - A Review
-description: I recently read "PostgreSQL Query Optimization:\ The Ultimate Guide to Building Efficient Queries" and think it's a great resource for helping to build a better intuition on how to query postgres effectively
+description: I recently read 'PostgreSQL Query Optimization: The Ultimate Guide to Building Efficient Queries' and think it's a great resource for helping to build a better intuition on how to query postgres effectively
 license: commercial
 ---
 

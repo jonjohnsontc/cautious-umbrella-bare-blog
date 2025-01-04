@@ -8,11 +8,11 @@ Ideally, I'd like to set any values in this template through content page data
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    {% if description %}
+    {% if description is not none %}
     <meta name="description" content="{{ description }}">
     {% endif %}
     <title> {{ title }} ~ Jon Johnson </title>
-    <meta name="theme-color" content="#b16286">
+    <meta name=" theme-color" content="#b16286">
     <link rel="stylesheet" href="/styles.css">
     {% if code %}
     <link rel="stylesheet" href="/codehilite-styles.css">

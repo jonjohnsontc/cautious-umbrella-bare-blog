@@ -3,6 +3,7 @@ Takes content in the "content" directory, and makes a bunch of html
 pages out of them. Then it builds the blog index based on all the
 pages built
 """
+
 import argparse
 import json
 import os
@@ -158,32 +159,34 @@ def output_page(template: Template, content_loc: str):
             kwargs[k] = val
     return template.render(**kwargs)
 
+
 def create_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog='Render Templates',
-        description='Creates all the blog pages on my website',
+        prog="Render Templates",
+        description="Creates all the blog pages on my website",
     )
     # Where to output files
     parser.add_argument(
-        '-o', 
-        '--output_dir',
+        "-o",
+        "--output_dir",
         required=False,
         type=str,
         help="The location to write html files to",
-        default="."
+        default=".",
     )
     # location of the modified store. If not present the script
     # will look in ./content
     parser.add_argument(
-        '-s',
-        '--store_loc',
+        "-s",
+        "--store_loc",
         required=False,
         type=str,
         help="""Where the modified store is to be located. If not provided, 
-                the script will look in the content directory""",   
-        default=STORE_LOC
+                the script will look in the content directory""",
+        default=STORE_LOC,
     )
     return parser
+
 
 parser = create_parser()
 
@@ -191,21 +194,22 @@ parser = create_parser()
 # the template has been modified or the content file. If either
 # has been modified, the page will be output.
 if __name__ == "__main__":
-    # NOTE: all args could potentially be null, so I want to 
+    # NOTE: all args could potentially be null, so I want to
     # use dict.get(item, default) whenever pulling args
     qwargs = parser.parse_args()
     arg_dict = vars(qwargs)
-    output_dir = arg_dict.get('output_dir', OUTPUT_DIR)
+    output_dir = arg_dict.get("output_dir", OUTPUT_DIR)
     env = Environment(
         loader=PackageLoader("render_templates", TEMPLATES_LOC),
         autoescape=False,
         keep_trailing_newline=True,
         trim_blocks=True,
+        lstrip_blocks=True,
     )
     template = env.get_template(BLOG_TEMPLATE)
     posts = []
     # store_location is potentially null
-    store_loc = arg_dict.get('store_loc', STORE_LOC)
+    store_loc = arg_dict.get("store_loc", STORE_LOC)
     store = load_store(store_loc)
     # creating this snapshot to see if anything
     # changes with the store while we build the
@@ -233,13 +237,20 @@ if __name__ == "__main__":
                 if parser.Meta.get("draft"):
                     suffix = ".draft.html"
                     # we'll add today's date so drafts get published at the top of the blog list
-                    parser.Meta["date"].append(datetime.strftime(datetime.today(), "%Y-%m-%d"))
+                    parser.Meta["date"].append(
+                        datetime.strftime(datetime.today(), "%Y-%m-%d")
+                    )
                 bp = {
                     "title": parser.Meta.get("title").pop(),
                     "date": parser.Meta.get("date").pop(),
                     # this path should be absolute since
                     # the server is using this to find it
                     "path": f"/blog/{filename}",
+                    "description": (
+                        parser.Meta.get("description").pop()
+                        if parser.Meta.get("description")
+                        else None
+                    ),
                 }
                 # This is a silly temporary way to avoid publishing changes to my blog
                 # the blog index if a new post is a draft page
@@ -256,13 +267,16 @@ if __name__ == "__main__":
                     if parser.Meta.get("code"):
                         codehilite = True
                     print("Working on", entry.path, "🪩")
-                    
+
                     with open(
-                        f"{output_dir}/public/blog/{filename}{suffix}", "w+", encoding="utf-8"
+                        f"{output_dir}/public/blog/{filename}{suffix}",
+                        "w+",
+                        encoding="utf-8",
                     ) as f:
                         f.write(
                             template.render(
                                 title=bp["title"],
+                                description=bp["description"],
                                 post=post,
                                 date=bp["date"],
                                 license=parser.Meta.get("license").pop(),

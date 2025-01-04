@@ -5,26 +5,27 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title> SQLite as a Data REPL ~ Jon Johnson </title>
-    <meta name="theme-color" content="#b16286">
+    <meta name="description" content="If I have some large csv of data that I need to look at, I've typically reached first for pandas, served via a standard python or ipython repl - but I'm writing this to remember to consider looking at sqlite instead.">
+    <title> SQLite as a Data REPL ~ Jon Johnson </title>
+    <meta name=" theme-color" content="#b16286">
     <link rel="stylesheet" href="/styles.css">
-    </head>
+</head>
 <body>
-        <nav class="nav" role="navigation" aria-label="main-navigation">
+    <nav class="nav" role="navigation" aria-label="main-navigation">
     <ul>
         <li id="waving-hand">
-                        <a class="nav-link" href="/">
+            <a class="nav-link" href="/">
                 👋🏽
             </a>
-                    </li>
+        </li>
         <li>
-                        <a class="nav-link" href="/about">
+            <a class="nav-link" href="/about">
                 about
             </a>
-                    </li>
+        </li>
         <li>
-                        <a aria-current="page" class="nav-link nav-link--active" href="/blog">blog</a>
-                    </li>
+            <a aria-current="page" class="nav-link nav-link--active" href="/blog">blog</a>
+        </li>
 
         <li>
             <div class="palette-dropdown">
@@ -77,7 +78,7 @@
             <p>If I have some large csv of data that I need to look at, I've typically reached first for pandas, served via a standard python or ipython repl - but I'm writing this to remember to consider looking at sqlite instead.</p>
 <p>Anecdotally (I'm typing it at the command-line now), the sqlite3 cli starts up much faster than python3 repl. Add in the cost of <code>import pandas as pd</code>, and you've probably already taken like 6-8 seconds. Reading in data with sqlite3 seems much quicker than <code>pd.read_csv</code>, and I get the benefit of easy persistance with <code>.backup FILE</code> instead of saving a bunch of additional csv files with the results of different filters.</p>
 <p><code>.import FILENAME TABLE --csv</code> is all you need to read a csv file as a new table, so give it a shot next time you find yourself with the need to munge some data quickly</p>
-            
+
 
 <footer>
     ~~~<br>
